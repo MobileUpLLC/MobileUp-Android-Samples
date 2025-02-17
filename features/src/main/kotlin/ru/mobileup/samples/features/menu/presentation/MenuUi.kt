@@ -46,6 +46,15 @@ fun MenuUi(
                 component.onButtonClick(Sample.Video)
             }
         )
+
+        AppButton(
+            modifier = Modifier.fillMaxWidth(),
+            buttonType = ButtonType.Secondary,
+            text = stringResource(R.string.menu_item_collapsing_toolbar),
+            onClick = {
+                component.onButtonClick(Sample.CollapsingToolbar)
+            }
+        )
     }
 }
 

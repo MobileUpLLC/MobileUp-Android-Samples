@@ -3,6 +3,7 @@ package ru.mobileup.samples.features.root.presentation
 import com.arkivanov.decompose.router.stack.ChildStack
 import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.samples.core.message.presentation.MessageComponent
+import ru.mobileup.samples.features.collapsing_toolbar.presentation.CollapsingToolbarComponent
 import ru.mobileup.samples.features.form.presentation.FormComponent
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
 import ru.mobileup.samples.features.video.presentation.VideoComponent
@@ -22,5 +23,6 @@ interface RootComponent {
         class Menu(val component: MenuComponent) : Child
         class Form(val component: FormComponent) : Child
         class Video(val component: VideoComponent) : Child
+        class CollapsingToolbar(val component: CollapsingToolbarComponent) : Child
     }
 }

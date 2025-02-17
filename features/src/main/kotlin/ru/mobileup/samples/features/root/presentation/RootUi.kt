@@ -15,6 +15,7 @@ import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
 import ru.mobileup.samples.core.utils.LocalSystemBarsSettings
 import ru.mobileup.samples.core.utils.accumulate
+import ru.mobileup.samples.features.collapsing_toolbar.presentation.CollapsingToolbarUi
 import ru.mobileup.samples.features.form.presentation.FormUi
 import ru.mobileup.samples.features.menu.presentation.MenuUi
 import ru.mobileup.samples.features.video.presentation.VideoUi
@@ -34,6 +35,7 @@ fun RootUi(
             is RootComponent.Child.Menu -> MenuUi(instance.component)
             is RootComponent.Child.Form -> FormUi(instance.component)
             is RootComponent.Child.Video -> VideoUi(instance.component)
+            is RootComponent.Child.CollapsingToolbar -> CollapsingToolbarUi(instance.component)
         }
     }
 

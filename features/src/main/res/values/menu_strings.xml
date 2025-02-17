@@ -1,4 +1,5 @@
 <resources>
     <string name="menu_item_form">Form</string>
     <string name="menu_item_video">Video</string>
+    <string name="menu_item_collapsing_toolbar">Collapsing Toolbar</string>
 </resources>

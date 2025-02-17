@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="collapsing_toolbar_info">Info</string>
+    <string name="collapsing_toolbar_layout_type_common">Common</string>
+    <string name="collapsing_toolbar_layout_type_custom">Custom</string>
+</resources>
