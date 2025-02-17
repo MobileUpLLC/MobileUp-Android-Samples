@@ -9,6 +9,7 @@ import ru.mobileup.samples.core.ComponentFactory
 import ru.mobileup.samples.core.createMessageComponent
 import ru.mobileup.samples.core.utils.safePush
 import ru.mobileup.samples.core.utils.toStateFlow
+import ru.mobileup.samples.features.collapsing_toolbar.createCollapsingToolbarComponent
 import ru.mobileup.samples.features.form.createFormComponent
 import ru.mobileup.samples.features.menu.createMenuComponent
 import ru.mobileup.samples.features.menu.domain.Sample
@@ -55,6 +56,12 @@ class RealRootComponent(
                 componentFactory.createVideoComponent(componentContext)
             )
         }
+
+        ChildConfig.CollapsingToolbar -> {
+            RootComponent.Child.CollapsingToolbar(
+                componentFactory.createCollapsingToolbarComponent(componentContext)
+            )
+        }
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -63,6 +70,7 @@ class RealRootComponent(
                 when (output.sample) {
                     Sample.Form -> ChildConfig.Form
                     Sample.Video -> ChildConfig.Video
+                    Sample.CollapsingToolbar -> ChildConfig.CollapsingToolbar
                 }
             )
         }
@@ -79,5 +87,8 @@ class RealRootComponent(
 
         @Serializable
         data object Video : ChildConfig
+
+        @Serializable
+        data object CollapsingToolbar : ChildConfig
     }
 }
