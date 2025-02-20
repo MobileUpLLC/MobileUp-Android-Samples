@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="collapsing_toolbar_example">Example</string>
+    <string name="collapsing_toolbar_advanced">Advanced</string>
+    <string name="collapsing_toolbar_layout_type">Layout type</string>
+    <string name="collapsing_toolbar_layout_type_simple_normal">SimpleNormal</string>
+    <string name="collapsing_toolbar_layout_type_simple_custom">SimpleCustom</string>
+    <string name="collapsing_toolbar_layout_type_simple_both">SimpleBoth</string>
+    <string name="collapsing_toolbar_layout_type_advanced_normal">AdvancedNormal</string>
+    <string name="collapsing_toolbar_layout_type_advanced_custom">AdvancedCustom</string>
+    <string name="collapsing_toolbar_layout_type_advanced_both">AdvancedBoth</string>
+    <string name="collapsing_toolbar_lazy_layout">Lazy layout</string>
+</resources>
