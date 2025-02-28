@@ -27,7 +27,7 @@ interface VideoRecorderComponent {
 
     fun onRecordStopFailed()
 
-    fun onUpdateCameraSelector(cameraSelector: CameraSelector)
+    fun onFlipCameraSelector()
 
     fun onUpdateFps(fps: Int)
 

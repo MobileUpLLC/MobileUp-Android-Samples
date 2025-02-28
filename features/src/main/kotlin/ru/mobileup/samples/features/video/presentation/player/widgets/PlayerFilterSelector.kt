@@ -19,12 +19,15 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
+import ru.mobileup.samples.core.utils.clickableNoRipple
 import ru.mobileup.samples.features.video.data.render.availableFilters
 import ru.mobileup.samples.features.video.domain.PlayerConfig
 import ru.mobileup.samples.features.video.presentation.widgets.SlideAnimation
@@ -36,6 +39,8 @@ fun BoxScope.PlayerFilterSelector(
     filtersPagerState: PagerState,
     fling: TargetedFlingBehavior
 ) {
+    val scope = rememberCoroutineScope()
+
     SlideAnimation(
         modifier = modifier.align(Alignment.BottomStart),
         isVisible = playerConfig == PlayerConfig.Filter
@@ -46,9 +51,8 @@ fun BoxScope.PlayerFilterSelector(
                 .background(CustomTheme.colors.palette.black50),
             pageSize = PageSize.Fill,
             state = filtersPagerState,
-            contentPadding = PaddingValues(horizontal = 16.dp),
+            contentPadding = PaddingValues(end = 32.dp),
             flingBehavior = fling,
-            pageSpacing = 7.dp,
             key = { it },
         ) { page ->
             val filterIndex by remember { derivedStateOf { page % availableFilters.size } }
@@ -64,7 +68,16 @@ fun BoxScope.PlayerFilterSelector(
                 } else {
                     CustomTheme.colors.text.invert
                 },
-                modifier = Modifier.padding(vertical = 8.dp)
+                modifier = Modifier
+                    .clickableNoRipple {
+                        if (!isActive) {
+                            scope.launch {
+                                filtersPagerState.animateScrollToPage(page)
+                            }
+                        }
+                    }
+                    .padding(vertical = 8.dp)
+                    .padding(start = 16.dp)
             )
         }
     }

@@ -42,6 +42,7 @@ data class IconColors(
 
 data class PaletteColors(
     val white: Color,
+    val white50: Color,
     val white10: Color,
     val black: Color,
     val black50: Color,

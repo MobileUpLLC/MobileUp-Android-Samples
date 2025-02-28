@@ -38,6 +38,7 @@ val LightAppColors = CustomColors(
     ),
     palette = PaletteColors(
         white = Color(0xFFFFFFFF),
+        white50 = Color(0x80FFFFFF),
         white10 = Color(0x1AFFFFFF),
         black = Color(0xFF000000),
         black50 = Color(0x80000000),

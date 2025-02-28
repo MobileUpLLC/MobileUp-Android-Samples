@@ -46,10 +46,10 @@ fun BoxScope.RecorderTorchSelector(
                 Row(
                     modifier = Modifier
                         .weight(1f)
-                        .padding(vertical = 8.dp)
                         .clickable {
                             onTorchSelected(it)
-                        },
+                        }
+                        .padding(vertical = 8.dp),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(

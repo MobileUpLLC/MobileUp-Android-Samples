@@ -1,11 +1,14 @@
 package ru.mobileup.samples.features.video.presentation.recorder.controller
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.util.Range
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraEffect
 import androidx.camera.core.CameraSelector
+import androidx.camera.core.FocusMeteringAction
+import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.MirrorMode
 import androidx.camera.core.Preview
 import androidx.camera.core.UseCaseGroup
@@ -28,6 +31,7 @@ import ru.mobileup.samples.features.video.domain.events.CameraEvent
 import ru.mobileup.samples.features.video.domain.events.RecordingError
 import ru.mobileup.samples.features.video.domain.events.RecordingResult
 import ru.mobileup.samples.features.video.domain.states.RecorderState
+import kotlin.math.abs
 
 private const val TAG = "Camera"
 
@@ -37,12 +41,14 @@ class CameraController(
     private val previewView: PreviewView,
     private val onCameraRecordingEvent: (CameraEvent) -> Unit,
     private val onCameraInitializationFailed: () -> Unit,
+    private val onPlaceHolderUpdated: (Bitmap?) -> Unit
 ) {
     private val cameraProvider = ProcessCameraProvider.getInstance(context).get()
 
     private var cameraLink: Camera? = null
     private var videoCapture: VideoCapture<Recorder>? = null
     private var isReleased = false
+    private var exposureRange: Range<Int> = Range(0, 0)
 
     private var recording: Recording? = null
     private var recordingInProgress: Boolean = false
@@ -102,6 +108,9 @@ class CameraController(
                 val isCameraUpdated = field.cameraSelector != value.cameraSelector
 
                 field = value
+
+                onPlaceHolderUpdated(previewView.bitmap)
+
                 setupVideoUseCase()
 
                 if (isCameraUpdated) {
@@ -131,6 +140,26 @@ class CameraController(
     fun zoomChange(zoomChange: Float) {
         zoomValue *= zoomChange
         cameraLink?.cameraControl?.setZoomRatio(zoomValue)
+    }
+
+    fun focusChange(focusMeteringAction: FocusMeteringAction) {
+        cameraLink?.cameraControl?.startFocusAndMetering(focusMeteringAction)
+    }
+
+    fun exposureChange(exposure: Float) {
+        val newExposure = when {
+            exposure > 0 -> {
+                exposureRange.upper * exposure
+            }
+
+            exposure < 0 -> {
+                exposureRange.lower * abs(exposure)
+            }
+
+            else -> 0
+        }.toInt()
+
+        cameraLink?.cameraControl?.setExposureCompensationIndex(newExposure)
     }
 
     fun changeTorchState(enabled: Boolean) {
@@ -185,9 +214,19 @@ class CameraController(
             it.setGlFilter(glFilter)
         }
 
+        val imageAnalysis = ImageAnalysis.Builder()
+            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+            .build()
+
+        imageAnalysis.setAnalyzer(ContextCompat.getMainExecutor(context)) {
+            onPlaceHolderUpdated(null)
+            imageAnalysis.clearAnalyzer()
+        }
+
         val useCaseGroup = UseCaseGroup.Builder()
             .addUseCase(preview)
             .addUseCase(videoCapture)
+            .addUseCase(imageAnalysis)
             .apply {
                 cameraEffect?.let { addEffect(it) }
             }
@@ -200,6 +239,7 @@ class CameraController(
                 useCaseGroup = useCaseGroup
             ).also {
                 cameraLink = it
+                exposureRange = it.cameraInfo.exposureState.exposureCompensationRange
             }
         } catch (e: Exception) {
             Logger.withTag(TAG).d("Camera initialization failed: $e")

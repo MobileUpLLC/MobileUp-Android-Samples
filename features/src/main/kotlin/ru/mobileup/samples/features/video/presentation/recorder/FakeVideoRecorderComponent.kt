@@ -27,7 +27,7 @@ class FakeVideoRecorderComponent : VideoRecorderComponent {
 
     override fun onRecordStopFailed() = Unit
 
-    override fun onUpdateCameraSelector(cameraSelector: CameraSelector) = Unit
+    override fun onFlipCameraSelector() = Unit
 
     override fun onUpdateFps(fps: Int) = Unit
 

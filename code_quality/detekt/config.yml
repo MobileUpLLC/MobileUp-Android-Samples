@@ -369,7 +369,7 @@ Compose:
     # -- You can optionally disable the checks in this rule for regex matches against the composable name (e.g. molecule presenters)
     # allowedComposableFunctionNames: .*Presenter,.*MoleculePresenter
   ComposableParamOrder:
-    active: true
+    active: false
     # -- You can optionally have a list of types to be treated as lambdas (e.g. typedefs or fun interfaces not picked up automatically)
     # treatAsLambda: MyLambdaType
   CompositionLocalNaming:
@@ -393,7 +393,7 @@ Compose:
   DefaultsVisibility:
     active: true
   LambdaParameterEventTrailing:
-    active: true
+    active: false
     # -- You can optionally add your own composables here
     # contentEmitters: MyComposable,MyOtherComposable
     # -- You can add composables here that you don't want to count as content emitters (e.g. custom dialogs or modals)
@@ -411,11 +411,11 @@ Compose:
     # -- You can optionally add your own Modifier types
     # customModifiers: BananaModifier,PotatoModifier
   ModifierComposable:
-    active: true
+    active: false
     # -- You can optionally add your own Modifier types
     # customModifiers: BananaModifier,PotatoModifier
   ModifierMissing:
-    active: true
+    active: false
     # -- You can optionally control the visibility of which composables to check for here
     # -- Possible values are: `only_public`, `public_and_internal` and `all` (default is `only_public`)
     # checkModifiersForVisibility: only_public
@@ -428,7 +428,7 @@ Compose:
     # -- You can optionally add your own Modifier types
     # customModifiers: BananaModifier,PotatoModifier
   ModifierNotUsedAtRoot:
-    active: true
+    active: false
     # -- You can optionally add your own composables here
     # contentEmitters: MyComposable,MyOtherComposable
     # -- You can optionally add your own Modifier types
@@ -438,7 +438,7 @@ Compose:
     # -- You can optionally add your own Modifier types
     # customModifiers: BananaModifier,PotatoModifier
   ModifierWithoutDefault:
-    active: true
+    active: false
   MultipleEmitters:
     active: false
     # -- You can optionally add your own composables here that will count as content emitters
@@ -452,7 +452,7 @@ Compose:
   MutableStateParam:
     active: true
   ParameterNaming:
-    active: true
+    active: false
     # -- You can optionally have a list of types to be treated as lambdas (e.g. typedefs or fun interfaces not picked up automatically)
     # treatAsLambda: MyLambdaType
   PreviewAnnotationNaming:

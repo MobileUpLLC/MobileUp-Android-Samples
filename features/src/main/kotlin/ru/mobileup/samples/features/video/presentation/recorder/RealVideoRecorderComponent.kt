@@ -76,9 +76,15 @@ class RealVideoRecorderComponent(
         )
     }
 
-    override fun onUpdateCameraSelector(cameraSelector: CameraSelector) {
+    override fun onFlipCameraSelector() {
         recorderState.update {
-            it.copy(cameraSelector = cameraSelector)
+            it.copy(
+                cameraSelector = if (it.cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
+                    CameraSelector.DEFAULT_FRONT_CAMERA
+                } else {
+                    CameraSelector.DEFAULT_BACK_CAMERA
+                }
+            )
         }
     }
 
