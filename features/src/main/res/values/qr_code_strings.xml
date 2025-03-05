@@ -2,4 +2,6 @@
 <resources>
     <string name="qr_code_grant_permission">Grant permission</string>
     <string name="qr_code_no_scanned_value">No scanned value</string>
+    <string name="qr_code_generator">QR code generator</string>
+    <string name="qr_code_scanner">QR code scanner</string>
 </resources>

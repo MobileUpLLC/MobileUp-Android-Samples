@@ -15,8 +15,7 @@ import ru.mobileup.samples.features.form.createFormComponent
 import ru.mobileup.samples.features.menu.createMenuComponent
 import ru.mobileup.samples.features.menu.domain.Sample
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
-import ru.mobileup.samples.features.qr_code.createQrCodeGeneratorComponent
-import ru.mobileup.samples.features.qr_code.createQrCodeScannerComponent
+import ru.mobileup.samples.features.qr_code.createQrCodeComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 
 class RealRootComponent(
@@ -66,15 +65,9 @@ class RealRootComponent(
             )
         }
 
-        ChildConfig.QrCodeGenerator -> {
-            RootComponent.Child.QrCodeGenerator(
-                componentFactory.createQrCodeGeneratorComponent(componentContext)
-            )
-        }
-
-        ChildConfig.QrCodeScanner -> {
-            RootComponent.Child.QrCodeScanner(
-                componentFactory.createQrCodeScannerComponent(componentContext)
+        ChildConfig.QrCode -> {
+            RootComponent.Child.QrCode(
+                componentFactory.createQrCodeComponent(componentContext)
             )
         }
 
@@ -92,8 +85,7 @@ class RealRootComponent(
                     Sample.Form -> ChildConfig.Form
                     Sample.Video -> ChildConfig.Video
                     Sample.Calendar -> ChildConfig.Calendar
-                    Sample.QrCodeScanner -> ChildConfig.QrCodeScanner
-                    Sample.QrCodeGenerator -> ChildConfig.QrCodeGenerator
+                    Sample.QrCode -> ChildConfig.QrCode
                     Sample.Chart -> ChildConfig.Chart
                 }
             )
@@ -116,10 +108,7 @@ class RealRootComponent(
         data object Calendar : ChildConfig
 
         @Serializable
-        data object QrCodeGenerator : ChildConfig
-
-        @Serializable
-        data object QrCodeScanner : ChildConfig
+        data object QrCode : ChildConfig
 
         @Serializable
         data object Chart : ChildConfig
