@@ -166,7 +166,6 @@ fun VideoRecorderUi(
 
 @Composable
 private fun VideoRecorderContent(
-    modifier: Modifier = Modifier,
     component: VideoRecorderComponent,
     recorderConfig: RecorderConfig,
     recorderState: RecorderState,
@@ -174,7 +173,8 @@ private fun VideoRecorderContent(
     previewTransformableState: TransformableState,
     previewView: PreviewView,
     cameraController: CameraController,
-    onUpdateConfig: (RecorderConfig) -> Unit
+    onUpdateConfig: (RecorderConfig) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val recorderDurationString by remember(recorderState.durationMs) {
         derivedStateOf { formatMillisToMS(recorderState.durationMs) }
@@ -311,25 +311,25 @@ private fun VideoRecorderContent(
                 RecorderCameraSelector(
                     recorderConfig = recorderConfig,
                     cameraSelector = recorderState.cameraSelector,
-                    onCameraSelected = component::onUpdateCameraSelector
+                    onCameraSelect = component::onUpdateCameraSelector
                 )
 
                 RecorderFpsSelector(
                     recorderConfig = recorderConfig,
                     fps = recorderState.fps,
-                    onFpsSelected = component::onUpdateFps
+                    onFpsSelect = component::onUpdateFps
                 )
 
                 RecorderQualitySelector(
                     recorderConfig = recorderConfig,
                     quality = recorderState.quality,
-                    onQualitySelected = component::onUpdateQuality
+                    onQualitySelect = component::onUpdateQuality
                 )
 
                 RecorderTorchSelector(
                     recorderConfig = recorderConfig,
                     torchState = recorderState.torchState,
-                    onTorchSelected = {
+                    onTorchSelect = {
                         component.onUpdateTorchState(it)
                         cameraController.changeTorchState(it)
                     }

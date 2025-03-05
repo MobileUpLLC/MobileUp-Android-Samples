@@ -19,10 +19,11 @@ import ru.mobileup.samples.features.video.presentation.widgets.SlideAnimation
 fun BoxScope.RecorderFpsSelector(
     recorderConfig: RecorderConfig,
     fps: Int,
-    onFpsSelected: (Int) -> Unit
+    onFpsSelect: (Int) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     SlideAnimation(
-        modifier = Modifier.align(Alignment.BottomStart),
+        modifier = modifier.align(Alignment.BottomStart),
         isVisible = recorderConfig == RecorderConfig.FPS
     ) {
         Row(
@@ -35,7 +36,7 @@ fun BoxScope.RecorderFpsSelector(
                     text = it.toString(),
                     isActive = it == fps,
                     onClick = {
-                        onFpsSelected(it)
+                        onFpsSelect(it)
                     }
                 )
             }
@@ -51,7 +52,7 @@ private fun RecorderFpsSelectorPreview() {
             RecorderFpsSelector(
                 recorderConfig = RecorderConfig.FPS,
                 fps = 60,
-                onFpsSelected = { }
+                onFpsSelect = { }
             )
         }
     }

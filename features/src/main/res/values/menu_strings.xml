@@ -2,6 +2,7 @@
     <string name="menu_item_form">Form</string>
     <string name="menu_item_video">Video</string>
     <string name="menu_item_calendar">Calendar</string>
+    <string name="menu_item_navigation">Navigation</string>
     <string name="menu_item_qr_code_generator">QR code generator</string>
     <string name="menu_item_qr_code_scanner">QR code scanner</string>
     <string name="menu_item_chart">Chart</string>

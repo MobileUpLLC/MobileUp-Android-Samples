@@ -82,6 +82,15 @@ fun MenuUi(
                 component.onButtonClick(Sample.Chart)
             }
         )
+
+        AppButton(
+            modifier = Modifier.fillMaxWidth(),
+            buttonType = ButtonType.Secondary,
+            text = stringResource(R.string.menu_item_navigation),
+            onClick = {
+                component.onButtonClick(Sample.Navigation)
+            }
+        )
     }
 }
 

@@ -235,11 +235,11 @@ fun VideoPlayerUi(
     )
 }
 
+@Suppress("ModifierNotUsedAtRoot")
 @UnstableApi
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun VideoPlayerContent(
-    modifier: Modifier,
     component: VideoPlayerComponent,
     playerConfig: PlayerConfig,
     playerState: PlayerState,
@@ -248,7 +248,8 @@ private fun VideoPlayerContent(
     playerView: PlayerSurfaceView,
     isPlaying: Boolean,
     playerController: PlayerController,
-    onUpdateConfig: (PlayerConfig) -> Unit
+    onUpdateConfig: (PlayerConfig) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val videoProgress by playerController.progressState.collectAsState()
     val playingIndicationState by rememberPlayerIndicationState(isPlaying = isPlaying)

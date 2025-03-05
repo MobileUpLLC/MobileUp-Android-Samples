@@ -24,10 +24,10 @@ import ru.mobileup.samples.features.video.presentation.widgets.SlideAnimation
 
 @Composable
 fun BoxScope.PlayerCropSelector(
-    modifier: Modifier = Modifier,
     playerConfig: PlayerConfig,
     onCompleteClick: () -> Unit,
-    onResetClick: () -> Unit
+    onResetClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     SlideAnimation(
         modifier = modifier.align(Alignment.BottomStart),

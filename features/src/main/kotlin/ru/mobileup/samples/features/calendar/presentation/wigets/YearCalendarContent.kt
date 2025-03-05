@@ -100,7 +100,6 @@ private fun MonthHeader(
                     style = CustomTheme.typography.caption.small,
                 )
             }
-
         }
     }
 }

@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun SlideAnimation(
-    modifier: Modifier = Modifier,
     isVisible: Boolean,
+    modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
     AnimatedVisibility(

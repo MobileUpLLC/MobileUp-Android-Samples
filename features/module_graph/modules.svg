@@ -1,14 +1,12 @@
-<svg width="528px" height="116px" viewBox="0.00 0.00 528.23 116.00"
-    xmlns="http://www.w3.org/2000/svg">
+<svg width="649px" height="116px"
+ viewBox="0.00 0.00 649.23 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0.0) translate(4.0 112.0)">
-    <polygon fill="white" stroke="transparent" points="-4,4 -4,-112 524.23,-112 524.23,4 -4,4" />
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 645.23,-112 645.23,4 -4,4"/>
 <!-- root -->
 <g id="node1" class="node">
 <title>root</title>
-    <ellipse fill="none" stroke="black" cx="261.74" cy="-90" rx="27" ry="18" />
-    <text text-anchor="middle" x="261.74" y="-85.8" font-family="Times,serif" font-size="14.00">
-        root
-    </text>
+<ellipse fill="none" stroke="black" cx="301.74" cy="-90" rx="27" ry="18"/>
+<text text-anchor="middle" x="301.74" y="-85.8" font-family="Times,serif" font-size="14.00">root</text>
 </g>
 <!-- calendar -->
 <g id="node2" class="node">
@@ -19,89 +17,80 @@
 <!-- root&#45;&gt;calendar -->
 <g id="edge1" class="edge">
 <title>root&#45;&gt;calendar</title>
-    <path fill="none" stroke="black" d="M237.99,-81.38C201.7,-69.72 131.89,-47.3 86.59,-32.76" />
-    <polygon fill="black" stroke="black"
-        points="87.63,-29.42 77.03,-29.69 85.49,-36.08 87.63,-29.42" />
+<path fill="none" stroke="black" d="M276.68,-83.01C237.93,-73.64 161.18,-54.65 96.74,-36 93.39,-35.03 89.93,-34 86.46,-32.94"/>
+<polygon fill="black" stroke="black" points="87.32,-29.54 76.73,-29.9 85.23,-36.22 87.32,-29.54"/>
 </g>
-    <!-- charts -->
-    <g id="node3" class="node">
-        <title>charts</title>
-        <ellipse fill="none" stroke="black" cx="139.74" cy="-18" rx="34.19" ry="18" />
-        <text text-anchor="middle" x="139.74" y="-13.8" font-family="Times,serif" font-size="14.00">
-            charts
-        </text>
-    </g>
-    <!-- root&#45;&gt;charts -->
-    <g id="edge2" class="edge">
-        <title>root&#45;&gt;charts</title>
-        <path fill="none" stroke="black"
-            d="M241.87,-77.6C222.64,-66.57 193.21,-49.68 170.87,-36.86" />
-        <polygon fill="black" stroke="black"
-            points="172.5,-33.76 162.09,-31.82 169.02,-39.84 172.5,-33.76" />
+<!-- charts -->
+<g id="node3" class="node">
+<title>charts</title>
+<ellipse fill="none" stroke="black" cx="139.74" cy="-18" rx="34.19" ry="18"/>
+<text text-anchor="middle" x="139.74" y="-13.8" font-family="Times,serif" font-size="14.00">charts</text>
+</g>
+<!-- root&#45;&gt;charts -->
+<g id="edge2" class="edge">
+<title>root&#45;&gt;charts</title>
+<path fill="none" stroke="black" d="M279.55,-79.41C252.54,-67.74 206.59,-47.88 174.77,-34.14"/>
+<polygon fill="black" stroke="black" points="175.96,-30.84 165.39,-30.08 173.18,-37.26 175.96,-30.84"/>
 </g>
 <!-- form -->
-    <g id="node4" class="node">
+<g id="node4" class="node">
 <title>form</title>
-        <ellipse fill="none" stroke="black" cx="221.74" cy="-18" rx="29.61" ry="18" />
-        <text text-anchor="middle" x="221.74" y="-13.8" font-family="Times,serif" font-size="14.00">
-            form
-        </text>
+<ellipse fill="none" stroke="black" cx="221.74" cy="-18" rx="29.61" ry="18"/>
+<text text-anchor="middle" x="221.74" y="-13.8" font-family="Times,serif" font-size="14.00">form</text>
 </g>
 <!-- root&#45;&gt;form -->
-    <g id="edge3" class="edge">
+<g id="edge3" class="edge">
 <title>root&#45;&gt;form</title>
-        <path fill="none" stroke="black"
-            d="M252.46,-72.76C247.56,-64.19 241.45,-53.49 235.97,-43.9" />
-        <polygon fill="black" stroke="black"
-            points="238.97,-42.09 230.97,-35.15 232.89,-45.57 238.97,-42.09" />
+<path fill="none" stroke="black" d="M285.93,-75.17C274.47,-65.14 258.76,-51.39 245.75,-40.01"/>
+<polygon fill="black" stroke="black" points="247.89,-37.23 238.06,-33.28 243.28,-42.5 247.89,-37.23"/>
 </g>
 <!-- menu -->
-    <g id="node5" class="node">
+<g id="node5" class="node">
 <title>menu</title>
-        <ellipse fill="none" stroke="black" cx="301.74" cy="-18" rx="32.48" ry="18" />
-        <text text-anchor="middle" x="301.74" y="-13.8" font-family="Times,serif" font-size="14.00">
-            menu
-        </text>
+<ellipse fill="none" stroke="black" cx="301.74" cy="-18" rx="32.48" ry="18"/>
+<text text-anchor="middle" x="301.74" y="-13.8" font-family="Times,serif" font-size="14.00">menu</text>
 </g>
 <!-- root&#45;&gt;menu -->
-    <g id="edge4" class="edge">
+<g id="edge4" class="edge">
 <title>root&#45;&gt;menu</title>
-        <path fill="none" stroke="black"
-            d="M271.02,-72.76C275.79,-64.4 281.73,-54.02 287.11,-44.61" />
-        <polygon fill="black" stroke="black"
-            points="290.31,-46.05 292.23,-35.63 284.23,-42.58 290.31,-46.05" />
+<path fill="none" stroke="black" d="M301.74,-71.7C301.74,-63.98 301.74,-54.71 301.74,-46.11"/>
+<polygon fill="black" stroke="black" points="305.24,-46.1 301.74,-36.1 298.24,-46.1 305.24,-46.1"/>
+</g>
+<!-- navigation -->
+<g id="node6" class="node">
+<title>navigation</title>
+<ellipse fill="none" stroke="black" cx="403.74" cy="-18" rx="51.61" ry="18"/>
+<text text-anchor="middle" x="403.74" y="-13.8" font-family="Times,serif" font-size="14.00">navigation</text>
+</g>
+<!-- root&#45;&gt;navigation -->
+<g id="edge5" class="edge">
+<title>root&#45;&gt;navigation</title>
+<path fill="none" stroke="black" d="M319.97,-76.49C334.61,-66.44 355.5,-52.11 372.75,-40.27"/>
+<polygon fill="black" stroke="black" points="375.13,-42.88 381.39,-34.34 371.16,-37.11 375.13,-42.88"/>
 </g>
 <!-- qr_code -->
-    <g id="node6" class="node">
+<g id="node7" class="node">
 <title>qr_code</title>
-        <ellipse fill="none" stroke="black" cx="394.74" cy="-18" rx="42.28" ry="18" />
-        <text text-anchor="middle" x="394.74" y="-13.8" font-family="Times,serif" font-size="14.00">
-            qr_code
-        </text>
+<ellipse fill="none" stroke="black" cx="515.74" cy="-18" rx="42.28" ry="18"/>
+<text text-anchor="middle" x="515.74" y="-13.8" font-family="Times,serif" font-size="14.00">qr_code</text>
 </g>
 <!-- root&#45;&gt;qr_code -->
-    <g id="edge5" class="edge">
+<g id="edge6" class="edge">
 <title>root&#45;&gt;qr_code</title>
-        <path fill="none" stroke="black"
-            d="M282.23,-78.22C302.9,-67.33 335.22,-50.33 359.92,-37.32" />
-        <polygon fill="black" stroke="black"
-            points="361.76,-40.31 368.98,-32.56 358.5,-34.12 361.76,-40.31" />
+<path fill="none" stroke="black" d="M325.51,-81.33C357.27,-71.07 415.28,-52.29 464.74,-36 467.8,-34.99 470.96,-33.95 474.14,-32.9"/>
+<polygon fill="black" stroke="black" points="475.26,-36.21 483.65,-29.74 473.05,-29.57 475.26,-36.21"/>
 </g>
 <!-- video -->
-    <g id="node7" class="node">
+<g id="node8" class="node">
 <title>video</title>
-        <ellipse fill="none" stroke="black" cx="487.74" cy="-18" rx="32.48" ry="18" />
-        <text text-anchor="middle" x="487.74" y="-13.8" font-family="Times,serif" font-size="14.00">
-            video
-        </text>
+<ellipse fill="none" stroke="black" cx="608.74" cy="-18" rx="32.48" ry="18"/>
+<text text-anchor="middle" x="608.74" y="-13.8" font-family="Times,serif" font-size="14.00">video</text>
 </g>
 <!-- root&#45;&gt;video -->
-    <g id="edge6" class="edge">
+<g id="edge7" class="edge">
 <title>root&#45;&gt;video</title>
-        <path fill="none" stroke="black"
-            d="M286.7,-82.69C322.32,-73.5 389.65,-55.37 445.74,-36 448.15,-35.17 450.62,-34.28 453.09,-33.35" />
-        <polygon fill="black" stroke="black"
-            points="454.52,-36.55 462.58,-29.68 451.99,-30.02 454.52,-36.55" />
+<path fill="none" stroke="black" d="M328.09,-85.4C376.18,-78.47 481.12,-61.64 566.74,-36 569.33,-35.22 571.99,-34.35 574.65,-33.41"/>
+<polygon fill="black" stroke="black" points="576.01,-36.64 584.14,-29.85 573.55,-30.09 576.01,-36.64"/>
 </g>
 </g>
 </svg>

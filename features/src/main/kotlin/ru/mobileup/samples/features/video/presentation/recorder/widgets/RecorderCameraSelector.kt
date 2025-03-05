@@ -19,10 +19,10 @@ import ru.mobileup.samples.features.video.presentation.widgets.SlideAnimation
 
 @Composable
 fun BoxScope.RecorderCameraSelector(
-    modifier: Modifier = Modifier,
     recorderConfig: RecorderConfig,
     cameraSelector: CameraSelector,
-    onCameraSelected: (CameraSelector) -> Unit
+    onCameraSelect: (CameraSelector) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     SlideAnimation(
         modifier = modifier.align(Alignment.BottomStart),
@@ -38,7 +38,7 @@ fun BoxScope.RecorderCameraSelector(
                     text = it.name(),
                     isActive = it == cameraSelector,
                     onClick = {
-                        onCameraSelected(it)
+                        onCameraSelect(it)
                     }
                 )
             }
@@ -54,7 +54,7 @@ private fun RecorderCameraSelectorPreview() {
             RecorderCameraSelector(
                 recorderConfig = RecorderConfig.Camera,
                 cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA,
-                onCameraSelected = { }
+                onCameraSelect = { }
             )
         }
     }

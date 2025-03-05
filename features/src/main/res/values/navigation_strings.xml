@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  General  -->
+    <string name="navigation_nested_navigation">Nested navigation</string>
+    <string name="navigation_bottom_sheets">Bottom sheets</string>
+    <string name="navigation_alert_dialogs">Alert dialogs</string>
+    <string name="navigation_simple_dialog_title">Simple dialog title</string>
+    <string name="navigation_simple_dialog_text">Your name is %s</string>
+    <string name="navigation_clear">Clear</string>
+
+    <!--  Custom dialog  -->
+    <string name="navigation_custom_dialog">Custom dialog</string>
+    <string name="navigation_custom_dialog_submit">Submit</string>
+    <string name="navigation_custom_dialog_text">Are you sure you want to submit %s as your name?</string>
+
+    <!--  Alert dialogs  -->
+    <string name="navigation_dialogs_standard_dialog_title">Standard dialog</string>
+    <string name="navigation_dialogs_standard_dialog_text">Do you want to clear name field?</string>
+    <string name="navigation_dialogs_name_placeholder">Type your name</string>
+    <string name="navigation_dialogs_show_simple_dialog">Show simple dialog</string>
+    <string name="navigation_dialogs_show_standard_dialog">Show standard dialog</string>
+    <string name="navigation_dialogs_show_custom_dialog">Show custom dialog</string>
+
+    <!--  Bottom sheets  -->
+    <string name="navigation_bottom_sheets_name_placeholder">Type your name</string>
+    <string name="navigation_bottom_sheets_show_simple_dialog">Show simple dialog</string>
+    <string name="navigation_bottom_sheets_show_custom_dialog">Show custom dialog</string>
+
+    <!--  Nested  -->
+    <string name="navigation_nested_with_bottom_bar">Nested screen (keep bottom bar)</string>
+    <string name="navigation_nested_without_bottom_bar">Nested screen 2 (without bottom bar)</string>
+</resources>

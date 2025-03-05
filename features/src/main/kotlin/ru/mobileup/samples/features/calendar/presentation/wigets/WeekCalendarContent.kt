@@ -40,6 +40,7 @@ import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.Locale
 
+@Suppress("ModifierNotUsedAtRoot")
 @Composable
 fun WeekCalendarContent(
     selectedCalendarDay: CalendarDay?,

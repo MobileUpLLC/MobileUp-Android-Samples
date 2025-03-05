@@ -37,10 +37,11 @@ fun BoxScope.PlayerSpeedSelector(
     playerConfig: PlayerConfig,
     speed: Float,
     onUpdateSpeed: (Float) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     SlideAnimation(
-        modifier = Modifier.align(Alignment.BottomStart),
+        modifier = modifier.align(Alignment.BottomStart),
         isVisible = playerConfig == PlayerConfig.Speed,
     ) {
         Row(

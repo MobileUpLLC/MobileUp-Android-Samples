@@ -43,8 +43,8 @@ data class PlayerIndicationState(
 
 @Composable
 fun PlayerIndication(
-    modifier: Modifier,
     state: PlayerIndicationState,
+    modifier: Modifier = Modifier,
     isVisible: Boolean = true
 ) {
     if (isVisible) {
@@ -114,6 +114,7 @@ fun rememberPlayerIndicationState(isPlaying: Boolean): State<PlayerIndicationSta
     }
 }
 
+@Suppress("ModifierComposable")
 @Composable
 fun Modifier.iconShadow() = this.then(
     Modifier.background(

@@ -21,6 +21,7 @@ import ru.mobileup.samples.features.form.presentation.FormUi
 import ru.mobileup.samples.features.menu.presentation.MenuUi
 import ru.mobileup.samples.features.qr_code.presentation.generator.QrCodeGeneratorUi
 import ru.mobileup.samples.features.qr_code.presentation.scanner.QrCodeScannerUi
+import ru.mobileup.samples.features.navigation.NavigationUi
 import ru.mobileup.samples.features.video.presentation.VideoUi
 
 @Suppress("ModifierReused")
@@ -42,6 +43,7 @@ fun RootUi(
             is RootComponent.Child.QrCodeGenerator -> QrCodeGeneratorUi(instance.component)
             is RootComponent.Child.QrCodeScanner -> QrCodeScannerUi(instance.component)
             is RootComponent.Child.Chart -> ChartUi(instance.component)
+            is RootComponent.Child.Navigation -> NavigationUi(instance.component)
         }
     }
 

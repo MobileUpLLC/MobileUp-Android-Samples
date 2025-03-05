@@ -19,7 +19,8 @@ import ru.mobileup.samples.core.theme.custom.CustomTheme
 fun RowScope.RecorderSelectorText(
     text: String,
     isActive: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Text(
         text = text,
@@ -29,7 +30,7 @@ fun RowScope.RecorderSelectorText(
             CustomTheme.colors.text.invert
         },
         textAlign = TextAlign.Center,
-        modifier = Modifier
+        modifier = modifier
             .weight(1f)
             .padding(vertical = 8.dp)
             .clickable {

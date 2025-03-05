@@ -21,9 +21,9 @@ import ru.mobileup.samples.features.R
 
 @Composable
 fun RenderProgressIndicator(
-    modifier: Modifier = Modifier,
     progress: Float,
-    onCancel: () -> Unit
+    onCancel: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Box(
         modifier = modifier

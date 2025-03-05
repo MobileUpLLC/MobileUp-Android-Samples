@@ -39,13 +39,14 @@ fun BoxScope.PlayerCutSelector(
     endPositionMs: Long,
     maxDurationMs: Long,
     speed: Float,
-    onCut: (Long, Long) -> Unit
+    onCut: (Long, Long) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val startInteractionSource = remember { MutableInteractionSource() }
     val endInteractionSource = remember { MutableInteractionSource() }
 
     SlideAnimation(
-        modifier = Modifier.align(Alignment.BottomStart),
+        modifier = modifier.align(Alignment.BottomStart),
         isVisible = playerConfig == PlayerConfig.Cut
     ) {
         Row(

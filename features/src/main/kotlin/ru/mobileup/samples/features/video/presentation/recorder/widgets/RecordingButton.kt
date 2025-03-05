@@ -35,6 +35,7 @@ private const val ANIMATION_DURATION_MS = 500
 fun ColumnScope.RecordingButton(
     isRecording: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     val animationDuration by remember { mutableIntStateOf(ANIMATION_DURATION_MS) }
 
@@ -65,7 +66,7 @@ fun ColumnScope.RecordingButton(
     )
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .size(64.dp)
             .align(Alignment.CenterHorizontally)
             .clip(CircleShape)

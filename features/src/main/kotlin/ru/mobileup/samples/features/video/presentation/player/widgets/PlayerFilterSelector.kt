@@ -31,10 +31,10 @@ import ru.mobileup.samples.features.video.presentation.widgets.SlideAnimation
 
 @Composable
 fun BoxScope.PlayerFilterSelector(
-    modifier: Modifier = Modifier,
     playerConfig: PlayerConfig,
     filtersPagerState: PagerState,
-    fling: TargetedFlingBehavior
+    fling: TargetedFlingBehavior,
+    modifier: Modifier = Modifier
 ) {
     SlideAnimation(
         modifier = modifier.align(Alignment.BottomStart),

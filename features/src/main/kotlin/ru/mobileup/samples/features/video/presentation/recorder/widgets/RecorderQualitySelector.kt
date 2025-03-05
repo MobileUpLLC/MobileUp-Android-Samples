@@ -21,10 +21,11 @@ import ru.mobileup.samples.features.video.presentation.widgets.SlideAnimation
 fun BoxScope.RecorderQualitySelector(
     recorderConfig: RecorderConfig,
     quality: Quality,
-    onQualitySelected: (Quality) -> Unit
+    onQualitySelect: (Quality) -> Unit,
+    modifier: Modifier = Modifier
 ) {
     SlideAnimation(
-        modifier = Modifier.align(Alignment.BottomStart),
+        modifier = modifier.align(Alignment.BottomStart),
         isVisible = recorderConfig == RecorderConfig.Quality
     ) {
         Row(
@@ -37,7 +38,7 @@ fun BoxScope.RecorderQualitySelector(
                     text = it.name(),
                     isActive = it == quality,
                     onClick = {
-                        onQualitySelected(it)
+                        onQualitySelect(it)
                     }
                 )
             }
@@ -53,7 +54,7 @@ private fun RecorderQualitySelectorPreview() {
             RecorderQualitySelector(
                 recorderConfig = RecorderConfig.Quality,
                 quality = Quality.FHD,
-                onQualitySelected = { }
+                onQualitySelect = { }
             )
         }
     }

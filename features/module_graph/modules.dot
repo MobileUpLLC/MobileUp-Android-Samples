@@ -3,6 +3,7 @@ calendar
 charts
 form
 menu
+navigation
 qr_code
 root
 video
@@ -10,6 +11,7 @@ root -> calendar
 root -> charts
 root -> form
 root -> menu
+root -> navigation
 root -> qr_code
 root -> video
 }

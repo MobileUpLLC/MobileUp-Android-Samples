@@ -20,7 +20,9 @@ class RealCalendarComponent(
     }
 
     override fun onCalendarDateClick(date: LocalDate) {
-        selectedCalendarDay.value = if (date == selectedCalendarDay.value?.date) null else {
+        selectedCalendarDay.value = if (date == selectedCalendarDay.value?.date) {
+            null
+        } else {
             CalendarDay(
                 date = date,
                 events = calendarEvents.value.filter { it.date == date }

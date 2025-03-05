@@ -31,10 +31,10 @@ import ru.mobileup.samples.features.video.presentation.widgets.SlideAnimation
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BoxScope.PlayerVolumeSelector(
-    modifier: Modifier = Modifier,
     playerConfig: PlayerConfig,
     volume: Float,
     onUpdateVolume: (Float) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     SlideAnimation(

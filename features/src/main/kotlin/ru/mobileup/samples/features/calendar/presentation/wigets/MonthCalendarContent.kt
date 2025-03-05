@@ -275,7 +275,6 @@ private fun ColorButton(
                 size = Size(width = 100f, height = 100f),
                 topLeft = Offset.Zero,
             )
-
         }
 
         if (isSelected) {
