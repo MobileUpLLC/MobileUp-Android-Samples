@@ -188,8 +188,8 @@ private fun FocusIndicatorPreview() {
         Box(modifier = Modifier.size(300.dp)) {
             FocusIndicator(
                 offset = Offset(
-                    x = 150.dp.toPx(),
-                    y = 150.dp.toPx()
+                    x = 150.dp.toPx().toFloat(),
+                    y = 150.dp.toPx().toFloat()
                 ),
                 onExposureChange = { }
             )

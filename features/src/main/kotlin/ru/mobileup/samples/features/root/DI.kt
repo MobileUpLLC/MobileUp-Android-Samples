@@ -7,5 +7,5 @@ import ru.mobileup.samples.features.root.presentation.RealRootComponent
 import ru.mobileup.samples.features.root.presentation.RootComponent
 
 fun ComponentFactory.createRootComponent(componentContext: ComponentContext): RootComponent {
-    return RealRootComponent(componentContext, get())
+    return RealRootComponent(componentContext, get(), get())
 }

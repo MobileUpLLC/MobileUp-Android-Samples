@@ -6,6 +6,7 @@ menu
 navigation
 qr_code
 root
+tutorial
 video
 root -> calendar
 root -> charts
@@ -13,5 +14,6 @@ root -> form
 root -> menu
 root -> navigation
 root -> qr_code
+root -> tutorial
 root -> video
 }

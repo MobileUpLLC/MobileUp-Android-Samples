@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tutorial_button_skip">Skip</string>
+    <string name="tutorial_button_ok">OK</string>
+    <string name="tutorial_toolbar_title">Tutorial</string>
+    <string name="tutorial_filter_all">All</string>
+    <string name="tutorial_filter_first">Mod 0</string>
+    <string name="tutorial_filter_second">Mod 1</string>
+    <string name="tutorial_filter_third">Mod 2</string>
+
+    <string name="tutorial_text_all">"Here you can watch all items"</string>
+    <string name="tutorial_text_first">"Here you can watch items that are divisible by 3 with mod 0"</string>
+    <string name="tutorial_text_second">"Here you can watch items that are divisible by 3 with mod 1"</string>
+    <string name="tutorial_text_third">"Here you can watch items that are divisible by 3 with mod 2"</string>
+    <string name="tutorial_text_back">"Here's back button. Tap here to go back"</string>
+    <string name="tutorial_text_title">"Here's screen title"</string>
+</resources>

@@ -1,5 +1,6 @@
 package ru.mobileup.samples.features.root.presentation
 
+import com.arkivanov.decompose.Child
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.childContext
 import com.arkivanov.decompose.router.stack.StackNavigation
@@ -17,11 +18,14 @@ import ru.mobileup.samples.features.menu.domain.Sample
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
 import ru.mobileup.samples.features.navigation.createNavigationComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
+import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
+import ru.mobileup.samples.features.tutorial.domain.TutorialManager
 import ru.mobileup.samples.features.video.createVideoComponent
 
 class RealRootComponent(
     componentContext: ComponentContext,
-    private val componentFactory: ComponentFactory
+    private val componentFactory: ComponentFactory,
+    override val tutorialManager: TutorialManager
 ) : ComponentContext by componentContext, RootComponent {
 
     private val navigation = StackNavigation<ChildConfig>()
@@ -83,6 +87,12 @@ class RealRootComponent(
                 componentFactory.createNavigationComponent(componentContext)
             )
         }
+
+        ChildConfig.Tutorial -> {
+            RootComponent.Child.Tutorial(
+                componentFactory.createTutorialSampleComponent(componentContext)
+            )
+        }
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -95,6 +105,7 @@ class RealRootComponent(
                     Sample.QrCode -> ChildConfig.QrCode
                     Sample.Chart -> ChildConfig.Chart
                     Sample.Navigation -> ChildConfig.Navigation
+                    Sample.Tutorial -> ChildConfig.Tutorial
                 }
             )
         }
@@ -123,5 +134,8 @@ class RealRootComponent(
 
         @Serializable
         data object Navigation : ChildConfig
+
+        @Serializable
+        data object Tutorial : ChildConfig
     }
 }
