@@ -1,6 +1,5 @@
 package ru.mobileup.samples.features.root.presentation
 
-import com.arkivanov.decompose.Child
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.childContext
 import com.arkivanov.decompose.router.stack.StackNavigation
@@ -26,6 +25,7 @@ import ru.mobileup.samples.features.otp.presentation.OtpComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
 import ru.mobileup.samples.features.video.createVideoComponent
+import ru.mobileup.samples.features.yandex_map.createYandexMapComponent
 
 class RealRootComponent(
     componentContext: ComponentContext,
@@ -119,6 +119,12 @@ class RealRootComponent(
                 componentFactory.createTutorialSampleComponent(componentContext)
             )
         }
+
+        ChildConfig.YandexMap -> {
+            RootComponent.Child.YandexMap(
+                componentFactory.createYandexMapComponent(componentContext)
+            )
+        }
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -135,6 +141,7 @@ class RealRootComponent(
                     Sample.CollapsingToolbar -> ChildConfig.CollapsingToolbar
                     Sample.Image -> ChildConfig.Image
                     Sample.Tutorial -> ChildConfig.Tutorial
+                    Sample.YandexMap -> ChildConfig.YandexMap
                 }
             )
         }
@@ -181,5 +188,8 @@ class RealRootComponent(
 
         @Serializable
         data object Tutorial : ChildConfig
+
+        @Serializable
+        data object YandexMap : ChildConfig
     }
 }

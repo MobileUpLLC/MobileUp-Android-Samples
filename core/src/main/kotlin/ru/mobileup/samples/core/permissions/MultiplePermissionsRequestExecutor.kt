@@ -18,6 +18,11 @@ import ru.mobileup.samples.core.activity.ActivityProvider
 internal class MultiplePermissionsRequestExecutor(
     private val activityProvider: ActivityProvider
 ) {
+
+    companion object {
+        private const val AUTOMATIC_THRESHOLD = 500
+    }
+
     private var activityResultLauncher =
         MutableStateFlow<ActivityResultLauncher<Array<String>>?>(null)
     private val permissionsResultFlow = MutableSharedFlow<Map<String, Boolean>?>()
@@ -36,15 +41,18 @@ internal class MultiplePermissionsRequestExecutor(
 
     suspend fun process(permissions: List<String>): MultiplePermissionResult {
         val permissionResults = mutableMapOf<String, SinglePermissionResult>()
-
+        val startTime = System.currentTimeMillis()
         activityResultLauncher.filterNotNull().first().launch(permissions.toTypedArray())
-        (permissionsResultFlow.first() ?: throw CancellationException()).forEach {
+        val results = (permissionsResultFlow.first() ?: throw CancellationException())
+        val endTime = System.currentTimeMillis()
+        results.forEach {
             val result = if (it.value) {
                 SinglePermissionResult.Granted
             } else {
                 val rationale =
                     activityProvider.awaitActivity().shouldShowRequestPermissionRationale(it.key)
-                SinglePermissionResult.Denied(permanently = !rationale)
+                val automatically = endTime - startTime < AUTOMATIC_THRESHOLD
+                SinglePermissionResult.Denied(permanently = !rationale, automatically = automatically)
             }
             permissionResults[it.key] = result
         }

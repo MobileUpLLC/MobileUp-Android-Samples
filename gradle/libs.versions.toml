@@ -39,6 +39,9 @@ calendar = "2.6.2"
 barcodeScanning = "17.2.0"
 googlePlayServiceAuth = "17.0.0"
 googlePlayServiceAuthPhone = "17.4.0"
+yandexMapKit = "4.12.0-lite"
+gmsLocation = "21.0.1"
+coroutinesPlayServices = "1.4.1"
 
 [libraries]
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
@@ -126,6 +129,10 @@ vico-compose = { group = "com.patrykandpatrick.vico", name = "compose", version.
 
 google-playservice-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "googlePlayServiceAuth"}
 google-playservice-auth-phone = { module = "com.google.android.gms:play-services-auth-api-phone", version.ref = "googlePlayServiceAuthPhone"}
+
+yandex-mapkit = { module = "com.yandex.android:maps.mobile", version.ref = "yandexMapKit" }
+gms-location = { module = "com.google.android.gms:play-services-location", version.ref = "gmsLocation" }
+gms-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "coroutinesPlayServices"}
 
 [bundles]
 decompose = ["decompose-core", "decompose-compose"]
