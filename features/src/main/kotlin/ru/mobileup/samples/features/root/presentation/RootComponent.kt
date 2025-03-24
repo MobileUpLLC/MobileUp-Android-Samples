@@ -15,6 +15,7 @@ import ru.mobileup.samples.features.otp.presentation.OtpComponent
 import ru.mobileup.samples.features.qr_code.presentation.QrCodeComponent
 import ru.mobileup.samples.features.tutorial.presentation.TutorialSampleComponent
 import ru.mobileup.samples.features.video.presentation.VideoComponent
+import ru.mobileup.samples.features.yandex_map.presentation.YandexMapComponent
 
 /**
  * A root of a Decompose component tree.
@@ -41,5 +42,6 @@ interface RootComponent {
         class CollapsingToolbar(val component: CollapsingToolbarComponent) : Child
         class Image(val component: ImageComponent) : Child
         class Tutorial(val component: TutorialSampleComponent) : Child
+        class YandexMap(val component: YandexMapComponent) : Child
     }
 }

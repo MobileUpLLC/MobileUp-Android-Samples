@@ -18,6 +18,11 @@ import ru.mobileup.samples.core.activity.ActivityProvider
 internal class SinglePermissionRequestExecutor(
     private val activityProvider: ActivityProvider
 ) {
+
+    companion object {
+        private const val AUTOMATIC_THRESHOLD = 500
+    }
+
     private var activityResultLauncher = MutableStateFlow<ActivityResultLauncher<String>?>(null)
     private val permissionsResultFlow = MutableSharedFlow<Boolean?>()
 
@@ -34,6 +39,7 @@ internal class SinglePermissionRequestExecutor(
     }
 
     suspend fun process(permission: String): SinglePermissionResult {
+        val startTime = System.currentTimeMillis()
         activityResultLauncher.filterNotNull().first().launch(permission)
         val granted = permissionsResultFlow.first() ?: throw CancellationException()
         return if (granted) {
@@ -41,7 +47,12 @@ internal class SinglePermissionRequestExecutor(
         } else {
             val rationale =
                 activityProvider.awaitActivity().shouldShowRequestPermissionRationale(permission)
-            SinglePermissionResult.Denied(permanently = !rationale)
+            val endTime = System.currentTimeMillis()
+            val automatically = endTime - startTime < AUTOMATIC_THRESHOLD
+            SinglePermissionResult.Denied(
+                permanently = !rationale,
+                automatically = automatically
+            )
         }
     }
 
