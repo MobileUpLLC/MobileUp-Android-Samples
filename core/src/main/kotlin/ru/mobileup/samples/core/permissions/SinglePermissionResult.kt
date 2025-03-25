@@ -14,5 +14,5 @@ sealed class SinglePermissionResult {
      * Permission has been denied by user
      * If [permanently] == true permission was denied permanently (user chose "Never ask again")
      */
-    class Denied(val permanently: Boolean) : SinglePermissionResult()
+    class Denied(val permanently: Boolean, val automatically: Boolean) : SinglePermissionResult()
 }
