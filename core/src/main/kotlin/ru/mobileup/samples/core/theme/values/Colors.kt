@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 import ru.mobileup.samples.core.theme.custom.BackgroundColors
 import ru.mobileup.samples.core.theme.custom.BorderColors
 import ru.mobileup.samples.core.theme.custom.ButtonColors
+import ru.mobileup.samples.core.theme.custom.CommonColors
 import ru.mobileup.samples.core.theme.custom.CustomColors
 import ru.mobileup.samples.core.theme.custom.ExtendedPaletteColor
 import ru.mobileup.samples.core.theme.custom.IconColors
@@ -61,6 +62,10 @@ val LightAppColors = CustomColors(
     textField = TextFieldColors(
         background = Color(0xFFF2EBE3),
         backgroundDisabled = Color(0xFFF2EBE3).copy(alpha = 0.4f)
+    ),
+    common = CommonColors(
+        positive = Color(0xFF00FF00),
+        negative = Color(0xFFFF0000)
     )
 )
 

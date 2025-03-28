@@ -10,5 +10,6 @@
     <string name="menu_item_collapsing_toolbar">Collapsing toolbar</string>
     <string name="menu_item_image">Image Carousel</string>
     <string name="menu_item_tutorial">Tutorial</string>
+    <string name="menu_item_pin_code_settings">Pin Code Settings</string>
     <string name="menu_item_shared_elements_transition">Shared elements transition</string>
 </resources>

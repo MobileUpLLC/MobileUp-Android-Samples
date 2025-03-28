@@ -3,6 +3,9 @@
     <string name="common_retry">Retry</string>
     <string name="common_success">Success</string>
     <string name="common_close">Close</string>
+    <string name="common_ok">OK</string>
+    <string name="common_yes">Yes</string>
+    <string name="common_no">No</string>
 
     <!-- Errors -->
     <string name="error_unexpected">Something went wrong. The developers are already fixing the problem.</string>

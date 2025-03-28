@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Create  -->
+    <string name="pin_code_create_header">Придумайте код\nдля входа в приложение</string>
+    <string name="pin_code_create_success">Отлично!\nВведите код еще раз</string>
+    <string name="pin_code_create_error">Код не совпадает\nПопробуйте еще раз</string>
+
+    <!--  Check  -->
+    <string name="pin_code_check_header">Введите код для входа в приложение</string>
+    <string name="pin_code_check_error">Неверный код!\nПопробуйте еще раз</string>
+
+
+    <!--  Alerts  -->
+    <string name="pin_code_alert_biometric_header">Активировать вход при помощи биометрии?</string>
+    <string name="pin_code_alert_biometric_disabled_text">Используйте Touch ID, чтобы не вводить 4-значный пароль</string>
+    <string name="pin_code_alert_biometric_not_enrolled_text">Вы можете сделать это позже в настройках приложения</string>
+    <string name="pin_code_alert_error_header">Превышено количество попыток</string>
+    <string name="pin_code_alert_error_text">Попробуйте снова через 5 минут</string>
+    <string name="pin_code_alert_logout_header">Хотите выйти?</string>
+    <string name="pin_code_alert_logout_text">Тогда все ваши кошельки отключатся</string>
+
+    <string name="pin_code_keyboard_logout">Выйти</string>
+    <string name="biometric_too_many_attempts">Слишком много попыток</string>
+</resources>

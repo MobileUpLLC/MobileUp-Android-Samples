@@ -17,4 +17,6 @@ interface ExternalAppService {
     fun openLocationSettings()
 
     fun openNotificationSettings()
+
+    fun openBiometricSettings()
 }

@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 
 data class CustomColors(
     val isLight: Boolean,
+    val common: CommonColors,
     val background: BackgroundColors,
     val text: TextColors,
     val icon: IconColors,
@@ -12,6 +13,11 @@ data class CustomColors(
     val button: ButtonColors,
     val border: BorderColors,
     val textField: TextFieldColors,
+)
+
+data class CommonColors(
+    val positive: Color,
+    val negative: Color
 )
 
 data class BackgroundColors(

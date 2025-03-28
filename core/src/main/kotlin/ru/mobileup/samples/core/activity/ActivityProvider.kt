@@ -1,6 +1,6 @@
 package ru.mobileup.samples.core.activity
 
-import androidx.activity.ComponentActivity
+import androidx.fragment.app.FragmentActivity
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filterNotNull
@@ -8,14 +8,14 @@ import kotlinx.coroutines.flow.first
 
 class ActivityProvider {
 
-    private val activityStateMutableFlow = MutableStateFlow<ComponentActivity?>(null)
+    private val activityStateMutableFlow = MutableStateFlow<FragmentActivity?>(null)
 
-    val activityStateFlow: StateFlow<ComponentActivity?>
+    val activityStateFlow: StateFlow<FragmentActivity?>
         get() = activityStateMutableFlow
 
-    val activity: ComponentActivity? get() = activityStateMutableFlow.value
+    val activity: FragmentActivity? get() = activityStateMutableFlow.value
 
-    fun attachActivity(activity: ComponentActivity) {
+    fun attachActivity(activity: FragmentActivity) {
         activityStateMutableFlow.value = activity
     }
 
@@ -23,7 +23,7 @@ class ActivityProvider {
         activityStateMutableFlow.value = null
     }
 
-    suspend fun awaitActivity(): ComponentActivity {
+    suspend fun awaitActivity(): FragmentActivity {
         return activityStateMutableFlow.filterNotNull().first()
     }
 }

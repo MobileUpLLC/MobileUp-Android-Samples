@@ -39,8 +39,10 @@ dependencies {
     implementation(libs.bundles.ktor)
     implementation(libs.ktorfit.lib)
 
+    // Security
     implementation(libs.security.crypto)
     implementation(libs.security.crypto.ktx)
+    implementation(libs.biometrics)
 
     // Architecture
     implementation(libs.bundles.decompose)

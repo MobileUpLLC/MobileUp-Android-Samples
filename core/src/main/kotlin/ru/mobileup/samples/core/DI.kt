@@ -10,6 +10,10 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 import ru.mobileup.samples.core.activity.ActivityProvider
+import ru.mobileup.samples.core.biometric.data.AndroidBiometricService
+import ru.mobileup.samples.core.biometric.data.BiometricEnablingStorage
+import ru.mobileup.samples.core.biometric.data.BiometricEnablingStorageImpl
+import ru.mobileup.samples.core.biometric.data.BiometricService
 import ru.mobileup.samples.core.debug_tools.DebugTools
 import ru.mobileup.samples.core.debug_tools.RealDebugTools
 import ru.mobileup.samples.core.error_handling.ErrorHandler
@@ -54,6 +58,8 @@ fun coreModule(backendUrl: String) = module {
     singleOf(::ExternalAppServiceImpl) bind ExternalAppService::class
     single<TutorialStatusStorage> { TutorialStatusStorageImpl(get()) }
     single<TutorialManager> { TutorialManagerImpl() }
+    single<BiometricService> { AndroidBiometricService(get(), get()) }
+    single<BiometricEnablingStorage> { BiometricEnablingStorageImpl(get()) }
 }
 
 fun ComponentFactory.createMessageComponent(

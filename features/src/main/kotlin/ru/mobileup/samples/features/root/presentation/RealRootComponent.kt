@@ -5,6 +5,7 @@ import com.arkivanov.decompose.childContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.replaceAll
 import kotlinx.serialization.Serializable
 import ru.mobileup.samples.core.ComponentFactory
 import ru.mobileup.samples.core.createMessageComponent
@@ -23,6 +24,10 @@ import ru.mobileup.samples.features.navigation.createNavigationComponent
 import ru.mobileup.samples.features.otp.createOtpComponent
 import ru.mobileup.samples.features.otp.presentation.OtpComponent
 import ru.mobileup.samples.features.photo.createPhotoComponent
+import ru.mobileup.samples.features.pin_code.createCheckPinCodeManagementComponent
+import ru.mobileup.samples.features.pin_code.createPinCodeSettingsComponent
+import ru.mobileup.samples.features.pin_code.presentation.check.CheckPinCodeComponent
+import ru.mobileup.samples.features.pin_code.presentation.check_management.CheckPinCodeManagementComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
@@ -30,7 +35,7 @@ import ru.mobileup.samples.features.video.createVideoComponent
 
 class RealRootComponent(
     componentContext: ComponentContext,
-    private val componentFactory: ComponentFactory,
+    private val componentFactory: ComponentFactory
 ) : ComponentContext by componentContext, RootComponent {
 
     private val navigation = StackNavigation<ChildConfig>()
@@ -50,6 +55,11 @@ class RealRootComponent(
     override val tutorialOverlayComponent = componentFactory.createTutorialOverlayComponent(
         childContext("tutorialOverlay")
     )
+
+    override val checkPinCodeManagementComponent: CheckPinCodeManagementComponent =
+        componentFactory.createCheckPinCodeManagementComponent(
+            childContext("checkPinCodeManagement")
+        )
 
     private fun createChild(
         config: ChildConfig,
@@ -132,6 +142,28 @@ class RealRootComponent(
                 componentFactory.createSharedElementsComponent(componentContext)
             )
         }
+
+        ChildConfig.PinCodeSettings -> {
+            RootComponent.Child.PinCodeSettings(
+                componentFactory.createPinCodeSettingsComponent(componentContext)
+            )
+        }
+    }
+
+    private fun onCheckPinCodeOutput(output: CheckPinCodeComponent.Output) {
+        when (output) {
+            is CheckPinCodeComponent.Output.CheckSucceeded -> {
+                if (childStack.value.backStack.size == 1) {
+                    navigation.replaceAll(ChildConfig.Menu)
+                } else {
+                    navigation.pop()
+                }
+            }
+
+            is CheckPinCodeComponent.Output.LoggedOut -> {
+                // do nothing
+            }
+        }
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -150,6 +182,7 @@ class RealRootComponent(
                     Sample.Image -> ChildConfig.Image
                     Sample.Tutorial -> ChildConfig.Tutorial
                     Sample.SharedTransitions -> ChildConfig.SharedElements
+                    Sample.PinCodeSettings -> ChildConfig.PinCodeSettings
                 }
             )
         }
@@ -202,5 +235,8 @@ class RealRootComponent(
 
         @Serializable
         data object SharedElements : ChildConfig
+
+        @Serializable
+        data object PinCodeSettings : ChildConfig
     }
 }

@@ -4,8 +4,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.calculatePan
 import androidx.compose.foundation.gestures.calculateZoom
+import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -13,11 +17,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 @Composable
@@ -83,4 +90,30 @@ fun Modifier.zoomable(
             translationX = offset.x,
             translationY = offset.y,
         )
+}
+
+@Composable
+fun InteractionSource.collectIsLongPressedAsState(): State<Boolean> {
+    val onPress = remember { mutableStateOf(false) }
+    LaunchedEffect(this) {
+        var job: Job? = null
+        interactions.collect { interaction ->
+            when (interaction) {
+                is PressInteraction.Press -> {
+                    job = launch {
+                        while (true) {
+                            delay(250)
+                            onPress.value = true
+                        }
+                    }
+                }
+                is PressInteraction.Release,
+                is PressInteraction.Cancel -> job?.cancel()
+            }
+            // reset state with some delay otherwise it can re-emit the previous state
+            delay(10L)
+            onPress.value = false
+        }
+    }
+    return onPress
 }

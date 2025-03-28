@@ -7,11 +7,14 @@ image
 menu
 navigation
 otp
+photo
+pin_code
 qr_code
 root
 shared_element_transitions
 tutorial
 video
+photo -> video
 root -> calendar
 root -> charts
 root -> collapsing_toolbar
@@ -20,6 +23,8 @@ root -> image
 root -> menu
 root -> navigation
 root -> otp
+root -> photo
+root -> pin_code
 root -> qr_code
 root -> shared_element_transitions
 root -> tutorial

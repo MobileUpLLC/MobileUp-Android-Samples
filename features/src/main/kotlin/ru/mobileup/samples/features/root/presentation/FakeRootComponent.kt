@@ -5,6 +5,8 @@ import ru.mobileup.samples.core.tutorial.presentation.overlay.FakeTutorialOverla
 import ru.mobileup.samples.core.tutorial.presentation.overlay.TutorialOverlayComponent
 import ru.mobileup.samples.core.utils.createFakeChildStackStateFlow
 import ru.mobileup.samples.features.menu.presentation.FakeMenuComponent
+import ru.mobileup.samples.features.pin_code.presentation.check_management.CheckPinCodeManagementComponent
+import ru.mobileup.samples.features.pin_code.presentation.check_management.FakeCheckPinCodeManagementComponent
 
 class FakeRootComponent : RootComponent {
 
@@ -15,4 +17,6 @@ class FakeRootComponent : RootComponent {
     override val tutorialOverlayComponent: TutorialOverlayComponent = FakeTutorialOverlayComponent()
 
     override val messageComponent = FakeMessageComponent()
+    override val checkPinCodeManagementComponent: CheckPinCodeManagementComponent =
+        FakeCheckPinCodeManagementComponent()
 }

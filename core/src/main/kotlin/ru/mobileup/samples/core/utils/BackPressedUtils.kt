@@ -2,7 +2,7 @@ package ru.mobileup.samples.core.utils
 
 import android.content.Context
 import android.content.ContextWrapper
-import androidx.activity.ComponentActivity
+import androidx.fragment.app.FragmentActivity
 
 /**
  * Should be used to handle clicks on toolbar back button.
@@ -19,8 +19,8 @@ fun dispatchOnBackPressed(context: Context) {
     activity.onBackPressedDispatcher.onBackPressed()
 }
 
-fun Context.getActivity(): ComponentActivity? = when (this) {
-    is ComponentActivity -> this
+fun Context.getActivity(): FragmentActivity? = when (this) {
+    is FragmentActivity -> this
     is ContextWrapper -> baseContext.getActivity()
     else -> null
 }
