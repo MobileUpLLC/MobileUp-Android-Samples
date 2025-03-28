@@ -29,7 +29,7 @@ fun EmbeddedImageCarouselUi(
     val imageCarousel by component.imageCarousel.collectAsState()
 
     val pagerState = rememberPagerState(
-        pageCount = { imageCarousel.imageUrls.size },
+        pageCount = { imageCarousel.imageResources.size },
         initialPage = imageCarousel.currentImagePosition
     )
 
@@ -43,7 +43,7 @@ fun EmbeddedImageCarouselUi(
 
         ImageOverlay(
             modifier = Modifier.matchParentSize(),
-            imagesCount = imageCarousel.imageUrls.size,
+            imagesCount = imageCarousel.imageResources.size,
             pagerState = pagerState,
         )
     }
@@ -67,7 +67,7 @@ private fun ImagePager(
         modifier = modifier,
         state = pagerState
     ) {
-        val imageUrl = imageCarousel.imageUrls.getOrNull(it)
+        val imageUrl = imageCarousel.imageResources.getOrNull(it)
         AsyncImage(
             modifier = Modifier
                 .fillMaxWidth()

@@ -8,12 +8,19 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.features.image.domain.ImageCarousel
+import ru.mobileup.samples.features.image.domain.ImageResource
 
 class RealImageCarouselComponent(
+    imageResources: List<ImageResource>,
     componentContext: ComponentContext
 ) : ComponentContext by componentContext, ImageCarouselComponent {
 
-    override val imageCarousel: MutableStateFlow<ImageCarousel> = MutableStateFlow(ImageCarousel.MOCK)
+    override val imageCarousel: MutableStateFlow<ImageCarousel> = MutableStateFlow(
+        ImageCarousel(
+            imageResources = imageResources,
+            currentImagePosition = 0
+        )
+    )
 
     override val mode: MutableStateFlow<ImageCarouselMode> = MutableStateFlow(ImageCarouselMode.Embedded)
 

@@ -1,6 +1,5 @@
 package ru.mobileup.samples.features.photo.presentation
 
-import androidx.core.net.toUri
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
@@ -65,7 +64,7 @@ class RealPhotoComponent(
         is ChildConfig.Preview -> {
             PhotoComponent.Child.Preview(
                 componentFactory.createPhotoPreviewComponent(
-                    config.uri.toUri(),
+                    config.uriList,
                     componentContext
                 )
             )
@@ -75,6 +74,9 @@ class RealPhotoComponent(
     private fun onMenuOutput(output: PhotoMenuComponent.Output) {
         when (output) {
             is PhotoMenuComponent.Output.CameraRequested -> navigation.safePush(ChildConfig.Camera)
+            is PhotoMenuComponent.Output.PreviewRequested -> navigation.safePush(
+                ChildConfig.Preview(output.mediaList.map { it.toString() })
+            )
         }
     }
 
@@ -82,7 +84,7 @@ class RealPhotoComponent(
         when (output) {
             is PhotoCameraComponent.Output.PreviewRequested -> navigation.safePush(
                 ChildConfig.Preview(
-                    output.uri.toString()
+                    output.uriList.map { it.toString() }
                 )
             )
         }
@@ -98,6 +100,6 @@ class RealPhotoComponent(
         data object Camera : ChildConfig
 
         @Serializable
-        data class Preview(val uri: String) : ChildConfig
+        data class Preview(val uriList: List<String>) : ChildConfig
     }
 }

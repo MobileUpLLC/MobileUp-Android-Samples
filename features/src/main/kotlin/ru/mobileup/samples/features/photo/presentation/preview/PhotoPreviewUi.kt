@@ -1,7 +1,6 @@
 package ru.mobileup.samples.features.photo.presentation.preview
 
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -23,19 +22,18 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.UnstableApi
-import coil3.compose.rememberAsyncImagePainter
 import ru.mobileup.samples.core.dialog.standard.StandardDialog
 import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
 import ru.mobileup.samples.core.utils.SystemBars
 import ru.mobileup.samples.features.R
+import ru.mobileup.samples.features.image.presentation.carousel.FullScreenImageCarouselUi
 
 @Composable
 fun PhotoPreviewUi(
@@ -116,15 +114,9 @@ private fun PhotoPreviewContent(
             )
         }
 
-        Image(
-            painter = rememberAsyncImagePainter(component.media),
-            contentDescription = null,
-            contentScale = if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-                ContentScale.FillWidth
-            } else {
-                ContentScale.FillHeight
-            },
-            modifier = Modifier.fillMaxSize()
+        FullScreenImageCarouselUi(
+            component = component.imageCarouselComponent,
+            modifier = Modifier.background(CustomTheme.colors.palette.grayscale.l900)
         )
     }
 }

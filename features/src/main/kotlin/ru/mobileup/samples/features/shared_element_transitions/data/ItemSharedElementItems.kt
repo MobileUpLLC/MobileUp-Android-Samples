@@ -1,6 +1,6 @@
 package ru.mobileup.samples.features.shared_element_transitions.data
 
-import ru.mobileup.samples.features.image.domain.ImageUrl
+import ru.mobileup.samples.features.image.domain.ImageResource
 import ru.mobileup.samples.features.shared_element_transitions.domain.ItemSharedElement
 
 object ItemSharedElementItems {
@@ -16,7 +16,7 @@ object ItemSharedElementItems {
                     "Планировать дела в «Календаре» можно даже в офлайне, например в самолёте. Без подключения к интернету пользователи могут просматривать, редактировать и удалять события, а также добавлять новые. Все изменения синхронизируются с сервером сразу после подключения к сети. Дополнительная опция для путешественников — автоматический переход на местное время при смене часового пояса. Если нужно сохранить старый часовой пояс, эту функцию можно отключить в настройках.\n" +
                     "\n" +
                     "Приложение «Яндекс Календарь» доступно для iOS и Android. Владельцы устройств на iOS уже могут установить виджет «Календаря», а на Android эта возможность появится в ближайших обновлениях. В планах разработчиков — добавить возможность планировать встречи с учётом занятости участников и новые режимы отображения календаря: на три дня и на неделю.",
-            image = ImageUrl("https://habrastorage.org/r/w780/getpro/habr/upload_files/612/af2/c45/612af2c45036e303efb48ff45773f0f8.jpg"),
+            image = ImageResource("https://habrastorage.org/r/w780/getpro/habr/upload_files/612/af2/c45/612af2c45036e303efb48ff45773f0f8.jpg"),
         ),
         ItemSharedElement(
             id = 2,
@@ -30,7 +30,7 @@ object ItemSharedElementItems {
                     "Во‑вторых, мы хотели построить его поверх активно поддерживаемой, открытой и лучшей в своем классе среды программирования Java. Незадолго до выпуска Android Studio мы все использовали IntelliJ и чувствовали, что она лучше с точки зрения редактирования кода.\n" +
                     "\n" +
                     "И в‑третьих, мы хотели не только предоставить систему сборки, которая лучше подходит для разработки приложений Android, но и позволить этой системе сборки работать согласованно как из командной строки, так и из IDE. Это было важно, потому что в предыдущей цепочке инструментов мы обнаружили, что существуют расхождения в поведении и возможностях между сборками в IDE с Eclipse и сборками CI с Ant.",
-            image = ImageUrl("https://habrastorage.org/r/w1560/getpro/habr/upload_files/0a5/724/476/0a5724476f973ff40015bb2955ca4cdf.png")
+            image = ImageResource("https://habrastorage.org/r/w1560/getpro/habr/upload_files/0a5/724/476/0a5724476f973ff40015bb2955ca4cdf.png")
         ),
         ItemSharedElement(
             id = 3,
@@ -38,7 +38,7 @@ object ItemSharedElementItems {
             text = "Неделька выдалась шикарной - нам показали новую версию Android, а также объявили о новом выпуске TheAndroidShow, посвященного Jetpack Compose. Ставлю на то, что там нам представят Beta Compose, расскажут когда же ждать релиза. Очень надеюсь что также будет стабилизация API для первой версии. Давайте разбираться.\nВ первой версии для разработчиков дают возможность ознакомиться с нововведениями, которые планируются внедрить в следующей версии Android. Как всегда, обновления касаются ограничений, направленных на обеспечение безопасности и приватности данных пользователей. Также добавили поддержку современных медиа форматов, снова обновили UI уведомлений и улучшили производительность. По традиции блокируется скрытые API для вызова рефлексией, а также добавлены новые API. \n" +
                     "\n" +
                     "Нас ждёт три Developer Preview каждый месяц, первую Beta увидим в мае, четвертая Beta, она же Platform Stability релиз, состоится в августе и весной нас ждёт релиз.",
-            image = ImageUrl("https://habrastorage.org/r/w780/getpro/habr/upload_files/62a/991/404/62a991404a937ce7033774fa1facb3c6.jpg")
+            image = ImageResource("https://habrastorage.org/r/w780/getpro/habr/upload_files/62a/991/404/62a991404a937ce7033774fa1facb3c6.jpg")
         ),
         ItemSharedElement(
             id = 4,
@@ -48,7 +48,7 @@ object ItemSharedElementItems {
                     "Baklava переводится как «пахлава». Восточную сладость готовят из слоёного теста, листы которого пропитывают маслом и выкладывают друг на друга в посуду. Android 16, как и прежде, будет названа в честь десерта, но её наименование нарушает алфавитный порядок. В Android Authority предполагали, что новую ОС назовут в честь Waffle Sundae или Whoopie Pie.\nНазвание следующей итерации Android узнали благодаря упоминаниям в коде Android Open Source Project (AOSP). В поле min-sdk-version сейчас указано наименование Baklava так же, как в прошлой версии там было написано VanillaIceCream. Google изменила это название на Android 15 после стабильного релиза ОС. Автор Android Authority полагает, что аналогичным образом должно произойти и с Android 16.\n" +
                     "\n" +
                     "Инженер Google также случайно подтвердил кодовое название Android 16, добавив проверку, чтобы увидеть, совпадает ли имя SDK платформы с Baklava.",
-            image = ImageUrl("https://habrastorage.org/r/w780/webt/w6/pn/h_/w6pnh_sp6ajimud8zjnakdoh2ae.jpeg")
+            image = ImageResource("https://habrastorage.org/r/w780/webt/w6/pn/h_/w6pnh_sp6ajimud8zjnakdoh2ae.jpeg")
         ),
         ItemSharedElement(
             id = 5,
@@ -62,7 +62,7 @@ object ItemSharedElementItems {
                     "Оказалось, что разработчики не учли такой момент — сервис Android Beam по умолчанию имел в системе Android Oreo (8.0) и более поздних версий самый высокий уровень доверия и все передаваемые через него файлы воспринимались как официальные приложения из Play Store. Хотя функционал этого сервиса изначально не предназначался для установки приложений с его помощью. Данной уязвимости был присвоен номер CVE-2019-2114, она была впервые зарегистрирована 30 января 2019 года. На данный момент эта уязвимость устранена в октябрьском пакете обновлений для ОС Android. В системе Google эта уязвимость имеет данные: Google Bug # 123651515 (Android ID # A-123700348).\n" +
                     "\n" +
                     "Данная уязвимость соответствовала требованиям программы Android Security Rewards, а Google выплатил за ее нахождение и предоставление информации вознаграждение.",
-            image = ImageUrl("https://habrastorage.org/webt/cy/_5/ql/cy_5qlihhcnt5tv5amcsospgtju.jpeg")
+            image = ImageResource("https://habrastorage.org/webt/cy/_5/ql/cy_5qlihhcnt5tv5amcsospgtju.jpeg")
         ),
         ItemSharedElement(
             id = 6,
@@ -72,7 +72,7 @@ object ItemSharedElementItems {
                     "Связано это с тем что доля активных в Google Play устройств на этой версии операционной системы снизилась до значений менее 1% в июле 2023. Хотя по официальной информации от Google доля Android 4.4 составляет 0.5% по состоянию на 30 мая 2023.\nХочется увидеть подобные перемены и в Android Jetpack. Часть библиотек там до сих пор поддерживают Android 4.0, который вышел в 2011 году! Поддержка старых версий заставляет носить с собой больше кода. Да, современные инструменты минификации в Android убирают этот код в релизе, но при разработке все также остаётся много ненужного API.\n" +
                     "\n" +
                     "Лично я считаю что требование с тем что в Android 14 можно установить приложения только с поддержкой Android 6.0 и новее должно полностью сочетаться с минимальными поддерживаемыми версиями библиотек Android Jetpack и Google Play Services, что останавливать поддержку старых версий ОС.",
-            image = ImageUrl("https://habrastorage.org/r/w1560/getpro/habr/upload_files/963/a76/44c/963a7644c4cfe8c7d24fe11a7fd27392.png")
+            image = ImageResource("https://habrastorage.org/r/w1560/getpro/habr/upload_files/963/a76/44c/963a7644c4cfe8c7d24fe11a7fd27392.png")
         )
     )
 }

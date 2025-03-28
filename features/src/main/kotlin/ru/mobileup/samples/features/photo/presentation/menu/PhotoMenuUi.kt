@@ -1,5 +1,8 @@
 package ru.mobileup.samples.features.photo.presentation.menu
 
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,6 +24,13 @@ fun PhotoMenuUi(
     component: PhotoMenuComponent,
     modifier: Modifier = Modifier
 ) {
+    val pickerLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.PickMultipleVisualMedia()) { uris ->
+            if (uris.isNotEmpty()) {
+                component.onPreviewClick(uris)
+            }
+        }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -33,6 +43,19 @@ fun PhotoMenuUi(
             buttonType = ButtonType.Secondary,
             text = stringResource(R.string.menu_item_camera),
             onClick = component::onCameraClick
+        )
+
+        AppButton(
+            modifier = Modifier.fillMaxWidth(),
+            buttonType = ButtonType.Secondary,
+            text = stringResource(R.string.menu_item_preview),
+            onClick = {
+                pickerLauncher.launch(
+                    PickVisualMediaRequest(
+                        ActivityResultContracts.PickVisualMedia.ImageOnly
+                    )
+                )
+            }
         )
     }
 }

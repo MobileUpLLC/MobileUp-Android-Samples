@@ -9,6 +9,7 @@ class FakePhotoCameraComponent : PhotoCameraComponent {
     override fun onCameraInitializationFailed() = Unit
     override fun onPhotoTaken(uri: Uri) = Unit
     override fun onPhotoFailed() = Unit
+    override fun onShowPreview() = Unit
     override fun onFlipCameraSelector() = Unit
     override fun onUpdateTorchState() = Unit
 }

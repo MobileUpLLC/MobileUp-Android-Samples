@@ -1,11 +1,13 @@
 package ru.mobileup.samples.features.photo.presentation.preview
 
-import android.net.Uri
 import android.os.Build
+import androidx.core.net.toUri
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.childContext
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.strResDesc
 import kotlinx.coroutines.launch
+import ru.mobileup.samples.core.ComponentFactory
 import ru.mobileup.samples.core.dialog.standard.DialogButton
 import ru.mobileup.samples.core.dialog.standard.StandardDialogData
 import ru.mobileup.samples.core.dialog.standard.standardDialogControl
@@ -16,15 +18,25 @@ import ru.mobileup.samples.core.permissions.SinglePermissionResult
 import ru.mobileup.samples.core.utils.Resource
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.features.R
+import ru.mobileup.samples.features.image.createImageCarouselComponent
+import ru.mobileup.samples.features.image.domain.ImageResource
+import ru.mobileup.samples.features.image.presentation.carousel.ImageCarouselComponent
 import ru.mobileup.samples.features.photo.data.PhotoFileManager
 
 class RealPhotoPreviewComponent(
-    override val media: Uri,
+    private val mediaList: List<String>,
     componentContext: ComponentContext,
+    componentFactory: ComponentFactory,
     private val photoFileManager: PhotoFileManager,
     private val permissionService: PermissionService,
     private val messageService: MessageService
 ) : ComponentContext by componentContext, PhotoPreviewComponent {
+
+    override val imageCarouselComponent: ImageCarouselComponent =
+        componentFactory.createImageCarouselComponent(
+            mediaList.map { ImageResource(it.toString()) },
+            childContext("imageCarousel")
+        )
 
     override val saveDialog = standardDialogControl("saveDialog")
 
@@ -58,19 +70,22 @@ class RealPhotoPreviewComponent(
 
     private fun savePhoto() {
         componentScope.launch {
-            val result = photoFileManager.movePhotoToMediaStore(media)
+            mediaList.getOrNull(imageCarouselComponent.imageCarousel.value.currentImagePosition)
+                ?.let {
+                    val result = photoFileManager.movePhotoToMediaStore(it.toUri())
 
-            messageService.showMessage(
-                Message(
-                    text = StringDesc.Resource(
-                        if (result == null) {
-                            R.string.photo_save_failed
-                        } else {
-                            R.string.photo_saved
-                        }
+                    messageService.showMessage(
+                        Message(
+                            text = StringDesc.Resource(
+                                if (result == null) {
+                                    R.string.photo_save_failed
+                                } else {
+                                    R.string.photo_saved
+                                }
+                            )
+                        )
                     )
-                )
-            )
+                }
         }
     }
 }

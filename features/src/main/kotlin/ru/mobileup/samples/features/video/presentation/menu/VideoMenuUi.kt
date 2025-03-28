@@ -1,6 +1,7 @@
 package ru.mobileup.samples.features.video.presentation.menu
 
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,7 +28,7 @@ fun VideoMenuUi(
     modifier: Modifier = Modifier
 ) {
     val pickerLauncher =
-        rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             uri?.let {
                 component.onVideoOptionChosen(VideoOption.Player(it))
             }
@@ -54,7 +55,7 @@ fun VideoMenuUi(
             buttonType = ButtonType.Secondary,
             text = stringResource(R.string.menu_item_player),
             onClick = {
-                pickerLauncher.launch(arrayOf(VIDEO_MIME))
+                pickerLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly))
             }
         )
     }

@@ -1,6 +1,5 @@
 package ru.mobileup.samples.features.image.presentation.carousel
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -47,7 +46,7 @@ fun FullScreenImageCarouselUi(
     val imageCarousel by component.imageCarousel.collectAsState()
 
     val pagerState = rememberPagerState(
-        pageCount = { imageCarousel.imageUrls.size },
+        pageCount = { imageCarousel.imageResources.size },
         initialPage = imageCarousel.currentImagePosition
     )
 
@@ -61,7 +60,6 @@ fun FullScreenImageCarouselUi(
 
     Box(
         modifier = modifier
-            .background(CustomTheme.colors.background.screen)
             .systemBarsPadding()
             .fillMaxSize()
     ) {
@@ -80,7 +78,7 @@ fun FullScreenImageCarouselUi(
                             maxScale,
                             onEndOfContentReached = { scrollEnabled = it }
                         ),
-                    model = imageCarousel.imageUrls.getOrNull(it)?.value,
+                    model = imageCarousel.imageResources.getOrNull(it)?.value,
                     contentDescription = null
                 )
             }
@@ -100,9 +98,9 @@ fun FullScreenImageCarouselUi(
                 modifier = Modifier.requiredSize(24.dp)
             )
         }
-        if (imageCarousel.imageUrls.size > 1) {
+        if (imageCarousel.imageResources.size > 1) {
             PageIndicator(
-                imagesCount = imageCarousel.imageUrls.size,
+                imagesCount = imageCarousel.imageResources.size,
                 pagerState = pagerState,
                 defaultColor = CustomTheme.colors.background.secondary,
                 modifier = Modifier
