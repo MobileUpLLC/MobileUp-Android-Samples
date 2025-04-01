@@ -26,6 +26,7 @@ import ru.mobileup.samples.features.qr_code.presentation.QrCodeUi
 import ru.mobileup.samples.features.shared_element_transitions.presentation.SharedElementsUi
 import ru.mobileup.samples.features.tutorial.presentation.TutorialSampleUi
 import ru.mobileup.samples.features.video.presentation.VideoUi
+import ru.mobileup.samples.features.yandex_map.presentation.YandexMapUi
 
 @Composable
 fun RootUi(
@@ -50,6 +51,7 @@ fun RootUi(
             is RootComponent.Child.Image -> ImageUi(instance.component)
             is RootComponent.Child.Tutorial -> TutorialSampleUi(instance.component)
             is RootComponent.Child.SharedElements -> SharedElementsUi(instance.component)
+            is RootComponent.Child.YandexMap -> YandexMapUi(instance.component)
         }
     }
 

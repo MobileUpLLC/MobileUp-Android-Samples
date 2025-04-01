@@ -76,6 +76,9 @@ dependencies {
     // Google service
     implementation(libs.google.playservice.auth)
     implementation(libs.google.playservice.auth.phone)
+
+    // Geo
+    implementation(libs.yandex.mapkit)
 }
 
 // Usage: ./gradlew generateModuleGraph detectGraphCycles

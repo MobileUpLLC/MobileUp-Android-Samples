@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="yandex_map_geo_permission_dialog_disabled_title">Мы не смогли найти вас</string>
+    <string name="yandex_map_geo_permission_dialog_disabled_confirm">В настройки</string>
+    <string name="yandex_map_geo_permission_dialog_disabled_cancel">Закрыть</string>
+    <string name="yandex_map_geo_permission_dialog_text">Разрешите приложению использовать ваше местоположение, чтоб не вводить адрес вручную.</string>
+    <string name="yandex_map_geo_permission_dialog_denied_title">Разрешите использовать ваше местоположение</string>
+    <string name="shops_map_geo_permission_dialog_denied_confirm">Разрешить</string>
+    <string name="shops_map_geo_permission_dialog_denied_cancel">Запретить</string>
+</resources>

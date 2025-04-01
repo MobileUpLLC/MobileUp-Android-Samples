@@ -17,6 +17,7 @@ import ru.mobileup.samples.features.qr_code.presentation.QrCodeComponent
 import ru.mobileup.samples.features.shared_element_transitions.presentation.SharedElementsComponent
 import ru.mobileup.samples.features.tutorial.presentation.TutorialSampleComponent
 import ru.mobileup.samples.features.video.presentation.VideoComponent
+import ru.mobileup.samples.features.yandex_map.presentation.YandexMapComponent
 
 /**
  * A root of a Decompose component tree.
@@ -45,5 +46,6 @@ interface RootComponent {
         class Image(val component: ImageComponent) : Child
         class Tutorial(val component: TutorialSampleComponent) : Child
         class SharedElements(val component: SharedElementsComponent) : Child
+        class YandexMap(val component: YandexMapComponent) : Child
     }
 }

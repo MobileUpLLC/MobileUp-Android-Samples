@@ -15,6 +15,10 @@ import ru.mobileup.samples.core.debug_tools.RealDebugTools
 import ru.mobileup.samples.core.error_handling.ErrorHandler
 import ru.mobileup.samples.core.external_apps.data.ExternalAppService
 import ru.mobileup.samples.core.external_apps.data.ExternalAppServiceImpl
+import ru.mobileup.samples.core.location.AndroidLocationService
+import ru.mobileup.samples.core.location.LocationService
+import ru.mobileup.samples.core.map.data.MapStorage
+import ru.mobileup.samples.core.map.data.MapStorageImpl
 import ru.mobileup.samples.core.message.data.MessageService
 import ru.mobileup.samples.core.message.data.MessageServiceImpl
 import ru.mobileup.samples.core.message.presentation.MessageComponent
@@ -54,6 +58,8 @@ fun coreModule(backendUrl: String) = module {
     singleOf(::ExternalAppServiceImpl) bind ExternalAppService::class
     single<TutorialStatusStorage> { TutorialStatusStorageImpl(get()) }
     single<TutorialManager> { TutorialManagerImpl() }
+    single<LocationService> { AndroidLocationService(get()) }
+    single<MapStorage> { MapStorageImpl(get()) }
 }
 
 fun ComponentFactory.createMessageComponent(

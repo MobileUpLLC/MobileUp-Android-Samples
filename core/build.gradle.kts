@@ -50,6 +50,13 @@ dependencies {
 
     implementation(libs.form.validation)
 
+    // location
+    implementation(libs.gms.location)
+    implementation(libs.gms.coroutines)
+
+    // Geo
+    implementation(libs.yandex.mapkit)
+
     // Debugging
     debugImplementation(libs.chucker)
     debugImplementation(libs.bundles.hyperion)

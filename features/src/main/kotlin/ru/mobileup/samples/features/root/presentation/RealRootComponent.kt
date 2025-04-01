@@ -27,6 +27,7 @@ import ru.mobileup.samples.features.qr_code.createQrCodeComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
 import ru.mobileup.samples.features.video.createVideoComponent
+import ru.mobileup.samples.features.yandex_map.createYandexMapComponent
 
 class RealRootComponent(
     componentContext: ComponentContext,
@@ -132,6 +133,12 @@ class RealRootComponent(
                 componentFactory.createSharedElementsComponent(componentContext)
             )
         }
+
+        ChildConfig.YandexMap -> {
+            RootComponent.Child.YandexMap(
+                componentFactory.createYandexMapComponent(componentContext)
+            )
+        }
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -150,6 +157,7 @@ class RealRootComponent(
                     Sample.Image -> ChildConfig.Image
                     Sample.Tutorial -> ChildConfig.Tutorial
                     Sample.SharedTransitions -> ChildConfig.SharedElements
+                    Sample.YandexMap -> ChildConfig.YandexMap
                 }
             )
         }
@@ -202,5 +210,8 @@ class RealRootComponent(
 
         @Serializable
         data object SharedElements : ChildConfig
+
+        @Serializable
+        data object YandexMap : ChildConfig
     }
 }

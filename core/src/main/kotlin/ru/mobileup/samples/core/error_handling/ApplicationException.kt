@@ -45,6 +45,14 @@ class SSLHandshakeException(cause: Throwable?) : ApplicationException(cause)
 class ExternalAppNotFoundException(cause: Throwable?) : ApplicationException(cause)
 
 /**
+ * Could not fetch current location
+ */
+class LocationNotAvailableException(
+    cause: Throwable? = null,
+    override val message: String? = null
+) : ApplicationException(cause)
+
+/**
  * Some unknown issue
  */
 class UnknownException(cause: Throwable?, override val message: String) :
