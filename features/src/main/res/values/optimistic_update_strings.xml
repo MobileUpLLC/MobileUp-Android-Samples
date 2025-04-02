@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  Server  -->
+    <string name="optimistic_update_server_title">Server control panel</string>
+    <string name="optimistic_update_server_accept_request">Accept</string>
+    <string name="optimistic_update_server_accepted_request">Accepted</string>
+    <string name="optimistic_update_server_end_request">End</string>
+    <string name="optimistic_update_server_fail_request">Fail</string>
+    <string name="optimistic_update_server_add_request">Request to add color</string>
+    <string name="optimistic_update_server_remove_request">Request to remove color</string>
+
+    <!--  Client  -->
+    <string name="optimistic_update_client_title">Optimistic update sample</string>
+    <string name="optimistic_update_client_all_colors_tab">All colors</string>
+    <string name="optimistic_update_client_palette_tab">Palette</string>
+    <string name="optimistic_update_client_add_color">Add color to palette</string>
+    <string name="optimistic_update_client_remove_color">Remove color</string>
+    <string name="optimistic_update_client_palette_size">Palette size: %d</string>
+    <string name="optimistic_update_client_show_server">Show server control panel</string>
+    <string name="optimistic_update_client_refresh">Refresh</string>
+</resources>
