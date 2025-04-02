@@ -27,7 +27,7 @@ import ru.mobileup.samples.features.video.domain.states.PlayerState
 import ru.mobileup.samples.features.video.domain.states.RenderState
 
 class RealVideoPlayerComponent(
-    override val media: Uri,
+    override val uri: Uri,
     componentContext: ComponentContext,
     private val videoRepository: VideoRepository,
     private val videoRender: VideoRender,
@@ -38,7 +38,7 @@ class RealVideoPlayerComponent(
     override val playerConfig = MutableStateFlow(PlayerConfig.Off)
 
     override val playerState = MutableStateFlow(
-        videoRepository.getVideoDurationMsByUri(media).let { durationMs ->
+        videoRepository.getVideoDurationMsByUri(uri).let { durationMs ->
             PlayerState.build(
                 durationMs = durationMs
             )
@@ -127,12 +127,12 @@ class RealVideoPlayerComponent(
         componentScope.launch {
             val state = playerState.value
             videoRender.execute(
-                uri = media,
+                uri = uri,
                 startPositionMs = state.startPositionMs,
                 endPositionMs = state.endPositionMs,
                 volume = state.volume,
                 speed = state.speed,
-                size = videoRepository.getVideoSizeByUri(media),
+                size = videoRepository.getVideoSizeByUri(uri),
                 videoTransform = state.videoTransform,
                 glFilter = state.glFilter
             ).collect { renderState ->

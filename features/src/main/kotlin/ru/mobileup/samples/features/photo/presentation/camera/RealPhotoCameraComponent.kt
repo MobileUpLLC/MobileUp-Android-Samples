@@ -31,7 +31,11 @@ class RealPhotoCameraComponent(
     }
 
     override fun onPhotoTaken(uri: Uri) {
-        onOutput(PhotoCameraComponent.Output.PreviewRequested(uri))
+        cameraState.update {
+            it.copy(
+                uris = it.uris + uri
+            )
+        }
     }
 
     override fun onPhotoFailed() {
@@ -42,6 +46,10 @@ class RealPhotoCameraComponent(
                 )
             )
         )
+    }
+
+    override fun onShowPreview() {
+        onOutput(PhotoCameraComponent.Output.PreviewRequested(cameraState.value.uris))
     }
 
     override fun onFlipCameraSelector() {

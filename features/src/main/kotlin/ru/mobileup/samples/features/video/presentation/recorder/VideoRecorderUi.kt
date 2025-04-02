@@ -276,7 +276,7 @@ private fun VideoRecorderContent(
                     modifier = Modifier.size(24.dp)
                 )
                 Text(
-                    text = stringResource(R.string.menu_item_recorder),
+                    text = stringResource(R.string.video_menu_item_recorder),
                     color = CustomTheme.colors.text.invert,
                     modifier = Modifier
                         .weight(2f)

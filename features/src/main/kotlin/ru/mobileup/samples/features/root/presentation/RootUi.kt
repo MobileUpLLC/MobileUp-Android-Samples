@@ -16,6 +16,7 @@ import ru.mobileup.samples.core.utils.accumulate
 import ru.mobileup.samples.features.calendar.presentation.CalendarUi
 import ru.mobileup.samples.features.charts.presentation.ChartUi
 import ru.mobileup.samples.features.collapsing_toolbar.presentation.CollapsingToolbarUi
+import ru.mobileup.samples.features.document.presentation.DocumentUi
 import ru.mobileup.samples.features.form.presentation.FormUi
 import ru.mobileup.samples.features.image.presentation.ImageUi
 import ru.mobileup.samples.features.menu.presentation.MenuUi
@@ -41,8 +42,9 @@ fun RootUi(
             is RootComponent.Child.Menu -> MenuUi(instance.component)
             is RootComponent.Child.Form -> FormUi(instance.component)
             is RootComponent.Child.Otp -> OtpUi(instance.component)
-            is RootComponent.Child.Video -> VideoUi(instance.component)
             is RootComponent.Child.Photo -> PhotoUi(instance.component)
+            is RootComponent.Child.Video -> VideoUi(instance.component)
+            is RootComponent.Child.Document -> DocumentUi(instance.component)
             is RootComponent.Child.Calendar -> CalendarUi(instance.component)
             is RootComponent.Child.QrCode -> QrCodeUi(instance.component)
             is RootComponent.Child.Chart -> ChartUi(instance.component)

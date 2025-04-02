@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="document_menu_item_preview">Preview</string>
+
+    <string name="document_field_name">Name:</string>
+    <string name="document_field_size">Size:</string>
+    <string name="document_field_date">Date:</string>
+    <string name="document_field_mime">Mime:</string>
+    <string name="document_field_flags">Flags:</string>
+    <string name="document_not_found">Not found</string>
+    <string name="document_load_failed">Document load failed</string>
+    <string name="document_pdf_viewer_not_found">No PDF viewer installed"</string>
+    <string name="document_permission_denied">Permission denied</string>
+    <string name="document_open">Open</string>
+</resources>

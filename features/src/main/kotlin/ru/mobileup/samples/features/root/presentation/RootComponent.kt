@@ -7,6 +7,7 @@ import ru.mobileup.samples.core.tutorial.presentation.overlay.TutorialOverlayCom
 import ru.mobileup.samples.features.calendar.presentation.CalendarComponent
 import ru.mobileup.samples.features.charts.presentation.ChartComponent
 import ru.mobileup.samples.features.collapsing_toolbar.presentation.CollapsingToolbarComponent
+import ru.mobileup.samples.features.document.presentation.DocumentComponent
 import ru.mobileup.samples.features.form.presentation.FormComponent
 import ru.mobileup.samples.features.image.presentation.ImageComponent
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
@@ -36,8 +37,9 @@ interface RootComponent {
         class Menu(val component: MenuComponent) : Child
         class Form(val component: FormComponent) : Child
         class Otp(val component: OtpComponent) : Child
-        class Video(val component: VideoComponent) : Child
         class Photo(val component: PhotoComponent) : Child
+        class Video(val component: VideoComponent) : Child
+        class Document(val component: DocumentComponent) : Child
         class Calendar(val component: CalendarComponent) : Child
         class QrCode(val component: QrCodeComponent) : Child
         class Chart(val component: ChartComponent) : Child

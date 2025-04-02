@@ -114,7 +114,7 @@ fun ItemSharedElementUi(
                     },
                 model = ImageRequest.Builder(context)
                     .crossfade(true)
-                    .data(item.image.value)
+                    .data(item.image.uri)
                     .placeholderMemoryCacheKey("shared-image-key-${item.id}")
                     .memoryCacheKey("shared-image-key-${item.id}")
                     .build(),

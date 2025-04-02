@@ -10,7 +10,7 @@ import ru.mobileup.samples.features.video.domain.VideoTransform
 
 interface VideoPlayerComponent {
 
-    val media: Uri
+    val uri: Uri
 
     val playerConfig: StateFlow<PlayerConfig>
 

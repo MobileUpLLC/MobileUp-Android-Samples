@@ -188,7 +188,7 @@ fun VideoPlayerUi(
 
     LaunchedEffect(playerState.startPositionMs, playerState.endPositionMs) {
         videoPlayerController.setMedia(
-            uri = component.media,
+            uri = component.uri,
             startPositionMs = playerState.startPositionMs,
             endPositionMs = playerState.endPositionMs
         )
@@ -247,9 +247,7 @@ fun VideoPlayerUi(
     )
 }
 
-@Suppress("ModifierNotUsedAtRoot")
 @UnstableApi
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun VideoPlayerContent(
     component: VideoPlayerComponent,
@@ -381,7 +379,7 @@ private fun PlayerTopBar(
         )
 
         Text(
-            text = stringResource(R.string.menu_item_player),
+            text = stringResource(R.string.video_menu_item_player),
             color = CustomTheme.colors.text.invert,
             modifier = Modifier
                 .weight(2f)

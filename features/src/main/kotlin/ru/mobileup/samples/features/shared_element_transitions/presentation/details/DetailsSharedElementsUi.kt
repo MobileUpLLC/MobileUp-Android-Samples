@@ -85,7 +85,7 @@ fun DetailsSharedElementsUi(
                     },
                 model = ImageRequest.Builder(context)
                     .crossfade(true)
-                    .data(component.item.image.value)
+                    .data(component.item.image.uri)
                     .placeholderMemoryCacheKey("shared-image-key-${component.item.id}")
                     .memoryCacheKey("shared-image-key-${component.item.id}")
                     .build(),

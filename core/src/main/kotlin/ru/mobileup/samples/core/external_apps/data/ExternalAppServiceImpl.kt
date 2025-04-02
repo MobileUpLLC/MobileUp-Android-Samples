@@ -3,8 +3,6 @@ package ru.mobileup.samples.core.external_apps.data
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
 import android.net.Uri
 import android.provider.Settings
 import androidx.core.content.ContextCompat
@@ -25,6 +23,17 @@ class ExternalAppServiceImpl(
 ) : ExternalAppService {
 
     @Throws(ExternalAppNotFoundException::class)
+    override fun openFile(uri: Uri, mime: String) {
+        safeActivityLaunch {
+            Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(uri, mime)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+        }
+    }
+
+    @Throws(ExternalAppNotFoundException::class)
     override fun openUrl(url: String) {
         safeActivityLaunch {
             val intent = if (url.startsWith("intent:")) {
@@ -34,7 +43,7 @@ class ExternalAppServiceImpl(
             }
 
             intent.apply {
-                flags = FLAG_ACTIVITY_NEW_TASK
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
         }
     }
@@ -45,15 +54,10 @@ class ExternalAppServiceImpl(
         val authority = "${context.packageName}.fileprovider"
 
         if (file != null) {
-            val uri = FileProvider.getUriForFile(context, authority, file)
-
-            safeActivityLaunch {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.setDataAndType(uri, "application/pdf")
-                intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION)
-                intent
-            }
+            openFile(
+                uri = FileProvider.getUriForFile(context, authority, file),
+                mime = "application/pdf"
+            )
         }
     }
 
@@ -61,7 +65,7 @@ class ExternalAppServiceImpl(
         safeActivityLaunch {
             val intent = Intent(Intent.ACTION_DIAL)
             intent.data = Uri.parse("tel:$phone")
-            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent
         }
     }
@@ -71,7 +75,7 @@ class ExternalAppServiceImpl(
         safeActivityLaunch {
             Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
                 data = Uri.fromParts("package", context.packageName, null)
-                flags = FLAG_ACTIVITY_NEW_TASK
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
         }
     }
@@ -80,7 +84,7 @@ class ExternalAppServiceImpl(
     override fun openLocationSettings() {
         safeActivityLaunch {
             Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).apply {
-                flags = FLAG_ACTIVITY_NEW_TASK
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
         }
     }
@@ -89,7 +93,7 @@ class ExternalAppServiceImpl(
         safeActivityLaunch {
             Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
                 putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-                flags = FLAG_ACTIVITY_NEW_TASK
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
             }
         }
     }

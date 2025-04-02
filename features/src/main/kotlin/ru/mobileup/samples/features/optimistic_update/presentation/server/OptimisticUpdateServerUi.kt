@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -38,7 +39,7 @@ fun OptimisticUpdateServerUi(
     val requestsState by component.requests.collectAsState()
 
     Column(
-        modifier = modifier.padding(20.dp)
+        modifier = modifier
     ) {
         Text(
             text = stringResource(R.string.optimistic_update_server_title),
@@ -47,7 +48,7 @@ fun OptimisticUpdateServerUi(
             color = CustomTheme.colors.text.primary,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 20.dp)
+                .padding(20.dp)
         )
 
         PullRefreshLceWidget(
@@ -57,7 +58,8 @@ fun OptimisticUpdateServerUi(
         ) { data, _ ->
             LazyColumn(
                 modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = PaddingValues(20.dp)
             ) {
                 itemsIndexed(
                     items = data

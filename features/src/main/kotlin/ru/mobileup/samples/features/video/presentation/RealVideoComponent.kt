@@ -1,12 +1,13 @@
 package ru.mobileup.samples.features.video.presentation
 
-import androidx.core.net.toUri
+import android.net.Uri
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import ru.mobileup.samples.core.ComponentFactory
+import ru.mobileup.samples.core.utils.UriSerializer
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.core.utils.safePush
 import ru.mobileup.samples.core.utils.toStateFlow
@@ -67,7 +68,7 @@ class RealVideoComponent(
         is ChildConfig.Player -> {
             VideoComponent.Child.Player(
                 componentFactory.createVideoPlayerComponent(
-                    media = config.uri.toUri(),
+                    uri = config.uri,
                     componentContext
                 )
             )
@@ -79,7 +80,7 @@ class RealVideoComponent(
             is VideoMenuComponent.Output.VideoOptionChosen -> navigation.safePush(
                 when (output.videoOption) {
                     VideoOption.Recorder -> ChildConfig.Recorder
-                    is VideoOption.Player -> ChildConfig.Player(output.videoOption.uri.toString())
+                    is VideoOption.Player -> ChildConfig.Player(output.videoOption.uri)
                 }
             )
         }
@@ -88,7 +89,7 @@ class RealVideoComponent(
     private fun onRecorderOutput(output: VideoRecorderComponent.Output) {
         when (output) {
             is VideoRecorderComponent.Output.PlayerRequested -> navigation.safePush(
-                ChildConfig.Player(uri = output.uri.toString())
+                ChildConfig.Player(uri = output.uri)
             )
         }
     }
@@ -103,6 +104,8 @@ class RealVideoComponent(
         data object Recorder : ChildConfig
 
         @Serializable
-        data class Player(val uri: String) : ChildConfig
+        data class Player(
+            @Serializable(with = UriSerializer::class) val uri: Uri
+        ) : ChildConfig
     }
 }

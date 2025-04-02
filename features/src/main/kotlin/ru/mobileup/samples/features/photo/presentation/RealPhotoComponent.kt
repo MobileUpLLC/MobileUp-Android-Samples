@@ -1,12 +1,13 @@
 package ru.mobileup.samples.features.photo.presentation
 
-import androidx.core.net.toUri
+import android.net.Uri
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import ru.mobileup.samples.core.ComponentFactory
+import ru.mobileup.samples.core.utils.UriSerializer
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.core.utils.safePush
 import ru.mobileup.samples.core.utils.toStateFlow
@@ -65,7 +66,7 @@ class RealPhotoComponent(
         is ChildConfig.Preview -> {
             PhotoComponent.Child.Preview(
                 componentFactory.createPhotoPreviewComponent(
-                    config.uri.toUri(),
+                    config.uris,
                     componentContext
                 )
             )
@@ -75,15 +76,16 @@ class RealPhotoComponent(
     private fun onMenuOutput(output: PhotoMenuComponent.Output) {
         when (output) {
             is PhotoMenuComponent.Output.CameraRequested -> navigation.safePush(ChildConfig.Camera)
+            is PhotoMenuComponent.Output.PreviewRequested -> navigation.safePush(
+                ChildConfig.Preview(output.uris)
+            )
         }
     }
 
     private fun onCameraOutput(output: PhotoCameraComponent.Output) {
         when (output) {
             is PhotoCameraComponent.Output.PreviewRequested -> navigation.safePush(
-                ChildConfig.Preview(
-                    output.uri.toString()
-                )
+                ChildConfig.Preview(output.uris)
             )
         }
     }
@@ -98,6 +100,8 @@ class RealPhotoComponent(
         data object Camera : ChildConfig
 
         @Serializable
-        data class Preview(val uri: String) : ChildConfig
+        data class Preview(
+            val uris: List<@Serializable(with = UriSerializer::class) Uri>
+        ) : ChildConfig
     }
 }

@@ -3,8 +3,8 @@
     <string name="photo_confirm_btn">Save</string>
     <string name="photo_dismiss_btn">Cancel</string>
 
-    <string name="menu_item_camera">Camera</string>
-    <string name="menu_item_preview">Preview</string>
+    <string name="photo_menu_item_camera">Camera</string>
+    <string name="photo_menu_item_preview">Preview</string>
 
     <string name="camera_initialization_failed">Camera initialization failed</string>
     <string name="photo_failed">Photo failed</string>

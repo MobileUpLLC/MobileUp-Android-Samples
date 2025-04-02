@@ -4,8 +4,8 @@
     <string name="video_dismiss_btn">Cancel</string>
     <string name="reset_btn">Reset</string>
 
-    <string name="menu_item_recorder">Recorder</string>
-    <string name="menu_item_player">Player</string>
+    <string name="video_menu_item_recorder">Recorder</string>
+    <string name="video_menu_item_player">Player</string>
 
     <string name="recorder_initialization_failed">Camera initialization failed</string>
     <string name="recorder_failed">Recording failed</string>

@@ -14,11 +14,13 @@ interface PhotoCameraComponent {
 
     fun onPhotoFailed()
 
+    fun onShowPreview()
+
     fun onFlipCameraSelector()
 
     fun onUpdateTorchState()
 
     sealed interface Output {
-        data class PreviewRequested(val uri: Uri) : Output
+        data class PreviewRequested(val uris: List<Uri>) : Output
     }
 }

@@ -1,7 +1,12 @@
 package ru.mobileup.samples.features.photo.presentation.camera.controller
 
 import android.content.Context
+import android.content.Context.VIBRATOR_SERVICE
 import android.graphics.Bitmap
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.Range
 import androidx.camera.core.AspectRatio
 import androidx.camera.core.Camera
@@ -35,6 +40,14 @@ class PhotoCameraController(
     private val onPlaceHolderUpdated: (Bitmap?) -> Unit
 ) {
     private val cameraProvider = ProcessCameraProvider.getInstance(context).get()
+
+    private val vibratorManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val vibratorManager =
+            context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+        vibratorManager.defaultVibrator
+    } else {
+        context.getSystemService(VIBRATOR_SERVICE) as Vibrator
+    }
 
     private var cameraLink: Camera? = null
 
@@ -71,6 +84,10 @@ class PhotoCameraController(
                     CameraSelector.DEFAULT_FRONT_CAMERA == cameraState.cameraSelector
             })
             .build()
+
+        vibratorManager.vibrate(
+            VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE)
+        )
 
         imageCapture?.takePicture(
             outputFileOptions,

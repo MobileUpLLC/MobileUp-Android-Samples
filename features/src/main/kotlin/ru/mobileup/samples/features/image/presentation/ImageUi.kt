@@ -1,5 +1,6 @@
 package ru.mobileup.samples.features.image.presentation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -55,7 +56,10 @@ fun ImageUi(
             }
 
             ImageCarouselMode.Fullscreen -> {
-                FullScreenImageCarouselUi(component.imageCarouselComponent)
+                FullScreenImageCarouselUi(
+                    component = component.imageCarouselComponent,
+                    modifier = Modifier.background(CustomTheme.colors.background.screen)
+                )
             }
         }
 

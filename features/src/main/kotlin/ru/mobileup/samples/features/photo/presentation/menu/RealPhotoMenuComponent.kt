@@ -1,5 +1,6 @@
 package ru.mobileup.samples.features.photo.presentation.menu
 
+import android.net.Uri
 import com.arkivanov.decompose.ComponentContext
 import kotlinx.coroutines.launch
 import ru.mobileup.samples.core.permissions.PermissionService
@@ -21,5 +22,9 @@ class RealPhotoMenuComponent(
                 onOutput(PhotoMenuComponent.Output.CameraRequested)
             }
         }
+    }
+
+    override fun onPreviewClick(uris: List<Uri>) {
+        onOutput(PhotoMenuComponent.Output.PreviewRequested(uris))
     }
 }
