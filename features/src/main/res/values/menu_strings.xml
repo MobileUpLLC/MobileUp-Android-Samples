@@ -11,4 +11,5 @@
     <string name="menu_item_image">Image Carousel</string>
     <string name="menu_item_tutorial">Tutorial</string>
     <string name="menu_item_shared_elements_transition">Shared elements transition</string>
+    <string name="menu_item_optimistic_update">Optimistic update</string>
 </resources>

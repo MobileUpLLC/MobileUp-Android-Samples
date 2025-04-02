@@ -20,6 +20,7 @@ import ru.mobileup.samples.features.form.presentation.FormUi
 import ru.mobileup.samples.features.image.presentation.ImageUi
 import ru.mobileup.samples.features.menu.presentation.MenuUi
 import ru.mobileup.samples.features.navigation.NavigationUi
+import ru.mobileup.samples.features.optimistic_update.presentation.OptimisticUpdateUi
 import ru.mobileup.samples.features.otp.presentation.OtpUi
 import ru.mobileup.samples.features.photo.presentation.PhotoUi
 import ru.mobileup.samples.features.qr_code.presentation.QrCodeUi
@@ -50,6 +51,7 @@ fun RootUi(
             is RootComponent.Child.Image -> ImageUi(instance.component)
             is RootComponent.Child.Tutorial -> TutorialSampleUi(instance.component)
             is RootComponent.Child.SharedElements -> SharedElementsUi(instance.component)
+            is RootComponent.Child.OptimisticUpdate -> OptimisticUpdateUi(instance.component)
         }
     }
 

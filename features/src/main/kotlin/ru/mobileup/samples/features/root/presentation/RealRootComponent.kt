@@ -20,6 +20,7 @@ import ru.mobileup.samples.features.menu.createMenuComponent
 import ru.mobileup.samples.features.menu.domain.Sample
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
 import ru.mobileup.samples.features.navigation.createNavigationComponent
+import ru.mobileup.samples.features.optimistic_update.createOptimisticUpdateComponent
 import ru.mobileup.samples.features.otp.createOtpComponent
 import ru.mobileup.samples.features.otp.presentation.OtpComponent
 import ru.mobileup.samples.features.photo.createPhotoComponent
@@ -132,6 +133,12 @@ class RealRootComponent(
                 componentFactory.createSharedElementsComponent(componentContext)
             )
         }
+
+        ChildConfig.OptimisticUpdate -> {
+            RootComponent.Child.OptimisticUpdate(
+                componentFactory.createOptimisticUpdateComponent(componentContext)
+            )
+        }
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -150,6 +157,7 @@ class RealRootComponent(
                     Sample.Image -> ChildConfig.Image
                     Sample.Tutorial -> ChildConfig.Tutorial
                     Sample.SharedTransitions -> ChildConfig.SharedElements
+                    Sample.OptimisticUpdate -> ChildConfig.OptimisticUpdate
                 }
             )
         }
@@ -202,5 +210,8 @@ class RealRootComponent(
 
         @Serializable
         data object SharedElements : ChildConfig
+
+        @Serializable
+        data object OptimisticUpdate : ChildConfig
     }
 }

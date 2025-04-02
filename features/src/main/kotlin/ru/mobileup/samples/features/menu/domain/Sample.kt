@@ -20,5 +20,6 @@ enum class Sample(
     CollapsingToolbar(R.string.menu_item_collapsing_toolbar.strResDesc()),
     Image(R.string.menu_item_image.strResDesc()),
     Tutorial(R.string.menu_item_tutorial.strResDesc()),
-    SharedTransitions(R.string.menu_item_shared_elements_transition.strResDesc())
+    SharedTransitions(R.string.menu_item_shared_elements_transition.strResDesc()),
+    OptimisticUpdate(R.string.menu_item_optimistic_update.strResDesc()),
 }
