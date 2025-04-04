@@ -4,6 +4,7 @@
     <string name="menu_item_photo">Photo</string>
     <string name="menu_item_video">Video</string>
     <string name="menu_item_document">Document</string>
+    <string name="menu_item_uploader">Uploader</string>
     <string name="menu_item_calendar">Calendar</string>
     <string name="menu_item_navigation">Navigation</string>
     <string name="menu_item_qr_code">Qr code</string>

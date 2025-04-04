@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="uploader_title">Uploader</string>
+    <string name="uploader_pick_file_btn">Pick file</string>
+    <string name="uploader_upload_btn">Upload file</string>
+    <string name="uploader_upload_completed">File uploaded!</string>
+    <string name="uploader_upload_failed">File upload failed!</string>
+    <string name="uploader_upload_caption">Upload to temporary file hoster\nMax file size - 512mB</string>
+    <string name="uploader_file_link">File link:</string>
+    <string name="uploader_copy_btn">Copy</string>
+    <string name="uploader_download_ktor_btn">Download (Ktor)</string>
+    <string name="uploader_download_manager_btn">Download (With manager)</string>
+    <string name="uploader_download_completed">File downloaded!</string>
+    <string name="uploader_download_failed">File download failed!</string>
+    <string name="uploader_download_start_manager">Download manager started…</string>
+</resources>

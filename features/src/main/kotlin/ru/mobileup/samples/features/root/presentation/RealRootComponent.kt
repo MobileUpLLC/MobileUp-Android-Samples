@@ -27,6 +27,7 @@ import ru.mobileup.samples.features.photo.createPhotoComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
+import ru.mobileup.samples.features.uploader.createUploaderComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 
 class RealRootComponent(
@@ -92,6 +93,12 @@ class RealRootComponent(
             )
         }
 
+        ChildConfig.Uploader -> {
+            RootComponent.Child.Uploader(
+                componentFactory.createUploaderComponent(componentContext)
+            )
+        }
+
         ChildConfig.Calendar -> {
             RootComponent.Child.Calendar(
                 componentFactory.createCalendarComponent(componentContext)
@@ -150,6 +157,7 @@ class RealRootComponent(
                     Sample.Photo -> ChildConfig.Photo
                     Sample.Video -> ChildConfig.Video
                     Sample.Document -> ChildConfig.Document
+                    Sample.Uploader -> ChildConfig.Uploader
                     Sample.Calendar -> ChildConfig.Calendar
                     Sample.QrCode -> ChildConfig.QrCode
                     Sample.Chart -> ChildConfig.Chart
@@ -189,6 +197,9 @@ class RealRootComponent(
 
         @Serializable
         data object Document : ChildConfig
+
+        @Serializable
+        data object Uploader : ChildConfig
 
         @Serializable
         data object Calendar : ChildConfig
