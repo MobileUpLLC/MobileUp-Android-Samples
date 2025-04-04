@@ -380,7 +380,7 @@ private fun PlayerTopBar(
 
         Text(
             text = stringResource(R.string.video_menu_item_player),
-            color = CustomTheme.colors.text.invert,
+            color = CustomTheme.colors.palette.white,
             modifier = Modifier
                 .weight(2f)
                 .align(Alignment.CenterVertically)

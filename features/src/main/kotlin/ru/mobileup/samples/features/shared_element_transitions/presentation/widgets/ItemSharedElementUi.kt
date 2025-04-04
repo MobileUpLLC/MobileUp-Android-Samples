@@ -26,7 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -97,7 +96,6 @@ fun ItemSharedElementUi(
                     .size(75.dp)
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(16.dp))
-                    .background(Color.White)
                     .align(Alignment.Top)
                     .sharedScopeModifier { animScope ->
                         Modifier.sharedBounds(
@@ -152,7 +150,7 @@ fun ItemSharedElementUi(
                                 animatedVisibilityScope = animScope,
                             )
                         },
-                    tint = Color.Black
+                    tint = CustomTheme.colors.icon.primary
                 )
             }
         }

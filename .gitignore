@@ -7,6 +7,8 @@ local.properties
 
 # Idea
 .idea/
+# Project icon
+!.idea/icon.svg
 **/*.iml
 
 # Mac OS

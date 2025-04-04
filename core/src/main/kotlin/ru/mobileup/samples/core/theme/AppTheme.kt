@@ -10,12 +10,21 @@ import ru.mobileup.samples.core.theme.values.AppTypography
 import ru.mobileup.samples.core.theme.values.DarkAppColors
 import ru.mobileup.samples.core.theme.values.LightAppColors
 
+enum class AppTheme {
+    Light, Dark, System
+}
+
 @Composable
 fun AppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    theme: AppTheme = AppTheme.System,
+    content: @Composable () -> Unit,
 ) {
-    val colorScheme = if (darkTheme) DarkAppColors else LightAppColors
+    val colorScheme = when (theme) {
+        AppTheme.Light -> LightAppColors
+        AppTheme.Dark -> DarkAppColors
+        AppTheme.System -> if (isSystemInDarkTheme()) DarkAppColors else LightAppColors
+    }
+
     val typography = AppTypography
 
     CustomTheme(

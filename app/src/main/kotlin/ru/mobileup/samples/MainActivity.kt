@@ -3,6 +3,8 @@ package ru.mobileup.samples
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
 import com.arkivanov.decompose.retainedComponent
@@ -35,7 +37,9 @@ class MainActivity : FragmentActivity() {
         }
 
         setContent {
-            AppTheme {
+            val theme by rootComponent.themeComponent.theme.collectAsState()
+
+            AppTheme(theme) {
                 RootUi(rootComponent)
             }
         }

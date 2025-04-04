@@ -8,6 +8,7 @@ import com.arkivanov.decompose.router.stack.pop
 import kotlinx.serialization.Serializable
 import ru.mobileup.samples.core.ComponentFactory
 import ru.mobileup.samples.core.createMessageComponent
+import ru.mobileup.samples.core.createThemeComponent
 import ru.mobileup.samples.core.createTutorialOverlayComponent
 import ru.mobileup.samples.core.utils.safePush
 import ru.mobileup.samples.core.utils.toStateFlow
@@ -28,13 +29,14 @@ import ru.mobileup.samples.features.pin_code.createCheckPinCodeManagementCompone
 import ru.mobileup.samples.features.pin_code.createPinCodeSettingsComponent
 import ru.mobileup.samples.features.pin_code.presentation.check_management.CheckPinCodeManagementComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
+import ru.mobileup.samples.features.settings.createSettingsComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 
 class RealRootComponent(
     componentContext: ComponentContext,
-    private val componentFactory: ComponentFactory
+    private val componentFactory: ComponentFactory,
 ) : ComponentContext by componentContext, RootComponent {
 
     private val navigation = StackNavigation<ChildConfig>()
@@ -48,7 +50,7 @@ class RealRootComponent(
     ).toStateFlow(lifecycle)
 
     override val messageComponent = componentFactory.createMessageComponent(
-        childContext(key = "message")
+        childContext("message")
     )
 
     override val tutorialOverlayComponent = componentFactory.createTutorialOverlayComponent(
@@ -59,6 +61,10 @@ class RealRootComponent(
         componentFactory.createCheckPinCodeManagementComponent(
             childContext("checkPinCodeManagement")
         )
+
+    override val themeComponent = componentFactory.createThemeComponent(
+        childContext("theme")
+    )
 
     private fun createChild(
         config: ChildConfig,
@@ -153,28 +159,34 @@ class RealRootComponent(
                 componentFactory.createPinCodeSettingsComponent(componentContext)
             )
         }
+
+        ChildConfig.Settings -> {
+            RootComponent.Child.Settings(
+                componentFactory.createSettingsComponent(componentContext)
+            )
+        }
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
         when (output) {
-            is MenuComponent.Output.SampleChosen -> navigation.safePush(
-                when (output.sample) {
-                    Sample.Form -> ChildConfig.Form
-                    Sample.Otp -> ChildConfig.Otp
-                    Sample.Photo -> ChildConfig.Photo
-                    Sample.Video -> ChildConfig.Video
-                    Sample.Document -> ChildConfig.Document
-                    Sample.Calendar -> ChildConfig.Calendar
-                    Sample.QrCode -> ChildConfig.QrCode
-                    Sample.Chart -> ChildConfig.Chart
-                    Sample.Navigation -> ChildConfig.Navigation
-                    Sample.CollapsingToolbar -> ChildConfig.CollapsingToolbar
-                    Sample.Image -> ChildConfig.Image
-                    Sample.Tutorial -> ChildConfig.Tutorial
-                    Sample.SharedTransitions -> ChildConfig.SharedElements
-                    Sample.PinCodeSettings -> ChildConfig.PinCodeSettings
-                }
-            )
+            is MenuComponent.Output.SampleChosen -> when (output.sample) {
+                Sample.Form -> ChildConfig.Form
+                Sample.Otp -> ChildConfig.Otp
+                Sample.Photo -> ChildConfig.Photo
+                Sample.Video -> ChildConfig.Video
+                Sample.Document -> ChildConfig.Document
+                Sample.Calendar -> ChildConfig.Calendar
+                Sample.QrCode -> ChildConfig.QrCode
+                Sample.Chart -> ChildConfig.Chart
+                Sample.Navigation -> ChildConfig.Navigation
+                Sample.CollapsingToolbar -> ChildConfig.CollapsingToolbar
+                Sample.Image -> ChildConfig.Image
+                Sample.Tutorial -> ChildConfig.Tutorial
+                Sample.SharedTransitions -> ChildConfig.SharedElements
+                Sample.PinCodeSettings -> ChildConfig.PinCodeSettings
+            }.run(navigation::safePush)
+
+            MenuComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
         }
     }
 
@@ -231,5 +243,8 @@ class RealRootComponent(
 
         @Serializable
         data object PinCodeSettings : ChildConfig
+
+        @Serializable
+        data object Settings : ChildConfig
     }
 }

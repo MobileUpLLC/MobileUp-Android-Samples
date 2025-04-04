@@ -69,4 +69,49 @@ val LightAppColors = CustomColors(
     )
 )
 
-val DarkAppColors = LightAppColors
+val DarkAppColors = CustomColors(
+    isLight = false,
+    background = BackgroundColors(
+        screen = Color(0xFF151515),
+        secondary = Color(0xFFBDBDBD),
+        toast = Color(0xFFFFFFFF),
+    ),
+    text = TextColors(
+        primary = Color(0xFFFFFFFF),
+        primaryDisabled = Color(0xFFFFFFFF).copy(alpha = 0.4f),
+        secondary = Color(0xFFBDBDBD),
+        secondaryDisabled = Color(0xFFBDBDBD).copy(alpha = 0.4f),
+        invert = Color(0xFF000000),
+        invertDisabled = Color(0xFF000000).copy(alpha = 0.4f),
+        warning = Color(0xFFFAA105),
+        error = Color(0xFFCF6679),
+        positive = Color(0xFF81C784)
+    ),
+    icon = IconColors(
+        primary = Color(0xFFFFFFFF),
+        primaryDisabled = Color(0xFFFFFFFF).copy(alpha = 0.4f),
+        secondary = Color(0xFFBDBDBD),
+        invert = Color(0xFF000000),
+        warning = Color(0xFFFAA105),
+        error = Color(0xFFCF6679)
+    ),
+    palette = LightAppColors.palette,
+    button = ButtonColors(
+        primary = Color(0xFFBB86FC),
+        primaryDisabled = Color(0xFFBB86FC).copy(alpha = 0.4f),
+        secondary = Color(0xFF000000),
+        secondaryDisabled = Color(0xFF000000).copy(alpha = 0.4f)
+    ),
+    border = BorderColors(
+        primary = Color(0xFFFFFFFF),
+        error = Color(0xFFCF6679)
+    ),
+    textField = TextFieldColors(
+        background = Color(0xFF2E2E2E),
+        backgroundDisabled = Color(0xFF2E2E2E).copy(alpha = 0.4f)
+    ),
+    common = CommonColors(
+        positive = Color(0xFF00CC00),
+        negative = Color(0xFFCC3333)
+    )
+)

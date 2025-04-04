@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import ru.mobileup.samples.core.theme.custom.CustomTheme
 import ru.mobileup.samples.features.pin_code.domain.PinCodeProgressState
 
 @Composable
@@ -21,6 +22,7 @@ fun PinCodeContent(
         Text(
             text = headerText,
             style = headerTextStyle,
+            color = CustomTheme.colors.text.primary,
             modifier = Modifier
                 .padding(
                     start = 16.dp,
