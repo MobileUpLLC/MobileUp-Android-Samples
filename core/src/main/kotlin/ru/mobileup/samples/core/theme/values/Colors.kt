@@ -109,5 +109,9 @@ val DarkAppColors = CustomColors(
     textField = TextFieldColors(
         background = Color(0xFF2E2E2E),
         backgroundDisabled = Color(0xFF2E2E2E).copy(alpha = 0.4f)
+    ),
+    common = CommonColors(
+        positive = Color(0xFF00CC00),
+        negative = Color(0xFFCC3333)
     )
 )
