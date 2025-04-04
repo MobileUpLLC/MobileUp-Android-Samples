@@ -277,7 +277,7 @@ private fun VideoRecorderContent(
                 )
                 Text(
                     text = stringResource(R.string.video_menu_item_recorder),
-                    color = CustomTheme.colors.text.invert,
+                    color = CustomTheme.colors.palette.white,
                     modifier = Modifier
                         .weight(2f)
                         .align(Alignment.CenterVertically)
@@ -288,7 +288,7 @@ private fun VideoRecorderContent(
                     color = if (recorderConfig == RecorderConfig.FPS) {
                         CustomTheme.colors.text.warning
                     } else {
-                        CustomTheme.colors.text.invert
+                        CustomTheme.colors.palette.white
                     },
                     textAlign = TextAlign.Center,
                     modifier = Modifier
@@ -304,7 +304,7 @@ private fun VideoRecorderContent(
                     color = if (recorderConfig == RecorderConfig.Quality) {
                         CustomTheme.colors.text.warning
                     } else {
-                        CustomTheme.colors.text.invert
+                        CustomTheme.colors.palette.white
                     },
                     textAlign = TextAlign.Center,
                     modifier = Modifier

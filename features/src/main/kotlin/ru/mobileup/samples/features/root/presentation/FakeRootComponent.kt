@@ -1,6 +1,7 @@
 package ru.mobileup.samples.features.root.presentation
 
 import ru.mobileup.samples.core.message.presentation.FakeMessageComponent
+import ru.mobileup.samples.core.theme.component.FakeThemeComponent
 import ru.mobileup.samples.core.tutorial.presentation.overlay.FakeTutorialOverlayComponent
 import ru.mobileup.samples.core.tutorial.presentation.overlay.TutorialOverlayComponent
 import ru.mobileup.samples.core.utils.createFakeChildStackStateFlow
@@ -17,6 +18,9 @@ class FakeRootComponent : RootComponent {
     override val tutorialOverlayComponent: TutorialOverlayComponent = FakeTutorialOverlayComponent()
 
     override val messageComponent = FakeMessageComponent()
+
     override val checkPinCodeManagementComponent: CheckPinCodeManagementComponent =
         FakeCheckPinCodeManagementComponent()
+
+    override val themeComponent = FakeThemeComponent()
 }

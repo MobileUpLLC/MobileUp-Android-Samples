@@ -1,7 +1,7 @@
-<svg width="1557px" height="188px"
- viewBox="0.00 0.00 1556.62 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="1546px" height="188px"
+ viewBox="0.00 0.00 1545.62 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0.0) translate(4.0 184.0)">
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-184 1552.62,-184 1552.62,4 -4,4"/>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-184 1541.62,-184 1541.62,4 -4,4"/>
 <!-- photo -->
 <g id="node1" class="node">
 <title>photo</title>
@@ -23,14 +23,14 @@
 <!-- video -->
 <g id="node3" class="node">
 <title>video</title>
-<ellipse fill="none" stroke="black" cx="894.7" cy="-18" rx="32.48" ry="18"/>
-<text text-anchor="middle" x="894.7" y="-13.8" font-family="Times,serif" font-size="14.00">video</text>
+<ellipse fill="none" stroke="black" cx="888.7" cy="-18" rx="32.48" ry="18"/>
+<text text-anchor="middle" x="888.7" y="-13.8" font-family="Times,serif" font-size="14.00">video</text>
 </g>
 <!-- photo&#45;&gt;video -->
 <g id="edge2" class="edge">
 <title>photo&#45;&gt;video</title>
-<path fill="none" stroke="black" d="M347.18,-77.73C352.83,-75.51 358.89,-73.43 364.7,-72 541.94,-28.22 761.03,-20.45 852,-19.18"/>
-<polygon fill="black" stroke="black" points="852.23,-22.68 862.19,-19.06 852.15,-15.68 852.23,-22.68"/>
+<path fill="none" stroke="black" d="M347.18,-77.74C352.83,-75.52 358.89,-73.44 364.7,-72 539.72,-28.67 756.01,-20.64 846.15,-19.25"/>
+<polygon fill="black" stroke="black" points="846.3,-22.74 856.26,-19.11 846.21,-15.74 846.3,-22.74"/>
 </g>
 <!-- root -->
 <g id="node4" class="node">
@@ -53,8 +53,8 @@
 <!-- root&#45;&gt;video -->
 <g id="edge17" class="edge">
 <title>root&#45;&gt;video</title>
-<path fill="none" stroke="black" d="M922.77,-160.36C1025.85,-157.65 1389.78,-145.49 1423.7,-108 1434.43,-96.13 1434.43,-83.86 1423.7,-72 1391.27,-36.17 1057.86,-23.49 937.63,-20.07"/>
-<polygon fill="black" stroke="black" points="937.43,-16.56 927.34,-19.78 937.24,-23.56 937.43,-16.56"/>
+<path fill="none" stroke="black" d="M922.9,-160.3C1024.77,-157.39 1379.59,-144.67 1412.7,-108 1423.42,-96.12 1423.42,-83.87 1412.7,-72 1380.59,-36.49 1050.32,-23.61 931.22,-20.1"/>
+<polygon fill="black" stroke="black" points="931.13,-16.59 921.03,-19.81 930.92,-23.59 931.13,-16.59"/>
 </g>
 <!-- calendar -->
 <g id="node5" class="node">
@@ -152,29 +152,29 @@
 <path fill="none" stroke="black" d="M922.12,-157.25C967.32,-150.39 1062.05,-134.08 1138.7,-108 1140.61,-107.35 1142.56,-106.62 1144.5,-105.85"/>
 <polygon fill="black" stroke="black" points="1146.3,-108.89 1154.09,-101.71 1143.52,-102.46 1146.3,-108.89"/>
 </g>
-<!-- pin_code -->
-<g id="node13" class="node">
-<title>pin_code</title>
-<ellipse fill="none" stroke="black" cx="1265.7" cy="-90" rx="46.37" ry="18"/>
-<text text-anchor="middle" x="1265.7" y="-85.8" font-family="Times,serif" font-size="14.00">pin_code</text>
-</g>
-<!-- root&#45;&gt;pin_code -->
-<g id="edge13" class="edge">
-<title>root&#45;&gt;pin_code</title>
-<path fill="none" stroke="black" d="M922.07,-157.77C976.48,-150.84 1104.94,-133.12 1210.7,-108 1214.31,-107.14 1218.04,-106.17 1221.76,-105.15"/>
-<polygon fill="black" stroke="black" points="1222.92,-108.45 1231.56,-102.32 1220.98,-101.73 1222.92,-108.45"/>
-</g>
 <!-- qr_code -->
-<g id="node14" class="node">
+<g id="node13" class="node">
 <title>qr_code</title>
-<ellipse fill="none" stroke="black" cx="1372.7" cy="-90" rx="42.28" ry="18"/>
-<text text-anchor="middle" x="1372.7" y="-85.8" font-family="Times,serif" font-size="14.00">qr_code</text>
+<ellipse fill="none" stroke="black" cx="1261.7" cy="-90" rx="42.28" ry="18"/>
+<text text-anchor="middle" x="1261.7" y="-85.8" font-family="Times,serif" font-size="14.00">qr_code</text>
 </g>
 <!-- root&#45;&gt;qr_code -->
-<g id="edge14" class="edge">
+<g id="edge13" class="edge">
 <title>root&#45;&gt;qr_code</title>
-<path fill="none" stroke="black" d="M922.85,-159.43C990.68,-155.1 1172.66,-141.11 1320.7,-108 1324.34,-107.19 1328.09,-106.22 1331.83,-105.17"/>
-<polygon fill="black" stroke="black" points="1333.04,-108.46 1341.62,-102.23 1331.03,-101.75 1333.04,-108.46"/>
+<path fill="none" stroke="black" d="M922.11,-157.96C976.61,-151.39 1105.23,-134.28 1210.7,-108 1214.06,-107.16 1217.52,-106.21 1220.97,-105.19"/>
+<polygon fill="black" stroke="black" points="1222.12,-108.5 1230.63,-102.2 1220.05,-101.82 1222.12,-108.5"/>
+</g>
+<!-- settings -->
+<g id="node14" class="node">
+<title>settings</title>
+<ellipse fill="none" stroke="black" cx="1362.7" cy="-90" rx="40.58" ry="18"/>
+<text text-anchor="middle" x="1362.7" y="-85.8" font-family="Times,serif" font-size="14.00">settings</text>
+</g>
+<!-- root&#45;&gt;settings -->
+<g id="edge14" class="edge">
+<title>root&#45;&gt;settings</title>
+<path fill="none" stroke="black" d="M922.86,-159.45C989.84,-155.2 1168,-141.43 1312.7,-108 1316.1,-107.21 1319.61,-106.28 1323.1,-105.27"/>
+<polygon fill="black" stroke="black" points="1324.33,-108.55 1332.84,-102.24 1322.25,-101.87 1324.33,-108.55"/>
 </g>
 <!-- shared_element_transitions -->
 <g id="node15" class="node">
@@ -191,14 +191,14 @@
 <!-- tutorial -->
 <g id="node16" class="node">
 <title>tutorial</title>
-<ellipse fill="none" stroke="black" cx="1509.7" cy="-90" rx="38.86" ry="18"/>
-<text text-anchor="middle" x="1509.7" y="-85.8" font-family="Times,serif" font-size="14.00">tutorial</text>
+<ellipse fill="none" stroke="black" cx="1498.7" cy="-90" rx="38.86" ry="18"/>
+<text text-anchor="middle" x="1498.7" y="-85.8" font-family="Times,serif" font-size="14.00">tutorial</text>
 </g>
 <!-- root&#45;&gt;tutorial -->
 <g id="edge16" class="edge">
 <title>root&#45;&gt;tutorial</title>
-<path fill="none" stroke="black" d="M922.86,-160.51C1004.5,-158.59 1254.48,-149.47 1456.7,-108 1461.13,-107.09 1465.71,-105.95 1470.24,-104.68"/>
-<polygon fill="black" stroke="black" points="1471.42,-107.98 1480,-101.77 1469.42,-101.27 1471.42,-107.98"/>
+<path fill="none" stroke="black" d="M922.61,-160.44C1002.95,-158.34 1247.69,-148.8 1445.7,-108 1450.13,-107.09 1454.71,-105.94 1459.24,-104.67"/>
+<polygon fill="black" stroke="black" points="1460.42,-107.97 1469,-101.76 1458.42,-101.27 1460.42,-107.97"/>
 </g>
 <!-- shared_element_transitions&#45;&gt;image -->
 <g id="edge18" class="edge">

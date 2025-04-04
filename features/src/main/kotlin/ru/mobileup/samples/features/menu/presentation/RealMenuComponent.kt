@@ -11,4 +11,8 @@ class RealMenuComponent(
     override fun onButtonClick(sample: Sample) {
         onOutput(MenuComponent.Output.SampleChosen(sample))
     }
+
+    override fun onSettingsClick() {
+        onOutput(MenuComponent.Output.SettingsRequested)
+    }
 }

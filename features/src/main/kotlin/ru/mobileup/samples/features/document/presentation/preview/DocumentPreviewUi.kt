@@ -93,7 +93,7 @@ private fun PreviewTopBar() {
 
         Text(
             text = stringResource(R.string.document_menu_item_preview),
-            color = CustomTheme.colors.text.invert,
+            color = CustomTheme.colors.palette.white,
             modifier = Modifier
                 .weight(2f)
                 .align(Alignment.CenterVertically)

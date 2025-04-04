@@ -12,6 +12,7 @@ photo
 pin_code
 qr_code
 root
+settings
 shared_element_transitions
 tutorial
 video
@@ -29,6 +30,7 @@ root -> otp
 root -> photo
 root -> pin_code
 root -> qr_code
+root -> settings
 root -> shared_element_transitions
 root -> tutorial
 root -> video

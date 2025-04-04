@@ -14,6 +14,8 @@ import ru.mobileup.samples.core.biometric.data.AndroidBiometricService
 import ru.mobileup.samples.core.biometric.data.BiometricEnablingStorage
 import ru.mobileup.samples.core.biometric.data.BiometricEnablingStorageImpl
 import ru.mobileup.samples.core.biometric.data.BiometricService
+import ru.mobileup.samples.core.app_settings.data.AppSettingsStorage
+import ru.mobileup.samples.core.app_settings.data.AppSettingsStorageImpl
 import ru.mobileup.samples.core.debug_tools.DebugTools
 import ru.mobileup.samples.core.debug_tools.RealDebugTools
 import ru.mobileup.samples.core.error_handling.ErrorHandler
@@ -28,6 +30,8 @@ import ru.mobileup.samples.core.network.createOkHttpEngine
 import ru.mobileup.samples.core.permissions.PermissionService
 import ru.mobileup.samples.core.settings.AndroidSettingsFactory
 import ru.mobileup.samples.core.settings.SettingsFactory
+import ru.mobileup.samples.core.theme.component.RealThemeComponent
+import ru.mobileup.samples.core.theme.component.ThemeComponent
 import ru.mobileup.samples.core.tutorial.data.TutorialStatusStorage
 import ru.mobileup.samples.core.tutorial.data.TutorialStatusStorageImpl
 import ru.mobileup.samples.core.tutorial.domain.Tutorial
@@ -60,6 +64,7 @@ fun coreModule(backendUrl: String) = module {
     single<TutorialManager> { TutorialManagerImpl() }
     single<BiometricService> { AndroidBiometricService(get(), get()) }
     single<BiometricEnablingStorage> { BiometricEnablingStorageImpl(get()) }
+    single<AppSettingsStorage> { AppSettingsStorageImpl(get()) }
 }
 
 fun ComponentFactory.createMessageComponent(
@@ -86,3 +91,7 @@ fun ComponentFactory.createTutorialOverlayComponent(
 ): TutorialOverlayComponent {
     return RealTutorialOverlayComponent(componentContext, get())
 }
+
+fun ComponentFactory.createThemeComponent(
+    componentContext: ComponentContext,
+): ThemeComponent = RealThemeComponent(componentContext, get())

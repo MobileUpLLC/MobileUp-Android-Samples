@@ -3,7 +3,6 @@ package ru.mobileup.samples.features.shared_element_transitions.presentation.det
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionScope.ResizeMode.Companion.ScaleToBounds
 import androidx.compose.animation.core.spring
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,7 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -70,7 +68,6 @@ fun DetailsSharedElementsUi(
                 modifier = Modifier
                     .fillMaxWidth()
                     .heightIn(max = 250.dp)
-                    .background(Color.White)
                     .sharedScopeModifier { animScope ->
                         Modifier.sharedBounds(
                             rememberSharedContentState(key = SharedKeys.image(component.item.id)),
@@ -120,7 +117,7 @@ fun DetailsSharedElementsUi(
                                 animatedVisibilityScope = animScope,
                             )
                         },
-                    tint = Color.Black
+                    tint = CustomTheme.colors.icon.primary
                 )
             }
 
