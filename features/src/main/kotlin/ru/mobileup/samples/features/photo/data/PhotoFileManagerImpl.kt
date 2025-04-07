@@ -14,6 +14,11 @@ import androidx.core.net.toFile
 import androidx.core.net.toUri
 import androidx.exifinterface.media.ExifInterface
 import co.touchlab.kermit.Logger
+import coil3.BitmapImage
+import coil3.imageLoader
+import coil3.request.ImageRequest
+import coil3.request.SuccessResult
+import coil3.request.allowHardware
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.mobileup.samples.features.photo.data.utils.PhotoDirectory
@@ -54,6 +59,16 @@ class PhotoFileManagerImpl(
                 // Do nothing
             }
         }
+    }
+
+    override suspend fun loadBitmapFromUri(uri: Uri): Bitmap? {
+        val request = ImageRequest.Builder(context)
+            .data(uri)
+            .allowHardware(false)
+            .build()
+        val result = context.imageLoader.execute(request)
+        val drawable = (result as? SuccessResult)?.image
+        return (drawable as? BitmapImage)?.bitmap
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)

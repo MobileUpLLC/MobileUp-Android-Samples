@@ -1,5 +1,6 @@
 package ru.mobileup.samples.core.utils
 
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.calculatePan
@@ -8,6 +9,7 @@ import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -90,6 +92,18 @@ fun Modifier.zoomable(
             translationX = offset.x,
             translationY = offset.y,
         )
+}
+
+@Composable
+fun LockScreenOrientation(orientation: Int) {
+    val activity = LocalActivity.current ?: return
+    DisposableEffect(orientation) {
+        val originalOrientation = activity.requestedOrientation
+        activity.requestedOrientation = orientation
+        onDispose {
+            activity.requestedOrientation = originalOrientation
+        }
+    }
 }
 
 @Composable

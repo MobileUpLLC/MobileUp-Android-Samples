@@ -5,6 +5,7 @@
 
     <string name="photo_menu_item_camera">Camera</string>
     <string name="photo_menu_item_preview">Preview</string>
+    <string name="photo_menu_item_cropping">Cropping</string>
 
     <string name="camera_initialization_failed">Camera initialization failed</string>
     <string name="photo_failed">Photo failed</string>

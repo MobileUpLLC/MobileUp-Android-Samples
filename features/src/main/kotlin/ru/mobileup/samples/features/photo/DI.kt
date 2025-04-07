@@ -11,6 +11,8 @@ import ru.mobileup.samples.features.photo.presentation.PhotoComponent
 import ru.mobileup.samples.features.photo.presentation.RealPhotoComponent
 import ru.mobileup.samples.features.photo.presentation.camera.PhotoCameraComponent
 import ru.mobileup.samples.features.photo.presentation.camera.RealPhotoCameraComponent
+import ru.mobileup.samples.features.photo.presentation.cropping.PhotoCroppingComponent
+import ru.mobileup.samples.features.photo.presentation.cropping.RealPhotoCroppingComponent
 import ru.mobileup.samples.features.photo.presentation.menu.PhotoMenuComponent
 import ru.mobileup.samples.features.photo.presentation.menu.RealPhotoMenuComponent
 import ru.mobileup.samples.features.photo.presentation.preview.PhotoPreviewComponent
@@ -43,4 +45,10 @@ fun ComponentFactory.createPhotoPreviewComponent(
     componentContext: ComponentContext
 ): PhotoPreviewComponent {
     return RealPhotoPreviewComponent(uris, componentContext, get(), get(), get(), get())
+}
+
+fun ComponentFactory.createPhotoCroppingComponent(
+    componentContext: ComponentContext
+): PhotoCroppingComponent {
+    return RealPhotoCroppingComponent(componentContext)
 }
