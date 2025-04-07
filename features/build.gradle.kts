@@ -79,6 +79,9 @@ dependencies {
 
     // Geo
     implementation(libs.yandex.mapkit)
+
+    // Image Cropping
+    implementation(libs.android.image.cropper)
 }
 
 // Usage: ./gradlew generateModuleGraph detectGraphCycles

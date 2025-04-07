@@ -12,6 +12,7 @@ import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.core.utils.safePush
 import ru.mobileup.samples.core.utils.toStateFlow
 import ru.mobileup.samples.features.photo.createPhotoCameraComponent
+import ru.mobileup.samples.features.photo.createPhotoCroppingComponent
 import ru.mobileup.samples.features.photo.createPhotoMenuComponent
 import ru.mobileup.samples.features.photo.createPhotoPreviewComponent
 import ru.mobileup.samples.features.photo.data.PhotoFileManager
@@ -71,6 +72,14 @@ class RealPhotoComponent(
                 )
             )
         }
+
+        is ChildConfig.Cropping -> {
+            PhotoComponent.Child.Cropping(
+                componentFactory.createPhotoCroppingComponent(
+                    componentContext
+                )
+            )
+        }
     }
 
     private fun onMenuOutput(output: PhotoMenuComponent.Output) {
@@ -79,6 +88,7 @@ class RealPhotoComponent(
             is PhotoMenuComponent.Output.PreviewRequested -> navigation.safePush(
                 ChildConfig.Preview(output.uris)
             )
+            PhotoMenuComponent.Output.CroppingRequested -> navigation.safePush(ChildConfig.Cropping)
         }
     }
 
@@ -103,5 +113,8 @@ class RealPhotoComponent(
         data class Preview(
             val uris: List<@Serializable(with = UriSerializer::class) Uri>
         ) : ChildConfig
+
+        @Serializable
+        data object Cropping : ChildConfig
     }
 }
