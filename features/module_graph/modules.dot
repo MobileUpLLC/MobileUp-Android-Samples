@@ -15,6 +15,7 @@ root
 shared_element_transitions
 tutorial
 video
+yandex_map
 photo -> image
 photo -> video
 root -> calendar
@@ -32,5 +33,5 @@ root -> qr_code
 root -> shared_element_transitions
 root -> tutorial
 root -> video
-shared_element_transitions -> image
+root -> yandex_map
 }
