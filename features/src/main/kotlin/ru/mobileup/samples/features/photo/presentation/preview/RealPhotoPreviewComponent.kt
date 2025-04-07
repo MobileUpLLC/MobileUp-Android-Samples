@@ -19,7 +19,7 @@ import ru.mobileup.samples.core.utils.Resource
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.features.R
 import ru.mobileup.samples.features.image.createImageCarouselComponent
-import ru.mobileup.samples.features.image.domain.ImageResource
+import ru.mobileup.samples.core.media.ImageResource
 import ru.mobileup.samples.features.image.presentation.carousel.ImageCarouselComponent
 import ru.mobileup.samples.features.photo.data.PhotoFileManager
 

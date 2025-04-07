@@ -3,7 +3,7 @@ package ru.mobileup.samples.features.image.presentation.carousel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.samples.features.image.domain.ImageCarousel
-import ru.mobileup.samples.features.image.domain.ImageResource
+import ru.mobileup.samples.core.media.ImageResource
 
 class FakeImageCarouselComponent : ImageCarouselComponent {
 

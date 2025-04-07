@@ -1,9 +1,11 @@
 package ru.mobileup.samples.features.photo.presentation.menu
 
-import ru.mobileup.samples.features.photo.domain.PhotoMenu
-
 import android.net.Uri
 
 class FakePhotoMenuComponent : PhotoMenuComponent {
-    override fun onMenuClick(menuItem: PhotoMenu) = Unit
+    override fun onCameraClick() = Unit
+
+    override fun onPreviewClick(uris: List<Uri>) = Unit
+
+    override fun onCroppingClick() = Unit
 }

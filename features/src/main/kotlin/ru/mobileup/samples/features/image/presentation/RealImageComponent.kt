@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.samples.core.ComponentFactory
 import ru.mobileup.samples.features.R
 import ru.mobileup.samples.features.image.createImageCarouselComponent
-import ru.mobileup.samples.features.image.domain.ImageResource
+import ru.mobileup.samples.core.media.ImageResource
 import ru.mobileup.samples.features.image.presentation.carousel.ImageCarouselComponent
 
 class RealImageComponent(

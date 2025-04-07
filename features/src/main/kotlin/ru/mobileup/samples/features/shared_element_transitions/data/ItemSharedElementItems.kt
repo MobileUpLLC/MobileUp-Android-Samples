@@ -1,6 +1,6 @@
 package ru.mobileup.samples.features.shared_element_transitions.data
 
-import ru.mobileup.samples.features.image.domain.ImageResource
+import ru.mobileup.samples.core.media.ImageResource
 import ru.mobileup.samples.features.shared_element_transitions.domain.ItemSharedElement
 
 object ItemSharedElementItems {

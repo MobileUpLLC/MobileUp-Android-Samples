@@ -69,8 +69,7 @@ fun PhotoCroppingUi(
                         cropShape = CropImageView.CropShape.OVAL,
                         fixAspectRatio = true,
                         guidelines = CropImageView.Guidelines.ON_TOUCH,
-                        autoZoomEnabled = false,
-                        scaleType = CropImageView.ScaleType.CENTER_CROP
+                        autoZoomEnabled = false
                     )
                 )
             }
@@ -80,16 +79,18 @@ fun PhotoCroppingUi(
         cropImageView.setImageUriAsync(pickedImageUri)
     }
 
+    val imageSide = LocalConfiguration.current.screenWidthDp.dp
+
     Box(
         modifier = modifier
             .fillMaxSize()
+            .padding(top = 20.dp)
             .statusBarsPadding()
     ) {
 
         AndroidView(
             modifier = Modifier
-                .padding(top = 20.dp)
-                .widthIn(max = LocalConfiguration.current.screenWidthDp.dp)
+                .widthIn(max = imageSide)
                 .align(Alignment.TopCenter),
             factory = { cropImageView }
         )
