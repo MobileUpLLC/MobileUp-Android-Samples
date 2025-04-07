@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.features.image.domain.ImageCarousel
-import ru.mobileup.samples.features.image.domain.ImageResource
+import ru.mobileup.samples.core.media.ImageResource
 
 class RealImageCarouselComponent(
     imageResources: List<ImageResource>,

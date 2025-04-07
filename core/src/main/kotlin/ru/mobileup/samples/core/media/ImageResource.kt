@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.image.domain
+package ru.mobileup.samples.core.media
 
 import android.net.Uri
 import androidx.core.net.toUri
