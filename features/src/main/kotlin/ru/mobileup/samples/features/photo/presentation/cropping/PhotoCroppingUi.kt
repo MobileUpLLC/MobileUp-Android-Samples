@@ -2,6 +2,8 @@ package ru.mobileup.samples.features.photo.presentation.cropping
 
 import android.content.pm.ActivityInfo
 import android.graphics.Bitmap
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,9 +17,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -28,7 +30,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -69,8 +70,13 @@ fun PhotoCroppingUi(
                         cropShape = CropImageView.CropShape.OVAL,
                         fixAspectRatio = true,
                         guidelines = CropImageView.Guidelines.ON_TOUCH,
-                        autoZoomEnabled = false
+                        autoZoomEnabled = false,
+                        scaleType = CropImageView.ScaleType.CENTER_CROP,
                     )
+                )
+                layoutParams = LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
                 )
             }
     }
@@ -79,70 +85,72 @@ fun PhotoCroppingUi(
         cropImageView.setImageUriAsync(pickedImageUri)
     }
 
-    val imageSide = LocalConfiguration.current.screenWidthDp.dp
-
-    Box(
+    Scaffold(
         modifier = modifier
             .fillMaxSize()
             .padding(top = 20.dp)
-            .statusBarsPadding()
-    ) {
-
-        AndroidView(
-            modifier = Modifier
-                .widthIn(max = imageSide)
-                .align(Alignment.TopCenter),
-            factory = { cropImageView }
-        )
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomStart)
-                .padding(20.dp)
-                .navigationBarsPadding(),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-
-            IconButton(
-                modifier = Modifier.align(Alignment.End),
-                enabled = pickedImageUri != null,
-                onClick = { cropImageView.rotateImage(90) }
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_rotate),
-                    contentDescription = "rotate_image"
-                )
-            }
-
-            Row(
+            .statusBarsPadding(),
+        bottomBar = {
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .fillMaxWidth()
+                    .padding(20.dp)
+                    .navigationBarsPadding(),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+
                 IconButton(
-                    onClick = {
-                        pickerLauncher.launch(
-                            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                    modifier = Modifier.align(Alignment.End),
+                    enabled = pickedImageUri != null,
+                    onClick = { cropImageView.rotateImage(90) }
+                ) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_rotate),
+                        contentDescription = "rotate_image"
+                    )
+                }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    IconButton(
+                        onClick = {
+                            pickerLauncher.launch(
+                                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+                            )
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_gallery_picker),
+                            contentDescription = "gallery_picker"
                         )
                     }
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_gallery_picker),
-                        contentDescription = "gallery_picker"
-                    )
-                }
 
-                IconButton(
-                    enabled = pickedImageUri != null,
-                    onClick = { croppedBitmap = cropImageView.getCroppedImage() }
-                ) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_crop),
-                        contentDescription = "crop_image"
-                    )
+                    IconButton(
+                        enabled = pickedImageUri != null,
+                        onClick = { croppedBitmap = cropImageView.getCroppedImage() }
+                    ) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_crop),
+                            contentDescription = "crop_image"
+                        )
+                    }
                 }
             }
+        }
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(it),
+            contentAlignment = Alignment.Center
+        ) {
+            AndroidView(
+                modifier = Modifier,
+                factory = { cropImageView }
+            )
         }
     }
 
