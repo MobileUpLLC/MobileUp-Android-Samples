@@ -15,6 +15,7 @@ root
 settings
 shared_element_transitions
 tutorial
+uploader
 video
 yandex_map
 photo -> image
@@ -34,7 +35,7 @@ root -> qr_code
 root -> settings
 root -> shared_element_transitions
 root -> tutorial
+root -> uploader
 root -> video
 root -> yandex_map
-shared_element_transitions -> image
 }
