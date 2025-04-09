@@ -9,7 +9,6 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -141,17 +140,11 @@ fun PhotoCroppingUi(
             }
         }
     ) {
-        Box(
+        AndroidView(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(it),
-            contentAlignment = Alignment.Center
-        ) {
-            AndroidView(
-                modifier = Modifier,
-                factory = { cropImageView }
-            )
-        }
+            factory = { cropImageView }
+        )
     }
 
     croppedBitmap?.let {
