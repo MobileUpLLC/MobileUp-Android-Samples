@@ -12,4 +12,5 @@
     <string name="document_pdf_viewer_not_found">No PDF viewer installed"</string>
     <string name="document_permission_denied">Permission denied</string>
     <string name="document_open">Open</string>
+    <string name="document_metadata_share">Share Metadata</string>
 </resources>

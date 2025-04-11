@@ -3,7 +3,6 @@ package ru.mobileup.samples.core.external_apps.data
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
@@ -104,11 +103,11 @@ class ExternalAppServiceImpl(
         safeActivityLaunch {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
-                    flags = FLAG_ACTIVITY_NEW_TASK
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 }
             } else {
                 Intent(Settings.ACTION_SECURITY_SETTINGS).apply {
-                    flags = FLAG_ACTIVITY_NEW_TASK
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 }
             }
         }

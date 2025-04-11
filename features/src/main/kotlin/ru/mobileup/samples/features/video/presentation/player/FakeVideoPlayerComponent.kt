@@ -26,8 +26,6 @@ class FakeVideoPlayerComponent : VideoPlayerComponent {
 
     override fun onUpdateConfig(playerConfig: PlayerConfig) = Unit
 
-    override fun onSaveClick() = Unit
-
     override fun onUpdateVolume(volume: Float) = Unit
 
     override fun onUpdateSpeed(speed: Float) = Unit
@@ -39,6 +37,10 @@ class FakeVideoPlayerComponent : VideoPlayerComponent {
     override fun onCut(startPositionMs: Long, endPositionMs: Long) = Unit
 
     override fun onUpdateFilter(glFilter: GlFilter) = Unit
+
+    override fun onSaveClick() = Unit
+
+    override fun onShareClick() = Unit
 
     override fun onCancelRender() = Unit
 }

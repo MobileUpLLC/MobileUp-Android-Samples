@@ -12,12 +12,13 @@ import ru.mobileup.samples.core.dialog.standard.StandardDialogData
 import ru.mobileup.samples.core.dialog.standard.standardDialogControl
 import ru.mobileup.samples.core.message.data.MessageService
 import ru.mobileup.samples.core.message.domain.Message
+import ru.mobileup.samples.core.sharing.data.SharingService
 import ru.mobileup.samples.core.utils.Resource
 import ru.mobileup.samples.core.utils.ResourceFormatted
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.features.R
-import ru.mobileup.samples.features.video.data.VideoFileManager
 import ru.mobileup.samples.features.video.data.RELATIVE_STORAGE_PATH
+import ru.mobileup.samples.features.video.data.VideoFileManager
 import ru.mobileup.samples.features.video.data.VideoRepository
 import ru.mobileup.samples.features.video.data.render.GlFilter
 import ru.mobileup.samples.features.video.data.render.transformer.VideoRender
@@ -32,6 +33,7 @@ class RealVideoPlayerComponent(
     private val videoRepository: VideoRepository,
     private val videoRender: VideoRender,
     private val videoFileManager: VideoFileManager,
+    private val sharingService: SharingService,
     private val messageService: MessageService
 ) : ComponentContext by componentContext, VideoPlayerComponent {
 
@@ -54,21 +56,6 @@ class RealVideoPlayerComponent(
             playerConfig
         }
     }
-
-    override fun onSaveClick() = saveDialog.show(
-        StandardDialogData(
-            title = R.string.save_video_dialog_title.strResDesc(),
-            message = R.string.save_video_dialog_message.strResDesc(),
-            confirmButton = DialogButton(
-                text = R.string.video_confirm_btn.strResDesc(),
-                action = ::startRender
-            ),
-            dismissButton = DialogButton(
-                text = R.string.video_dismiss_btn.strResDesc(),
-                action = saveDialog::dismiss
-            )
-        )
-    )
 
     override fun onUpdateVolume(volume: Float) {
         playerState.update {
@@ -117,6 +104,30 @@ class RealVideoPlayerComponent(
         playerState.update {
             it.copy(glFilter = glFilter)
         }
+    }
+
+    override fun onSaveClick() {
+        saveDialog.show(
+            StandardDialogData(
+                title = R.string.save_video_dialog_title.strResDesc(),
+                message = R.string.save_video_dialog_message.strResDesc(),
+                confirmButton = DialogButton(
+                    text = R.string.video_confirm_btn.strResDesc(),
+                    action = ::startRender
+                ),
+                dismissButton = DialogButton(
+                    text = R.string.video_dismiss_btn.strResDesc(),
+                    action = saveDialog::dismiss
+                )
+            )
+        )
+    }
+
+    override fun onShareClick() {
+        sharingService.shareMedia(
+            uri = uri,
+            mimeType = "video/*"
+        )
     }
 
     override fun onCancelRender() {

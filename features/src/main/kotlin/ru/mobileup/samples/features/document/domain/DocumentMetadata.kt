@@ -6,4 +6,7 @@ data class DocumentMetadata(
     val dateModified: String,
     val mime: String,
     val flags: String
-)
+) {
+    override fun toString() =
+        "Name: $name\nSize: $size\nDate: $dateModified\nMime: $mime\nFlags: $flags"
+}

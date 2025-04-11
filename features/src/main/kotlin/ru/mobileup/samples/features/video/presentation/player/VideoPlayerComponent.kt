@@ -22,8 +22,6 @@ interface VideoPlayerComponent {
 
     fun onUpdateConfig(playerConfig: PlayerConfig)
 
-    fun onSaveClick()
-
     fun onUpdateVolume(volume: Float)
 
     fun onUpdateSpeed(speed: Float)
@@ -35,6 +33,10 @@ interface VideoPlayerComponent {
     fun onCut(startPositionMs: Long, endPositionMs: Long)
 
     fun onUpdateFilter(glFilter: GlFilter)
+
+    fun onSaveClick()
+
+    fun onShareClick()
 
     fun onCancelRender()
 }

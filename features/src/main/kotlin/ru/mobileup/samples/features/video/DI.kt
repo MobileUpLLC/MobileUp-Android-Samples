@@ -48,5 +48,5 @@ fun ComponentFactory.createVideoPlayerComponent(
     uri: Uri,
     componentContext: ComponentContext,
 ): VideoPlayerComponent {
-    return RealVideoPlayerComponent(uri, componentContext, get(), get(), get(), get())
+    return RealVideoPlayerComponent(uri, componentContext, get(), get(), get(), get(), get())
 }

@@ -1,6 +1,7 @@
 package ru.mobileup.samples.features.document.presentation.preview
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -65,6 +67,8 @@ private fun DocumentPreviewContent(
         documentMetadataState?.let { documentMetadata ->
             DocumentPreview(
                 documentMetadata = documentMetadata,
+                onShareMetadataClick = component::onShareMetadataClick,
+                onShareClick = component::onShareClick,
                 onOpenClick = component::onOpenClick,
                 modifier = Modifier.padding(paddingValues)
             )
@@ -107,6 +111,8 @@ private fun PreviewTopBar() {
 @Composable
 private fun DocumentPreview(
     documentMetadata: DocumentMetadata,
+    onShareMetadataClick: () -> Unit,
+    onShareClick: () -> Unit,
     onOpenClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -146,9 +152,32 @@ private fun DocumentPreview(
                 .fillMaxWidth()
                 .padding(top = 8.dp),
             buttonType = ButtonType.Secondary,
-            text = stringResource(R.string.document_open),
-            onClick = onOpenClick,
+            text = stringResource(R.string.document_metadata_share),
+            onClick = onShareMetadataClick,
         )
+
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp),
+        ) {
+            AppButton(
+                modifier = Modifier.weight(1f),
+                buttonType = ButtonType.Secondary,
+                text = stringResource(R.string.document_open),
+                onClick = onOpenClick,
+            )
+
+            IconButton(
+                onClick = onShareClick
+            ) {
+                Icon(
+                    painter = painterResource(R.drawable.ic_share),
+                    contentDescription = "share"
+                )
+            }
+        }
     }
 }
 

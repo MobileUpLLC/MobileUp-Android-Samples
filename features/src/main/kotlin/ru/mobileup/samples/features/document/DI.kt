@@ -33,5 +33,5 @@ fun ComponentFactory.createDocumentPreviewComponent(
     uri: Uri,
     componentContext: ComponentContext
 ): DocumentPreviewComponent {
-    return RealDocumentPreviewComponent(uri, componentContext, get(), get(), get(), get())
+    return RealDocumentPreviewComponent(uri, componentContext, get(), get(), get(), get(), get())
 }

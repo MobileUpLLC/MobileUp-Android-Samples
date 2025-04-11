@@ -32,6 +32,8 @@ import ru.mobileup.samples.core.network.createOkHttpEngine
 import ru.mobileup.samples.core.permissions.PermissionService
 import ru.mobileup.samples.core.settings.AndroidSettingsFactory
 import ru.mobileup.samples.core.settings.SettingsFactory
+import ru.mobileup.samples.core.sharing.data.SharingService
+import ru.mobileup.samples.core.sharing.data.SharingServiceImpl
 import ru.mobileup.samples.core.theme.component.RealThemeComponent
 import ru.mobileup.samples.core.theme.component.ThemeComponent
 import ru.mobileup.samples.core.tutorial.data.TutorialStatusStorage
@@ -68,6 +70,7 @@ fun coreModule(backendUrl: String) = module {
     single<BiometricEnablingStorage> { BiometricEnablingStorageImpl(get()) }
     single<LocationService> { AndroidLocationService(get()) }
     single<AppSettingsStorage> { AppSettingsStorageImpl(get()) }
+    single<SharingService> { SharingServiceImpl(get()) }
 }
 
 fun ComponentFactory.createMessageComponent(

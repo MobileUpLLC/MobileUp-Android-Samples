@@ -10,6 +10,7 @@ import ru.mobileup.samples.core.error_handling.safeRun
 import ru.mobileup.samples.core.external_apps.data.ExternalAppService
 import ru.mobileup.samples.core.message.data.MessageService
 import ru.mobileup.samples.core.message.domain.Message
+import ru.mobileup.samples.core.sharing.data.SharingService
 import ru.mobileup.samples.core.utils.Resource
 import ru.mobileup.samples.features.R
 import ru.mobileup.samples.features.document.data.DocumentManager
@@ -20,6 +21,7 @@ class RealDocumentPreviewComponent(
     componentContext: ComponentContext,
     documentManager: DocumentManager,
     private val externalAppService: ExternalAppService,
+    private val sharingService: SharingService,
     private val messageService: MessageService,
     private val errorHandler: ErrorHandler
 ) : ComponentContext by componentContext, DocumentPreviewComponent {
@@ -40,6 +42,19 @@ class RealDocumentPreviewComponent(
                 )
             )
         }
+    }
+
+    override fun onShareMetadataClick() {
+        documentMetadataState.value?.let { documentMetadata ->
+            sharingService.shareText(documentMetadata.toString())
+        }
+    }
+
+    override fun onShareClick() {
+        sharingService.shareMedia(
+            uri = uri,
+            mimeType = "application/pdf"
+        )
     }
 
     override fun onOpenClick() {

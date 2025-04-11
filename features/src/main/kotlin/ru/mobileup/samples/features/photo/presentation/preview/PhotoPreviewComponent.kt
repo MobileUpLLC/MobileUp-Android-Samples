@@ -10,4 +10,6 @@ interface PhotoPreviewComponent {
     val saveDialog: StandardDialogControl
 
     fun onSaveClick()
+
+    fun onShareClick()
 }

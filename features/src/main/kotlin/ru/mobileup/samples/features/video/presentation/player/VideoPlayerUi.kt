@@ -13,9 +13,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.TransformableState
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -269,7 +271,8 @@ private fun VideoPlayerContent(
             PlayerTopBar(
                 config = playerConfig,
                 onUpdateConfig = onUpdateConfig,
-                onSaveClick = component::onSaveClick
+                onSaveClick = component::onSaveClick,
+                onShareClick = component::onShareClick
             )
         },
         bottomBar = {
@@ -362,41 +365,34 @@ private fun PlayerTopBar(
     config: PlayerConfig,
     onUpdateConfig: (PlayerConfig) -> Unit,
     onSaveClick: () -> Unit,
+    onShareClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = modifier
             .fillMaxWidth()
             .background(CustomTheme.colors.palette.black)
             .statusBarsPadding()
             .padding(horizontal = 8.dp, vertical = 16.dp)
     ) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_app_logo),
-            contentDescription = "logo",
-            tint = Color.Unspecified,
-            modifier = Modifier.size(24.dp)
-        )
+        Row {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_app_logo),
+                contentDescription = "logo",
+                tint = Color.Unspecified,
+                modifier = Modifier.size(24.dp)
+            )
 
-        Text(
-            text = stringResource(R.string.video_menu_item_player),
-            color = CustomTheme.colors.palette.white,
-            modifier = Modifier
-                .weight(2f)
-                .align(Alignment.CenterVertically)
-        )
+            Text(
+                text = stringResource(R.string.video_menu_item_player),
+                color = CustomTheme.colors.palette.white,
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+            )
+        }
 
-        Icon(
-            painter = painterResource(id = R.drawable.ic_download),
-            contentDescription = "download",
-            tint = Color.Unspecified,
-            modifier = Modifier
-                .weight(1f)
-                .clickable {
-                    onUpdateConfig(PlayerConfig.Off)
-                    onSaveClick()
-                }
-        )
+        Spacer(modifier = Modifier.weight(1f))
 
         Icon(
             painter = painterResource(id = R.drawable.ic_volume),
@@ -406,11 +402,9 @@ private fun PlayerTopBar(
             } else {
                 Color.Unspecified
             },
-            modifier = Modifier
-                .weight(1f)
-                .clickable {
-                    onUpdateConfig(PlayerConfig.Volume)
-                }
+            modifier = Modifier.clickable {
+                onUpdateConfig(PlayerConfig.Volume)
+            }
         )
 
         Icon(
@@ -421,11 +415,9 @@ private fun PlayerTopBar(
             } else {
                 Color.Unspecified
             },
-            modifier = Modifier
-                .weight(1f)
-                .clickable {
-                    onUpdateConfig(PlayerConfig.Speed)
-                }
+            modifier = Modifier.clickable {
+                onUpdateConfig(PlayerConfig.Speed)
+            }
         )
 
         Icon(
@@ -436,11 +428,9 @@ private fun PlayerTopBar(
             } else {
                 Color.Unspecified
             },
-            modifier = Modifier
-                .weight(1f)
-                .clickable {
-                    onUpdateConfig(PlayerConfig.Crop)
-                }
+            modifier = Modifier.clickable {
+                onUpdateConfig(PlayerConfig.Crop)
+            }
         )
 
         Icon(
@@ -451,11 +441,9 @@ private fun PlayerTopBar(
             } else {
                 Color.Unspecified
             },
-            modifier = Modifier
-                .weight(1f)
-                .clickable {
-                    onUpdateConfig(PlayerConfig.Cut)
-                }
+            modifier = Modifier.clickable {
+                onUpdateConfig(PlayerConfig.Cut)
+            }
         )
 
         Icon(
@@ -466,11 +454,29 @@ private fun PlayerTopBar(
             } else {
                 Color.Unspecified
             },
-            modifier = Modifier
-                .weight(1f)
-                .clickable {
-                    onUpdateConfig(PlayerConfig.Filter)
-                }
+            modifier = Modifier.clickable {
+                onUpdateConfig(PlayerConfig.Filter)
+            }
+        )
+
+        Icon(
+            painter = painterResource(id = R.drawable.ic_download),
+            contentDescription = "download",
+            tint = Color.Unspecified,
+            modifier = Modifier.clickable {
+                onUpdateConfig(PlayerConfig.Off)
+                onSaveClick()
+            }
+        )
+
+        Icon(
+            painter = painterResource(id = R.drawable.ic_share),
+            contentDescription = "share",
+            tint = Color.Unspecified,
+            modifier = Modifier.clickable {
+                onUpdateConfig(PlayerConfig.Off)
+                onShareClick()
+            }
         )
     }
 }

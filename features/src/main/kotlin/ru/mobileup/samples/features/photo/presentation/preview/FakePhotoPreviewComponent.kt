@@ -9,4 +9,5 @@ class FakePhotoPreviewComponent : PhotoPreviewComponent {
     override val imageCarouselComponent: ImageCarouselComponent = FakeImageCarouselComponent()
     override val saveDialog: StandardDialogControl = fakeStandardDialogControl()
     override fun onSaveClick() = Unit
+    override fun onShareClick() = Unit
 }

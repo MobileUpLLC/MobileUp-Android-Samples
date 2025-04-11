@@ -44,7 +44,7 @@ fun ComponentFactory.createPhotoPreviewComponent(
     uris: List<Uri>,
     componentContext: ComponentContext
 ): PhotoPreviewComponent {
-    return RealPhotoPreviewComponent(uris, componentContext, get(), get(), get(), get())
+    return RealPhotoPreviewComponent(uris, componentContext, get(), get(), get(), get(), get())
 }
 
 fun ComponentFactory.createPhotoCroppingComponent(

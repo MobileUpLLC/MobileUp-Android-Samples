@@ -18,10 +18,12 @@ import androidx.compose.foundation.gestures.TransformableState
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.rememberTransformableState
 import androidx.compose.foundation.gestures.transformable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -66,9 +68,9 @@ import kotlinx.coroutines.launch
 import ru.mobileup.samples.core.message.presentation.noOverlapByMessage
 import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
-import ru.mobileup.samples.core.utils.clickableNoRipple
 import ru.mobileup.samples.core.utils.SystemBarIconsColor
 import ru.mobileup.samples.core.utils.SystemBars
+import ru.mobileup.samples.core.utils.clickableNoRipple
 import ru.mobileup.samples.core.utils.formatMillisToMS
 import ru.mobileup.samples.features.R
 import ru.mobileup.samples.features.video.data.render.availableFilters
@@ -263,25 +265,28 @@ private fun VideoRecorderContent(
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(CustomTheme.colors.palette.black)
                     .padding(horizontal = 8.dp, vertical = 16.dp)
                     .statusBarsPadding()
             ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_app_logo),
-                    contentDescription = "logo",
-                    tint = Color.Unspecified,
-                    modifier = Modifier.size(24.dp)
-                )
-                Text(
-                    text = stringResource(R.string.video_menu_item_recorder),
-                    color = CustomTheme.colors.palette.white,
-                    modifier = Modifier
-                        .weight(2f)
-                        .align(Alignment.CenterVertically)
-                )
+                Row {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_app_logo),
+                        contentDescription = "logo",
+                        tint = Color.Unspecified,
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Text(
+                        text = stringResource(R.string.video_menu_item_recorder),
+                        color = CustomTheme.colors.palette.white,
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    )
+                }
+
+                Spacer(modifier = Modifier.weight(1f))
 
                 Text(
                     text = recorderState.fps.toString(),
@@ -293,7 +298,6 @@ private fun VideoRecorderContent(
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
-                        .padding(horizontal = 8.dp)
                         .clickable {
                             onUpdateConfig(RecorderConfig.FPS)
                         }
@@ -309,7 +313,6 @@ private fun VideoRecorderContent(
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
-                        .padding(horizontal = 8.dp)
                         .clickable {
                             onUpdateConfig(RecorderConfig.Quality)
                         }
@@ -330,7 +333,6 @@ private fun VideoRecorderContent(
                         Color.Unspecified
                     },
                     modifier = Modifier
-                        .padding(horizontal = 8.dp)
                         .size(24.dp)
                         .clickable {
                             onUpdateConfig(RecorderConfig.Torch)
