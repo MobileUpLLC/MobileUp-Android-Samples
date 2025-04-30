@@ -10,5 +10,6 @@ class FakeUploaderComponent : UploaderComponent {
     override fun onUploadFileClick(uri: Uri) = Unit
     override fun onCopyClick(url: String) = Unit
     override fun onDownloadWithKtorClick(url: String) = Unit
-    override fun onDownloadWithManagerClick(url: String) = Unit
+    override fun onDownloadWithDownloadManagerClick(url: String) = Unit
+    override fun onDownloadWithWorkManagerClick(url: String) = Unit
 }

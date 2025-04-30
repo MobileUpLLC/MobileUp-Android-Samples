@@ -18,6 +18,7 @@ import java.io.FileNotFoundException
 
 private const val BASE_URL = "https://0x0.st/"
 private const val FILE_KEY = "file"
+private const val REQUEST_COMPLETED_KEY = 200
 
 class UploadRepositoryImpl(
     private val context: Context
@@ -61,7 +62,13 @@ class UploadRepositoryImpl(
                 }
             }
 
-            send(UploadProgress.Completed(result.bodyAsText()))
+            send(
+                if (result.status.value == REQUEST_COMPLETED_KEY) {
+                    UploadProgress.Completed(result.bodyAsText())
+                } else {
+                    UploadProgress.Failed
+                }
+            )
         } catch (e: Exception) {
             send(UploadProgress.Failed)
         }

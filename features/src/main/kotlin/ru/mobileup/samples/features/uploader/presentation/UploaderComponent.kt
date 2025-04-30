@@ -16,5 +16,7 @@ interface UploaderComponent {
 
     fun onDownloadWithKtorClick(url: String)
 
-    fun onDownloadWithManagerClick(url: String)
+    fun onDownloadWithDownloadManagerClick(url: String)
+
+    fun onDownloadWithWorkManagerClick(url: String)
 }

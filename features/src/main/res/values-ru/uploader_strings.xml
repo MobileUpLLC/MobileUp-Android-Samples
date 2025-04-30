@@ -9,10 +9,11 @@
     <string name="uploader_file_link">Ссылка на файл:</string>
     <string name="uploader_link_copy_btn">Копировать</string>
     <string name="uploader_link_copied">Скопировано в буфер</string>
-    <string name="uploader_download_ktor_btn">Скачать (Ktor)</string>
-    <string name="uploader_download_manager_btn">Скачать (Через менеджер)</string>
-    <string name="uploader_download_manager_title">Скачать файл</string>
-    <string name="uploader_download_manager_description">Идёт загрузка</string>
+    <string name="uploader_download_with_ktor_btn">Скачать (Ktor)</string>
+    <string name="uploader_download_with_download_manager_btn">Скачать (Download Manager)</string>
+    <string name="uploader_download_with_work_manager_btn">Скачать (Work Manager)</string>
+    <string name="uploader_download_title">Скачать файл</string>
+    <string name="uploader_download_description">Идёт загрузка</string>
     <string name="uploader_download_completed">Файл скачан!</string>
     <string name="uploader_download_failed">Ошибка загрузки файла!</string>
     <string name="uploader_download_start_manager">Запущен менеджер загрузок…</string>

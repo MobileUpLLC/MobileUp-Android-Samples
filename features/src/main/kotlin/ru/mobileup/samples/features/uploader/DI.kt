@@ -20,5 +20,5 @@ val uploaderModule = module {
 }
 
 fun ComponentFactory.createUploaderComponent(componentContext: ComponentContext): UploaderComponent {
-    return RealUploaderComponent(componentContext, get(), get(), get(), get(), get())
+    return RealUploaderComponent(componentContext, get(), get(), get(), get(), get(), get())
 }

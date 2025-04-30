@@ -3,7 +3,6 @@ package ru.mobileup.samples.features.uploader.presentation
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -25,7 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -192,8 +190,6 @@ private fun Uploader(
                                 .align(Alignment.CenterVertically)
                         )
 
-                        val clipboard = LocalClipboardManager.current
-
                         AppButton(
                             modifier = Modifier
                                 .padding(vertical = 8.dp)
@@ -206,30 +202,38 @@ private fun Uploader(
                         )
                     }
 
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    AppButton(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 8.dp),
-                    ) {
-                        AppButton(
-                            modifier = Modifier.weight(1f).align(Alignment.CenterVertically),
-                            buttonType = ButtonType.Secondary,
-                            text = stringResource(R.string.uploader_download_ktor_btn),
-                            onClick = {
-                                component.onDownloadWithKtorClick(uploadProgress.link)
-                            }
-                        )
+                            .padding(top = 8.dp),
+                        buttonType = ButtonType.Secondary,
+                        text = stringResource(R.string.uploader_download_with_ktor_btn),
+                        onClick = {
+                            component.onDownloadWithKtorClick(uploadProgress.link)
+                        }
+                    )
 
-                        AppButton(
-                            modifier = Modifier.weight(1f),
-                            buttonType = ButtonType.Secondary,
-                            text = stringResource(R.string.uploader_download_manager_btn),
-                            onClick = {
-                                component.onDownloadWithManagerClick(uploadProgress.link)
-                            }
-                        )
-                    }
+                    AppButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp),
+                        buttonType = ButtonType.Secondary,
+                        text = stringResource(R.string.uploader_download_with_download_manager_btn),
+                        onClick = {
+                            component.onDownloadWithDownloadManagerClick(uploadProgress.link)
+                        }
+                    )
+
+                    AppButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp, bottom = 16.dp),
+                        buttonType = ButtonType.Secondary,
+                        text = stringResource(R.string.uploader_download_with_work_manager_btn),
+                        onClick = {
+                            component.onDownloadWithWorkManagerClick(uploadProgress.link)
+                        }
+                    )
 
                     when (val downloadProgress = uploaderState.downloadProgress) {
                         is DownloadProgress.InProgress -> {
