@@ -1,12 +1,12 @@
-package ru.mobileup.samples.features.uploader.presentation
+package ru.mobileup.samples.features.remote_transfer.presentation
 
 import android.net.Uri
 import kotlinx.coroutines.flow.StateFlow
-import ru.mobileup.samples.features.uploader.domain.states.UploaderState
+import ru.mobileup.samples.features.remote_transfer.domain.states.RemoteTransferState
 
-interface UploaderComponent {
+interface RemoteTransferComponent {
 
-    val uploaderState: StateFlow<UploaderState>
+    val remoteTransferState: StateFlow<RemoteTransferState>
 
     fun onFilePicked(uri: Uri)
 

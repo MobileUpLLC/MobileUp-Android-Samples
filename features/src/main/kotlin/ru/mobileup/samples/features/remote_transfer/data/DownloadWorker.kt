@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.uploader.data
+package ru.mobileup.samples.features.remote_transfer.data
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -171,8 +171,8 @@ class DownloadWorker(
 
         val notificationBuilder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
             .setSmallIcon(R.drawable.ic_app_logo)
-            .setContentTitle(context.getString(R.string.uploader_download_title))
-            .setContentText(context.getString(R.string.uploader_download_description))
+            .setContentTitle(context.getString(R.string.remote_transfer_download_title))
+            .setContentText(context.getString(R.string.remote_transfer_download_description))
             .setProgress(PROGRESS_MAX_VALUE, progress, false)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setCategory(NotificationCompat.CATEGORY_PROGRESS)

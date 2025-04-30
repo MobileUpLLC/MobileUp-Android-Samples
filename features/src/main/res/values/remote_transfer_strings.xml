@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="remote_transfer_title">Remote transfer</string>
+    <string name="remote_transfer_pick_file_btn">Pick file</string>
+    <string name="remote_transfer_upload_btn">Upload file</string>
+    <string name="remote_transfer_upload_completed">File uploaded!</string>
+    <string name="remote_transfer_upload_failed">File upload failed!</string>
+    <string name="remote_transfer_upload_caption">Upload to temporary file hoster\nMax file size - 512mB</string>
+    <string name="remote_transfer_file_link">File link:</string>
+    <string name="remote_transfer_link_copy_btn">Copy</string>
+    <string name="remote_transfer_link_copied">Copied to clipboard</string>
+    <string name="remote_transfer_download_with_ktor_btn">Download (Ktor)</string>
+    <string name="remote_transfer_download_with_download_manager_btn">Download (Download Manager)</string>
+    <string name="remote_transfer_download_with_work_manager_btn">Download (Work Manager)</string>
+    <string name="remote_transfer_download_title">"Download file"</string>
+    <string name="remote_transfer_download_description">Download in progress</string>
+    <string name="remote_transfer_download_completed">File downloaded!</string>
+    <string name="remote_transfer_download_failed">File download failed!</string>
+    <string name="remote_transfer_download_start_manager">Download manager started…</string>
+</resources>

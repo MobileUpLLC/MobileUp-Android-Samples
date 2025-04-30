@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.uploader.data
+package ru.mobileup.samples.features.remote_transfer.data
 
 import android.content.Context
 import android.net.Uri
@@ -13,7 +13,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.utils.io.streams.asInput
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
-import ru.mobileup.samples.features.uploader.domain.progress.UploadProgress
+import ru.mobileup.samples.features.remote_transfer.domain.progress.UploadProgress
 import java.io.FileNotFoundException
 
 private const val BASE_URL = "https://0x0.st/"

@@ -1,11 +1,11 @@
-package ru.mobileup.samples.features.uploader.presentation
+package ru.mobileup.samples.features.remote_transfer.presentation
 
 import android.net.Uri
 import kotlinx.coroutines.flow.MutableStateFlow
-import ru.mobileup.samples.features.uploader.domain.states.UploaderState
+import ru.mobileup.samples.features.remote_transfer.domain.states.RemoteTransferState
 
-class FakeUploaderComponent : UploaderComponent {
-    override val uploaderState = MutableStateFlow(UploaderState())
+class FakeRemoteTransferComponent : RemoteTransferComponent {
+    override val remoteTransferState = MutableStateFlow(RemoteTransferState())
     override fun onFilePicked(uri: Uri) = Unit
     override fun onUploadFileClick(uri: Uri) = Unit
     override fun onCopyClick(url: String) = Unit

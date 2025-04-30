@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.uploader.domain.progress
+package ru.mobileup.samples.features.remote_transfer.domain.progress
 
 sealed interface UploadProgress {
 

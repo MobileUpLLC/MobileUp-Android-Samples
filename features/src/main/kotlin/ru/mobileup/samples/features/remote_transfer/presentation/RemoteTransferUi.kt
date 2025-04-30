@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.uploader.presentation
+package ru.mobileup.samples.features.remote_transfer.presentation
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -37,12 +37,12 @@ import ru.mobileup.samples.core.utils.SystemBars
 import ru.mobileup.samples.core.widget.button.AppButton
 import ru.mobileup.samples.core.widget.button.ButtonType
 import ru.mobileup.samples.features.R
-import ru.mobileup.samples.features.uploader.domain.progress.DownloadProgress
-import ru.mobileup.samples.features.uploader.domain.progress.UploadProgress
+import ru.mobileup.samples.features.remote_transfer.domain.progress.DownloadProgress
+import ru.mobileup.samples.features.remote_transfer.domain.progress.UploadProgress
 
 @Composable
-fun UploaderUi(
-    component: UploaderComponent,
+fun RemoteTransferUi(
+    component: RemoteTransferComponent,
     modifier: Modifier = Modifier
 ) {
     SystemBars(
@@ -50,21 +50,21 @@ fun UploaderUi(
         statusBarIconsColor = SystemBarIconsColor.Light,
     )
 
-    UploaderContent(
+    RemoteTransferContent(
         component = component,
         modifier = modifier
     )
 }
 
 @Composable
-private fun UploaderContent(
-    component: UploaderComponent,
+private fun RemoteTransferContent(
+    component: RemoteTransferComponent,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
         modifier = modifier,
         topBar = {
-            UploaderTopBar()
+            RemoteTransferTopBar()
         }
     ) { paddingValues ->
         Uploader(
@@ -75,7 +75,7 @@ private fun UploaderContent(
 }
 
 @Composable
-private fun UploaderTopBar(
+private fun RemoteTransferTopBar(
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -93,7 +93,7 @@ private fun UploaderTopBar(
         )
 
         Text(
-            text = stringResource(R.string.uploader_title),
+            text = stringResource(R.string.remote_transfer_title),
             color = CustomTheme.colors.palette.white,
             modifier = Modifier
                 .weight(2f)
@@ -106,10 +106,10 @@ private fun UploaderTopBar(
 
 @Composable
 private fun Uploader(
-    component: UploaderComponent,
+    component: RemoteTransferComponent,
     modifier: Modifier = Modifier
 ) {
-    val uploaderState by component.uploaderState.collectAsState()
+    val remoteTransferState by component.remoteTransferState.collectAsState()
 
     val pickerLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.OpenDocument()
@@ -122,7 +122,7 @@ private fun Uploader(
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             TextAccent(
-                text = uploaderState.uri?.toString() ?: "...",
+                text = remoteTransferState.uri?.toString() ?: "...",
                 modifier = Modifier
                     .weight(1f)
                     .align(Alignment.CenterVertically)
@@ -133,29 +133,29 @@ private fun Uploader(
                     .padding(vertical = 8.dp)
                     .padding(start = 8.dp),
                 buttonType = ButtonType.Secondary,
-                text = stringResource(R.string.uploader_pick_file_btn),
+                text = stringResource(R.string.remote_transfer_pick_file_btn),
                 onClick = {
                     pickerLauncher.launch(arrayOf("*/*"))
                 }
             )
         }
 
-        if (uploaderState.uri != null) {
+        if (remoteTransferState.uri != null) {
             AppButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp),
                 buttonType = ButtonType.Secondary,
-                text = stringResource(R.string.uploader_upload_btn),
+                text = stringResource(R.string.remote_transfer_upload_btn),
                 onClick = {
-                    uploaderState.uri?.let {
+                    remoteTransferState.uri?.let {
                         component.onUploadFileClick(it)
                     }
                 }
             )
 
             Text(
-                text = stringResource(R.string.uploader_upload_caption),
+                text = stringResource(R.string.remote_transfer_upload_caption),
                 style = CustomTheme.typography.caption.regular,
                 color = CustomTheme.colors.text.secondary,
                 textAlign = TextAlign.Center,
@@ -164,7 +164,7 @@ private fun Uploader(
                     .padding(bottom = 16.dp)
             )
 
-            when (val uploadProgress = uploaderState.uploadProgress) {
+            when (val uploadProgress = remoteTransferState.uploadProgress) {
                 is UploadProgress.Uploading -> {
                     ProgressIndicator(
                         bytesProcessed = uploadProgress.bytesProcessed,
@@ -174,7 +174,7 @@ private fun Uploader(
 
                 is UploadProgress.Completed -> {
                     Text(
-                        text = stringResource(R.string.uploader_file_link),
+                        text = stringResource(R.string.remote_transfer_file_link),
                         color = CustomTheme.colors.text.primary,
                         modifier = Modifier.padding(top = 8.dp)
                     )
@@ -195,7 +195,7 @@ private fun Uploader(
                                 .padding(vertical = 8.dp)
                                 .padding(start = 8.dp),
                             buttonType = ButtonType.Secondary,
-                            text = stringResource(R.string.uploader_link_copy_btn),
+                            text = stringResource(R.string.remote_transfer_link_copy_btn),
                             onClick = {
                                 component.onCopyClick(uploadProgress.link)
                             }
@@ -207,7 +207,7 @@ private fun Uploader(
                             .fillMaxWidth()
                             .padding(top = 8.dp),
                         buttonType = ButtonType.Secondary,
-                        text = stringResource(R.string.uploader_download_with_ktor_btn),
+                        text = stringResource(R.string.remote_transfer_download_with_ktor_btn),
                         onClick = {
                             component.onDownloadWithKtorClick(uploadProgress.link)
                         }
@@ -218,7 +218,7 @@ private fun Uploader(
                             .fillMaxWidth()
                             .padding(top = 8.dp),
                         buttonType = ButtonType.Secondary,
-                        text = stringResource(R.string.uploader_download_with_download_manager_btn),
+                        text = stringResource(R.string.remote_transfer_download_with_download_manager_btn),
                         onClick = {
                             component.onDownloadWithDownloadManagerClick(uploadProgress.link)
                         }
@@ -229,13 +229,13 @@ private fun Uploader(
                             .fillMaxWidth()
                             .padding(top = 8.dp, bottom = 16.dp),
                         buttonType = ButtonType.Secondary,
-                        text = stringResource(R.string.uploader_download_with_work_manager_btn),
+                        text = stringResource(R.string.remote_transfer_download_with_work_manager_btn),
                         onClick = {
                             component.onDownloadWithWorkManagerClick(uploadProgress.link)
                         }
                     )
 
-                    when (val downloadProgress = uploaderState.downloadProgress) {
+                    when (val downloadProgress = remoteTransferState.downloadProgress) {
                         is DownloadProgress.InProgress -> {
                             ProgressIndicator(
                                 bytesProcessed = downloadProgress.bytesProcessed,
@@ -315,8 +315,8 @@ private fun formatFileSize(sizeBytes: Long): String {
 
 @Preview
 @Composable
-private fun UploaderUiPreview() {
+private fun RemoteTransferUiPreview() {
     AppTheme {
-        UploaderUi(FakeUploaderComponent())
+        RemoteTransferUi(FakeRemoteTransferComponent())
     }
 }

@@ -1,7 +1,7 @@
-package ru.mobileup.samples.features.uploader.data
+package ru.mobileup.samples.features.remote_transfer.data
 
 import kotlinx.coroutines.flow.Flow
-import ru.mobileup.samples.features.uploader.domain.progress.DownloadProgress
+import ru.mobileup.samples.features.remote_transfer.domain.progress.DownloadProgress
 
 interface DownloadRepository {
     fun downloadWithKtor(url: String): Flow<DownloadProgress>

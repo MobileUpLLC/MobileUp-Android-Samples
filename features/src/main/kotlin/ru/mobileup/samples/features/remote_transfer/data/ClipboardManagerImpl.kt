@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.uploader.data
+package ru.mobileup.samples.features.remote_transfer.data
 
 import android.content.ClipData
 import android.content.Context

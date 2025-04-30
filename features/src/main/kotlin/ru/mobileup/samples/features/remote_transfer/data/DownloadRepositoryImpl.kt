@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.uploader.data
+package ru.mobileup.samples.features.remote_transfer.data
 
 import android.app.DownloadManager
 import android.content.ContentResolver
@@ -28,9 +28,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.withContext
 import ru.mobileup.samples.features.R
-import ru.mobileup.samples.features.uploader.data.DownloadWorker.Companion.KEY_DOWNLOAD_PROGRESS
-import ru.mobileup.samples.features.uploader.data.DownloadWorker.Companion.KEY_FILE_URL
-import ru.mobileup.samples.features.uploader.domain.progress.DownloadProgress
+import ru.mobileup.samples.features.remote_transfer.data.DownloadWorker.Companion.KEY_DOWNLOAD_PROGRESS
+import ru.mobileup.samples.features.remote_transfer.data.DownloadWorker.Companion.KEY_FILE_URL
+import ru.mobileup.samples.features.remote_transfer.domain.progress.DownloadProgress
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -93,8 +93,8 @@ class DownloadRepositoryImpl(
 
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val request = DownloadManager.Request(Uri.parse(url)).apply {
-            setTitle(context.getString(R.string.uploader_download_title))
-            setDescription(context.getString(R.string.uploader_download_description))
+            setTitle(context.getString(R.string.remote_transfer_download_title))
+            setDescription(context.getString(R.string.remote_transfer_download_description))
             setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
             setDestinationInExternalPublicDir(
                 Environment.DIRECTORY_DOWNLOADS,

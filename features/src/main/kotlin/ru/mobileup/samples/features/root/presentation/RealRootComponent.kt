@@ -34,7 +34,7 @@ import ru.mobileup.samples.features.qr_code.createQrCodeComponent
 import ru.mobileup.samples.features.settings.createSettingsComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
-import ru.mobileup.samples.features.uploader.createUploaderComponent
+import ru.mobileup.samples.features.remote_transfer.createRemoteTransferComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 
 class RealRootComponent(
@@ -111,9 +111,9 @@ class RealRootComponent(
             )
         }
 
-        ChildConfig.Uploader -> {
-            RootComponent.Child.Uploader(
-                componentFactory.createUploaderComponent(componentContext)
+        ChildConfig.RemoteTransfer -> {
+            RootComponent.Child.RemoteTransfer(
+                componentFactory.createRemoteTransferComponent(componentContext)
             )
         }
 
@@ -198,7 +198,7 @@ class RealRootComponent(
                 Sample.Photo -> ChildConfig.Photo
                 Sample.Video -> ChildConfig.Video
                 Sample.Document -> ChildConfig.Document
-                Sample.Uploader -> ChildConfig.Uploader
+                Sample.RemoteTransfer -> ChildConfig.RemoteTransfer
                 Sample.Calendar -> ChildConfig.Calendar
                 Sample.QrCode -> ChildConfig.QrCode
                 Sample.Chart -> ChildConfig.Chart
@@ -244,7 +244,7 @@ class RealRootComponent(
         data object Document : ChildConfig
 
         @Serializable
-        data object Uploader : ChildConfig
+        data object RemoteTransfer : ChildConfig
 
         @Serializable
         data object Calendar : ChildConfig

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="remote_transfer_title">Передача по сети</string>
+    <string name="remote_transfer_pick_file_btn">Выбрать файл</string>
+    <string name="remote_transfer_upload_btn">Загрузить файл</string>
+    <string name="remote_transfer_upload_completed">Файл загружен!</string>
+    <string name="remote_transfer_upload_failed">Ошибка загрузки файла!</string>
+    <string name="remote_transfer_upload_caption">Загрузка на временный файловый хостинг\nМакс. размер файла - 512 МБ</string>
+    <string name="remote_transfer_file_link">Ссылка на файл:</string>
+    <string name="remote_transfer_link_copy_btn">Копировать</string>
+    <string name="remote_transfer_link_copied">Скопировано в буфер</string>
+    <string name="remote_transfer_download_with_ktor_btn">Скачать (Ktor)</string>
+    <string name="remote_transfer_download_with_download_manager_btn">Скачать (Download Manager)</string>
+    <string name="remote_transfer_download_with_work_manager_btn">Скачать (Work Manager)</string>
+    <string name="remote_transfer_download_title">Скачать файл</string>
+    <string name="remote_transfer_download_description">Идёт загрузка</string>
+    <string name="remote_transfer_download_completed">Файл скачан!</string>
+    <string name="remote_transfer_download_failed">Ошибка загрузки файла!</string>
+    <string name="remote_transfer_download_start_manager">Запущен менеджер загрузок…</string>
+</resources>

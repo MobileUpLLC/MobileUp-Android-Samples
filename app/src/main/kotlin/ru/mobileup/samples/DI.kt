@@ -5,7 +5,7 @@ import ru.mobileup.samples.features.chat.chatModule
 import ru.mobileup.samples.features.document.documentModule
 import ru.mobileup.samples.features.photo.photoModule
 import ru.mobileup.samples.features.pin_code.pinCodeModule
-import ru.mobileup.samples.features.uploader.uploaderModule
+import ru.mobileup.samples.features.remote_transfer.remoteTransferModule
 import ru.mobileup.samples.features.video.videoModule
 import ru.mobileup.samples.features.map.mapModule
 
@@ -14,7 +14,7 @@ val allModules = listOf(
     photoModule,
     videoModule,
     documentModule,
-    uploaderModule,
+    remoteTransferModule,
     pinCodeModule,
     mapModule,
     chatModule

@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.uploader.presentation
+package ru.mobileup.samples.features.remote_transfer.presentation
 
 import android.Manifest
 import android.net.Uri
@@ -18,14 +18,14 @@ import ru.mobileup.samples.core.permissions.PermissionService
 import ru.mobileup.samples.core.utils.Resource
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.features.R
-import ru.mobileup.samples.features.uploader.data.ClipboardManager
-import ru.mobileup.samples.features.uploader.data.DownloadRepository
-import ru.mobileup.samples.features.uploader.data.UploadRepository
-import ru.mobileup.samples.features.uploader.domain.progress.DownloadProgress
-import ru.mobileup.samples.features.uploader.domain.progress.UploadProgress
-import ru.mobileup.samples.features.uploader.domain.states.UploaderState
+import ru.mobileup.samples.features.remote_transfer.data.ClipboardManager
+import ru.mobileup.samples.features.remote_transfer.data.DownloadRepository
+import ru.mobileup.samples.features.remote_transfer.data.UploadRepository
+import ru.mobileup.samples.features.remote_transfer.domain.progress.DownloadProgress
+import ru.mobileup.samples.features.remote_transfer.domain.progress.UploadProgress
+import ru.mobileup.samples.features.remote_transfer.domain.states.RemoteTransferState
 
-class RealUploaderComponent(
+class RealRemoteTransferComponent(
     componentContext: ComponentContext,
     private val uploadRepository: UploadRepository,
     private val downloadRepository: DownloadRepository,
@@ -33,9 +33,9 @@ class RealUploaderComponent(
     private val clipboardManager: ClipboardManager,
     private val messageService: MessageService,
     private val errorHandler: ErrorHandler
-) : ComponentContext by componentContext, UploaderComponent {
+) : ComponentContext by componentContext, RemoteTransferComponent {
 
-    override val uploaderState = MutableStateFlow(UploaderState())
+    override val remoteTransferState = MutableStateFlow(RemoteTransferState())
 
     init {
         componentScope.launch {
@@ -46,7 +46,7 @@ class RealUploaderComponent(
     }
 
     override fun onFilePicked(uri: Uri) {
-        uploaderState.update {
+        remoteTransferState.update {
             it.copy(
                 uri = uri,
                 uploadProgress = null
@@ -59,27 +59,27 @@ class RealUploaderComponent(
 
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
             messageService.showMessage(
-                Message(text = StringDesc.Resource(R.string.uploader_link_copied))
+                Message(text = StringDesc.Resource(R.string.remote_transfer_link_copied))
             )
         }
     }
 
     override fun onUploadFileClick(uri: Uri) {
         uploadRepository.upload(uri).onEach { uploadProgress ->
-            uploaderState.update {
+            remoteTransferState.update {
                 it.copy(uploadProgress = uploadProgress)
             }
 
             when (uploadProgress) {
                 is UploadProgress.Completed -> {
                     messageService.showMessage(
-                        Message(text = StringDesc.Resource(R.string.uploader_upload_completed))
+                        Message(text = StringDesc.Resource(R.string.remote_transfer_upload_completed))
                     )
                 }
 
                 UploadProgress.Failed -> {
                     messageService.showMessage(
-                        Message(text = StringDesc.Resource(R.string.uploader_upload_failed))
+                        Message(text = StringDesc.Resource(R.string.remote_transfer_upload_failed))
                     )
                 }
 
@@ -100,7 +100,7 @@ class RealUploaderComponent(
         safeRun(errorHandler) {
             downloadRepository.downloadWithDownloadManager(url)
             messageService.showMessage(
-                Message(text = StringDesc.Resource(R.string.uploader_download_start_manager))
+                Message(text = StringDesc.Resource(R.string.remote_transfer_download_start_manager))
             )
         }
     }
@@ -114,20 +114,20 @@ class RealUploaderComponent(
     private fun processDownloadProgress(
         downloadProgress: DownloadProgress
     ) {
-        uploaderState.update {
+        remoteTransferState.update {
             it.copy(downloadProgress = downloadProgress)
         }
 
         when (downloadProgress) {
             DownloadProgress.Completed -> {
                 messageService.showMessage(
-                    Message(text = StringDesc.Resource(R.string.uploader_download_completed))
+                    Message(text = StringDesc.Resource(R.string.remote_transfer_download_completed))
                 )
             }
 
             DownloadProgress.Failed -> {
                 messageService.showMessage(
-                    Message(text = StringDesc.Resource(R.string.uploader_download_failed))
+                    Message(text = StringDesc.Resource(R.string.remote_transfer_download_failed))
                 )
             }
 
