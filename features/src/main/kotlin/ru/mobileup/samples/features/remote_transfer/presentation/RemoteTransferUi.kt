@@ -1,44 +1,43 @@
 package ru.mobileup.samples.features.remote_transfer.presentation
 
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.icerock.moko.resources.compose.localized
 import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
 import ru.mobileup.samples.core.utils.SystemBarIconsColor
 import ru.mobileup.samples.core.utils.SystemBars
-import ru.mobileup.samples.core.widget.button.AppButton
-import ru.mobileup.samples.core.widget.button.ButtonType
+import ru.mobileup.samples.core.utils.clickableNoRipple
 import ru.mobileup.samples.features.R
-import ru.mobileup.samples.features.remote_transfer.domain.progress.DownloadProgress
-import ru.mobileup.samples.features.remote_transfer.domain.progress.UploadProgress
+import ru.mobileup.samples.features.remote_transfer.domain.RemoteTransferTab
+import ru.mobileup.samples.features.remote_transfer.domain.toStringRes
+import ru.mobileup.samples.features.remote_transfer.presentation.widgets.DownloaderContent
+import ru.mobileup.samples.features.remote_transfer.presentation.widgets.UploaderContent
 
 @Composable
 fun RemoteTransferUi(
@@ -67,10 +66,67 @@ private fun RemoteTransferContent(
             RemoteTransferTopBar()
         }
     ) { paddingValues ->
-        Uploader(
-            component = component,
-            modifier = Modifier.padding(paddingValues)
-        )
+        val keyboardController = LocalSoftwareKeyboardController.current
+
+        val selectedTab by component.selectedTab.collectAsState()
+        val pagerState = rememberPagerState(initialPage = 0) {
+            RemoteTransferTab.entries.size
+        }
+        val remoteTransferState by component.remoteTransferState.collectAsState()
+
+        LaunchedEffect(selectedTab) {
+            pagerState.animateScrollToPage(selectedTab.ordinal)
+        }
+
+        LaunchedEffect(pagerState.currentPage) {
+            component.onTabSelect(
+                if (pagerState.currentPage == 0) {
+                    RemoteTransferTab.Upload
+                } else {
+                    RemoteTransferTab.Download
+                }
+            )
+
+            if (pagerState.currentPage == 0) {
+                component.linkInputControl.onFocusChange(false)
+                keyboardController?.hide()
+            }
+        }
+
+        Column(
+            modifier = Modifier
+                .padding(paddingValues)
+        ) {
+            RemoteTransferTabRow(
+                selectedTab = selectedTab,
+                onTabSelect = component::onTabSelect,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            HorizontalPager(
+                state = pagerState,
+                modifier = Modifier.fillMaxWidth()
+            ) { index ->
+                when (index) {
+                    RemoteTransferTab.Upload.ordinal -> {
+                        UploaderContent(
+                            component = component,
+                            uploaderState = remoteTransferState.uploaderState,
+                            onOpenDownloader = {
+                                component.onTabSelect(RemoteTransferTab.Download)
+                            }
+                        )
+                    }
+
+                    RemoteTransferTab.Download.ordinal -> {
+                        DownloaderContent(
+                            component = component,
+                            downloaderState = remoteTransferState.downloaderState
+                        )
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -105,211 +161,62 @@ private fun RemoteTransferTopBar(
 }
 
 @Composable
-private fun Uploader(
-    component: RemoteTransferComponent,
+private fun RemoteTransferTabRow(
+    selectedTab: RemoteTransferTab,
+    onTabSelect: (RemoteTransferTab) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val remoteTransferState by component.remoteTransferState.collectAsState()
-
-    val pickerLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.OpenDocument()
-    ) { uri ->
-        uri?.let { component.onFilePicked(it) }
-    }
-
-    Column(
-        modifier = modifier.padding(horizontal = 16.dp)
-    ) {
-        Row(modifier = Modifier.fillMaxWidth()) {
-            TextAccent(
-                text = remoteTransferState.uri?.toString() ?: "...",
-                modifier = Modifier
-                    .weight(1f)
-                    .align(Alignment.CenterVertically)
+    Row(modifier = modifier.fillMaxWidth()) {
+        RemoteTransferTab.entries.forEach { tab ->
+            RemoteTransferTabItem(
+                tab = tab,
+                isSelected = tab == selectedTab,
+                onTabSelect = onTabSelect,
+                modifier = Modifier.weight(1f)
             )
-
-            AppButton(
-                modifier = Modifier
-                    .padding(vertical = 8.dp)
-                    .padding(start = 8.dp),
-                buttonType = ButtonType.Secondary,
-                text = stringResource(R.string.remote_transfer_pick_file_btn),
-                onClick = {
-                    pickerLauncher.launch(arrayOf("*/*"))
-                }
-            )
-        }
-
-        if (remoteTransferState.uri != null) {
-            AppButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                buttonType = ButtonType.Secondary,
-                text = stringResource(R.string.remote_transfer_upload_btn),
-                onClick = {
-                    remoteTransferState.uri?.let {
-                        component.onUploadFileClick(it)
-                    }
-                }
-            )
-
-            Text(
-                text = stringResource(R.string.remote_transfer_upload_caption),
-                style = CustomTheme.typography.caption.regular,
-                color = CustomTheme.colors.text.secondary,
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp)
-            )
-
-            when (val uploadProgress = remoteTransferState.uploadProgress) {
-                is UploadProgress.Uploading -> {
-                    ProgressIndicator(
-                        bytesProcessed = uploadProgress.bytesProcessed,
-                        bytesTotal = uploadProgress.bytesTotal
-                    )
-                }
-
-                is UploadProgress.Completed -> {
-                    Text(
-                        text = stringResource(R.string.remote_transfer_file_link),
-                        color = CustomTheme.colors.text.primary,
-                        modifier = Modifier.padding(top = 8.dp)
-                    )
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) {
-                        TextAccent(
-                            text = uploadProgress.link,
-                            modifier = Modifier
-                                .weight(1f)
-                                .align(Alignment.CenterVertically)
-                        )
-
-                        AppButton(
-                            modifier = Modifier
-                                .padding(vertical = 8.dp)
-                                .padding(start = 8.dp),
-                            buttonType = ButtonType.Secondary,
-                            text = stringResource(R.string.remote_transfer_link_copy_btn),
-                            onClick = {
-                                component.onCopyClick(uploadProgress.link)
-                            }
-                        )
-                    }
-
-                    AppButton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp),
-                        buttonType = ButtonType.Secondary,
-                        text = stringResource(R.string.remote_transfer_download_with_ktor_btn),
-                        onClick = {
-                            component.onDownloadWithKtorClick(uploadProgress.link)
-                        }
-                    )
-
-                    AppButton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp),
-                        buttonType = ButtonType.Secondary,
-                        text = stringResource(R.string.remote_transfer_download_with_download_manager_btn),
-                        onClick = {
-                            component.onDownloadWithDownloadManagerClick(uploadProgress.link)
-                        }
-                    )
-
-                    AppButton(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp, bottom = 16.dp),
-                        buttonType = ButtonType.Secondary,
-                        text = stringResource(R.string.remote_transfer_download_with_work_manager_btn),
-                        onClick = {
-                            component.onDownloadWithWorkManagerClick(uploadProgress.link)
-                        }
-                    )
-
-                    when (val downloadProgress = remoteTransferState.downloadProgress) {
-                        is DownloadProgress.InProgress -> {
-                            ProgressIndicator(
-                                bytesProcessed = downloadProgress.bytesProcessed,
-                                bytesTotal = downloadProgress.bytesTotal
-                            )
-                        }
-
-                        else -> {
-                            // Do nothing
-                        }
-                    }
-                }
-
-                else -> {
-                    // Do nothing
-                }
-            }
         }
     }
 }
 
 @Composable
-private fun ProgressIndicator(
-    bytesProcessed: Long,
-    bytesTotal: Long,
+private fun RemoteTransferTabItem(
+    tab: RemoteTransferTab,
+    isSelected: Boolean,
+    onTabSelect: (RemoteTransferTab) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val progressString by remember(bytesProcessed, bytesTotal) {
-        derivedStateOf {
-            formatFileSize(bytesProcessed) + " / " + formatFileSize(bytesTotal)
-        }
-    }
-
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .padding(vertical = 8.dp)
+            .clickableNoRipple { onTabSelect(tab) }
     ) {
-        LinearProgressIndicator(
-            progress = { bytesProcessed.toFloat() / bytesTotal },
-            modifier = Modifier.fillMaxWidth()
-        )
-
         Text(
-            text = progressString,
-            color = CustomTheme.colors.text.primary,
+            text = tab.toStringRes().localized(),
+            style = CustomTheme.typography.button.bold,
+            color = if (isSelected) {
+                CustomTheme.colors.button.primary
+            } else {
+                CustomTheme.colors.text.secondary
+            },
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp)
+                .padding(vertical = 8.dp)
         )
-    }
-}
 
-@Composable
-private fun TextAccent(
-    text: String,
-    modifier: Modifier = Modifier
-) {
-    Text(
-        text = text,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis,
-        textAlign = TextAlign.Center,
-        modifier = modifier
-            .clip(RoundedCornerShape(12.dp))
-            .background(CustomTheme.colors.palette.black10)
-            .padding(8.dp)
-    )
-}
-
-private fun formatFileSize(sizeBytes: Long): String {
-    return when {
-        sizeBytes >= 1024 * 1024 -> "%.1fmB".format(sizeBytes / (1024.0 * 1024.0))
-        sizeBytes >= 1024 -> "${(sizeBytes / 1024).toInt()}kB"
-        else -> "${sizeBytes}B"
+        Spacer(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(2.dp)
+                .padding(horizontal = 4.dp)
+                .background(
+                    if (isSelected) {
+                        CustomTheme.colors.button.primary
+                    } else {
+                        CustomTheme.colors.text.secondary
+                    }
+                )
+        )
     }
 }
 

@@ -54,6 +54,7 @@ class UploadRepositoryImpl(
                     if (bytesTotal != null && bytesTotal != 0L) {
                         send(
                             UploadProgress.Uploading(
+                                uri = uri,
                                 bytesProcessed = bytesSent,
                                 bytesTotal = bytesTotal
                             )
@@ -64,13 +65,16 @@ class UploadRepositoryImpl(
 
             send(
                 if (result.status.value == REQUEST_COMPLETED_KEY) {
-                    UploadProgress.Completed(result.bodyAsText())
+                    UploadProgress.Completed(
+                        uri = uri,
+                        link = result.bodyAsText()
+                    )
                 } else {
-                    UploadProgress.Failed
+                    UploadProgress.Failed(uri)
                 }
             )
         } catch (e: Exception) {
-            send(UploadProgress.Failed)
+            send(UploadProgress.Failed(uri))
         }
     }
 }

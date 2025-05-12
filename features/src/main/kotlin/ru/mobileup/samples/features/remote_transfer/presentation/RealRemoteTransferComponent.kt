@@ -5,22 +5,38 @@ import android.net.Uri
 import android.os.Build
 import com.arkivanov.decompose.ComponentContext
 import dev.icerock.moko.resources.desc.StringDesc
+import dev.icerock.moko.resources.desc.strResDesc
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import ru.mobileup.kmm_form_validation.control.CheckControl
+import ru.mobileup.kmm_form_validation.options.ImeAction
+import ru.mobileup.kmm_form_validation.options.KeyboardOptions
+import ru.mobileup.kmm_form_validation.options.KeyboardType
+import ru.mobileup.kmm_form_validation.validation.control.isNotBlank
+import ru.mobileup.kmm_form_validation.validation.control.validation
+import ru.mobileup.kmm_form_validation.validation.form.FormValidator
+import ru.mobileup.kmm_form_validation.validation.form.RevalidateOnValueChanged
+import ru.mobileup.kmm_form_validation.validation.form.SetFocusOnFirstInvalidControlAfterValidation
+import ru.mobileup.kmm_form_validation.validation.form.ValidateOnFocusLost
+import ru.mobileup.kmm_form_validation.validation.form.checked
 import ru.mobileup.samples.core.error_handling.ErrorHandler
 import ru.mobileup.samples.core.error_handling.safeRun
 import ru.mobileup.samples.core.message.data.MessageService
 import ru.mobileup.samples.core.message.domain.Message
 import ru.mobileup.samples.core.permissions.PermissionService
+import ru.mobileup.samples.core.utils.CheckControl
+import ru.mobileup.samples.core.utils.InputControl
 import ru.mobileup.samples.core.utils.Resource
 import ru.mobileup.samples.core.utils.componentScope
+import ru.mobileup.samples.core.utils.formValidator
 import ru.mobileup.samples.features.R
 import ru.mobileup.samples.features.remote_transfer.data.ClipboardManager
 import ru.mobileup.samples.features.remote_transfer.data.DownloadRepository
 import ru.mobileup.samples.features.remote_transfer.data.UploadRepository
+import ru.mobileup.samples.features.remote_transfer.domain.RemoteTransferTab
 import ru.mobileup.samples.features.remote_transfer.domain.progress.DownloadProgress
 import ru.mobileup.samples.features.remote_transfer.domain.progress.UploadProgress
 import ru.mobileup.samples.features.remote_transfer.domain.states.RemoteTransferState
@@ -35,7 +51,41 @@ class RealRemoteTransferComponent(
     private val errorHandler: ErrorHandler
 ) : ComponentContext by componentContext, RemoteTransferComponent {
 
+    private val linkCheckControl: CheckControl = CheckControl()
+
+    override val selectedTab = MutableStateFlow(RemoteTransferTab.Upload)
+
     override val remoteTransferState = MutableStateFlow(RemoteTransferState())
+
+    override val linkInputControl = InputControl(
+        keyboardOptions = KeyboardOptions(
+            autoCorrect = false,
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Done
+        ),
+    )
+
+    private val formValidator: FormValidator = formValidator {
+        features = listOf(
+            ValidateOnFocusLost,
+            RevalidateOnValueChanged,
+            SetFocusOnFirstInvalidControlAfterValidation
+        )
+
+        input(linkInputControl) {
+            isNotBlank(R.string.remote_transfer_link_empty.strResDesc())
+
+            validation(
+                isValid = ::isLinkValid,
+                errorMessage = StringDesc.Resource(R.string.remote_transfer_link_invalid)
+            )
+        }
+
+        checked(
+            linkCheckControl,
+            ru.mobileup.samples.core.R.string.checkbox_error_terms.strResDesc()
+        )
+    }
 
     init {
         componentScope.launch {
@@ -43,13 +93,35 @@ class RealRemoteTransferComponent(
                 permissionService.requestPermission(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
+
+        componentScope.launch {
+            linkInputControl.value.collect { value ->
+                formValidator.validate()
+
+                remoteTransferState.update {
+                    it.copy(
+                        downloaderState = it.downloaderState.copy(
+                            selectedLink = value,
+                            isValid = isLinkValid(value)
+                        )
+                    )
+                }
+            }
+        }
+    }
+
+    override fun onTabSelect(tab: RemoteTransferTab) {
+        selectedTab.update {
+            tab
+        }
     }
 
     override fun onFilePicked(uri: Uri) {
         remoteTransferState.update {
             it.copy(
-                uri = uri,
-                uploadProgress = null
+                uploaderState = it.uploaderState.copy(
+                    selectedUri = uri
+                )
             )
         }
     }
@@ -65,9 +137,22 @@ class RealRemoteTransferComponent(
     }
 
     override fun onUploadFileClick(uri: Uri) {
+        if (remoteTransferState.value.uploaderState.uploads.containsKey(uri)) {
+            messageService.showMessage(
+                Message(text = StringDesc.Resource(R.string.remote_transfer_upload_duplicate))
+            )
+            return
+        }
+
         uploadRepository.upload(uri).onEach { uploadProgress ->
             remoteTransferState.update {
-                it.copy(uploadProgress = uploadProgress)
+                it.copy(
+                    uploaderState = it.uploaderState.copy(
+                        uploads = it.uploaderState.uploads.toMutableMap().apply {
+                            set(uri, uploadProgress)
+                        }
+                    )
+                )
             }
 
             when (uploadProgress) {
@@ -77,7 +162,7 @@ class RealRemoteTransferComponent(
                     )
                 }
 
-                UploadProgress.Failed -> {
+                is UploadProgress.Failed -> {
                     messageService.showMessage(
                         Message(text = StringDesc.Resource(R.string.remote_transfer_upload_failed))
                     )
@@ -88,6 +173,14 @@ class RealRemoteTransferComponent(
                 }
             }
         }.launchIn(componentScope)
+    }
+
+    override fun onDownloadFileClick(uri: Uri) {
+        val upload =
+            (remoteTransferState.value.uploaderState.uploads[uri] as? UploadProgress.Completed)
+                ?: return
+
+        linkInputControl.onValueChange(upload.link)
     }
 
     override fun onDownloadWithKtorClick(url: String) {
@@ -115,7 +208,11 @@ class RealRemoteTransferComponent(
         downloadProgress: DownloadProgress
     ) {
         remoteTransferState.update {
-            it.copy(downloadProgress = downloadProgress)
+            it.copy(
+                downloaderState = it.downloaderState.copy(
+                    downloadProgress = downloadProgress
+                )
+            )
         }
 
         when (downloadProgress) {
@@ -135,5 +232,9 @@ class RealRemoteTransferComponent(
                 // Do nothing
             }
         }
+    }
+
+    private fun isLinkValid(link: String): Boolean {
+        return link.startsWith("https://") || link.startsWith("http://")
     }
 }
