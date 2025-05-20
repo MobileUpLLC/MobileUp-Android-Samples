@@ -17,4 +17,5 @@
     <string name="menu_item_map">Карта</string>
     <string name="menu_item_chat">Чат</string>
     <string name="menu_item_work_manager">WorkManager</string>
+    <string name="menu_item_div_kit">ДивКит (SDUI)</string>
 </resources>

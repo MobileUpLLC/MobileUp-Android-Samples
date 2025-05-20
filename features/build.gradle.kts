@@ -89,6 +89,10 @@ dependencies {
 
     // Work Manager
     implementation(libs.work.ktx)
+
+    // DivKit
+    implementation(libs.bundles.divkit.client)
+    implementation(libs.bundles.divkit.server)
 }
 
 // Usage: ./gradlew generateModuleGraph detectGraphCycles

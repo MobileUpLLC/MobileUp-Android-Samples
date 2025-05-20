@@ -17,4 +17,5 @@
     <string name="menu_item_map">Map</string>
     <string name="menu_item_chat">Chat</string>
     <string name="menu_item_work_manager">WorkManager</string>
+    <string name="menu_item_div_kit">DivKit (SDUI)</string>
 </resources>

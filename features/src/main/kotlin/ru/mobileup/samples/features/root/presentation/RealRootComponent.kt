@@ -16,6 +16,7 @@ import ru.mobileup.samples.features.calendar.createCalendarComponent
 import ru.mobileup.samples.features.charts.createChartComponent
 import ru.mobileup.samples.features.chat.createChatComponent
 import ru.mobileup.samples.features.collapsing_toolbar.createCollapsingToolbarComponent
+import ru.mobileup.samples.features.divkit.createDivKitComponent
 import ru.mobileup.samples.features.document.createDocumentComponent
 import ru.mobileup.samples.features.form.createFormComponent
 import ru.mobileup.samples.features.image.createImageComponent
@@ -195,6 +196,10 @@ class RealRootComponent(
                 componentFactory.createWorkManagerComponent(componentContext)
             )
         }
+
+        ChildConfig.DivKit -> RootComponent.Child.DivKit(
+            componentFactory.createDivKitComponent(componentContext)
+        )
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -218,6 +223,7 @@ class RealRootComponent(
                 Sample.Map -> ChildConfig.Map
                 Sample.Chat -> ChildConfig.Chat
                 Sample.WorkManager -> ChildConfig.WorkManager
+                Sample.DivKit -> ChildConfig.DivKit
             }.run(navigation::safePush)
 
             MenuComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
@@ -292,5 +298,8 @@ class RealRootComponent(
 
         @Serializable
         data object WorkManager : ChildConfig
+
+        @Serializable
+        data object DivKit : ChildConfig
     }
 }

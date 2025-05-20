@@ -47,6 +47,8 @@ googleMaps = "6.5.2"
 sesame = "1.5.0"
 room = "2.7.0"
 work = "2.10.1"
+divkit = "31.13.0"
+jackson = "2.18.2"
 
 [libraries]
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "dateTime" }
@@ -156,6 +158,15 @@ android-image-cropper = { module = "com.vanniktech:android-image-cropper", versi
 
 work-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
 
+divkit-div = { module = "com.yandex.div:div", version.ref = "divkit"}
+divkit-core = { module = "com.yandex.div:div-core", version.ref = "divkit"}
+divkit-json = { module = "com.yandex.div:div-json", version.ref = "divkit"}
+divkit-glide = { module = "com.yandex.div:glide", version.ref = "divkit"}
+divkit-video = { module = "com.yandex.div:div-video", version.ref = "divkit"}
+divkit-kotlin-json-builder = { module = "com.yandex.div:kotlin-json-builder", version.ref = "divkit"}
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson"}
+jackson-data-bind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson"}
+
 [bundles]
 decompose = ["decompose-core", "decompose-compose", "decompose-compose-experimental"]
 replica = ["replica-core", "replica-algebra", "replica-android-network", "replica-decompose"]
@@ -186,6 +197,19 @@ coil = [
 google-maps = [
     "google-maps",
     "google-map-compose-utils"
+]
+divkit-client = [
+    "divkit-core",
+    "divkit-div",
+    "divkit-json",
+    "divkit-glide",
+    "divkit-video"
+]
+
+divkit-server = [
+    "divkit-kotlin-json-builder",
+    "jackson-core",
+    "jackson-data-bind"
 ]
 
 [plugins]

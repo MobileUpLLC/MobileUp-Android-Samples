@@ -10,6 +10,7 @@ import ru.mobileup.samples.features.calendar.presentation.CalendarComponent
 import ru.mobileup.samples.features.charts.presentation.ChartComponent
 import ru.mobileup.samples.features.chat.presentation.ChatComponent
 import ru.mobileup.samples.features.collapsing_toolbar.presentation.CollapsingToolbarComponent
+import ru.mobileup.samples.features.divkit.presentation.DivKitComponent
 import ru.mobileup.samples.features.document.presentation.DocumentComponent
 import ru.mobileup.samples.features.form.presentation.FormComponent
 import ru.mobileup.samples.features.image.presentation.ImageComponent
@@ -66,5 +67,6 @@ interface RootComponent : PredictiveBackComponent {
         class Chat(val component: ChatComponent) : Child
         class Settings(val component: SettingsComponent) : Child
         class WorkManager(val component: WorkManagerComponent) : Child
+        class DivKit(val component: DivKitComponent) : Child
     }
 }

@@ -1,0 +1,422 @@
+{
+  "templates": {
+    "text_block": {
+      "type": "text",
+      "font_size": 12,
+      "line_height": 15,
+      "text_alignment_horizontal": "center",
+      "text_alignment_vertical": "center",
+      "alignment_horizontal": "center",
+      "text_color": "#000000",
+      "paddings": {
+        "top": 16,
+        "bottom": 16,
+        "left": 8,
+        "right": 8
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#0E000000"
+        }
+      ],
+      "margins": {
+        "top": 2
+      }
+    },
+    "title": {
+      "type": "text",
+      "font_size": 20,
+      "line_height": 24,
+      "font_weight": "bold",
+      "paddings": {
+        "left": 24,
+        "right": 24,
+        "bottom": 16
+      }
+    },
+    "subtitle": {
+      "font_size": 15,
+      "line_height": 20,
+      "type": "text",
+      "paddings": {
+        "left": 24,
+        "right": 24
+      }
+    },
+    "button": {
+      "type": "text",
+      "text_color": "#ffffff",
+      "height": {
+        "type": "fixed",
+        "value": 48
+      },
+      "margins": {
+        "left": 16,
+        "right": 16,
+        "bottom": 16
+      },
+      "border": {
+        "corner_radius": 16
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#0077FF"
+        }
+      ],
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_alignment_vertical": "center",
+      "text_alignment_horizontal": "center"
+    }
+  },
+  "card": {
+    "log_id": "sample_card",
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "margins": {
+            "top": 24,
+            "bottom": 24
+          },
+          "items": [
+            {
+              "type": "button",
+              "text": "Список товаров",
+              "actions": [
+                {
+                  "log_id": "goods_list_button_press",
+                  "url": "div-action://goods/list"
+                }
+              ]
+            },
+            {
+              "type": "button",
+              "text": "Регистрация",
+              "actions": [
+                {
+                  "log_id": "sign_up_button_press",
+                  "url": "div-action://sign/up"
+                }
+              ]
+            },
+            {
+              "type": "title",
+              "text": "Примеры DivKit playground"
+            },
+            {
+              "type": "container",
+              "orientation": "vertical",
+              "items": [
+                {
+                  "type": "button",
+                  "text": "Action animation",
+                  "actions": [
+                    {
+                      "log_id": "action_animation_button_press",
+                      "url": "div-action://action/animation"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Transition change",
+                  "actions": [
+                    {
+                      "log_id": "transition_change_button_press",
+                      "url": "div-action://transition/change"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Transition in out visibility",
+                  "actions": [
+                    {
+                      "log_id": "transition_in_out_visibility_button_press",
+                      "url": "div-action://transition/in/out"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Alpha",
+                  "actions": [
+                    {
+                      "log_id": "alpha_button_press",
+                      "url": "div-action://alpha"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Background",
+                  "actions": [
+                    {
+                      "log_id": "background_button_press",
+                      "url": "div-action://background"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Border",
+                  "actions": [
+                    {
+                      "log_id": "border_button_press",
+                      "url": "div-action://border"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Size types",
+                  "actions": [
+                    {
+                      "log_id": "size_types_button_press",
+                      "url": "div-action://size/types"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Size units",
+                  "actions": [
+                    {
+                      "log_id": "size_units_button_press",
+                      "url": "div-action://size/units"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Container alignment",
+                  "actions": [
+                    {
+                      "log_id": "container_alignment_button_press",
+                      "url": "div-action://container/alignment"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Container horizontal",
+                  "actions": [
+                    {
+                      "log_id": "container_horizontal_button_press",
+                      "url": "div-action://container/horizontal"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Container overlap",
+                  "actions": [
+                    {
+                      "log_id": "container_overlap_button_press",
+                      "url": "div-action://container/overlap"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Container vertical",
+                  "actions": [
+                    {
+                      "log_id": "container_vertical_button_press",
+                      "url": "div-action://container/vertical"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Gallery",
+                  "actions": [
+                    {
+                      "log_id": "gallery_button_press",
+                      "url": "div-action://gallery"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Grid spans",
+                  "actions": [
+                    {
+                      "log_id": "grid_spans_button_press",
+                      "url": "div-action://grid/spans"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Grid weight",
+                  "actions": [
+                    {
+                      "log_id": "grid_weight_button_press",
+                      "url": "div-action://grid/weight"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Image placeholders",
+                  "actions": [
+                    {
+                      "log_id": "image_placeholders_button_press",
+                      "url": "div-action://image/placeholders"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Image scale",
+                  "actions": [
+                    {
+                      "log_id": "image_scale_button_press",
+                      "url": "div-action://image/scale"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Image svg",
+                  "actions": [
+                    {
+                      "log_id": "image_svg_button_press",
+                      "url": "div-action://image/svg"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Text input",
+                  "actions": [
+                    {
+                      "log_id": "text_input_button_press",
+                      "url": "div-action://text/input"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Pager with indicator",
+                  "actions": [
+                    {
+                      "log_id": "pager_with_indicator_button_press",
+                      "url": "div-action://pager/with/indicator"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Select",
+                  "actions": [
+                    {
+                      "log_id": "select_button_press",
+                      "url": "div-action://select"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Separator",
+                  "actions": [
+                    {
+                      "log_id": "separator_button_press",
+                      "url": "div-action://separator"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Slider customization",
+                  "actions": [
+                    {
+                      "log_id": "slider_customization_button_press",
+                      "url": "div-action://slider/customization"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Thumb value actions",
+                  "actions": [
+                    {
+                      "log_id": "thumb_value_actions_button_press",
+                      "url": "div-action://thumb/value/actions"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "State button",
+                  "actions": [
+                    {
+                      "log_id": "state_button_button_press",
+                      "url": "div-action://state/button"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "State empty",
+                  "actions": [
+                    {
+                      "log_id": "state_empty_button_press",
+                      "url": "div-action://state/empty"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Tabs",
+                  "actions": [
+                    {
+                      "log_id": "tabs_button_press",
+                      "url": "div-action://tabs"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Text properties",
+                  "actions": [
+                    {
+                      "log_id": "text_properties_button_press",
+                      "url": "div-action://text/properties"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Text ranges",
+                  "actions": [
+                    {
+                      "log_id": "text_ranges_button_press",
+                      "url": "div-action://text/ranges"
+                    }
+                  ]
+                },
+                {
+                  "type": "button",
+                  "text": "Video",
+                  "actions": [
+                    {
+                      "log_id": "video_button_press",
+                      "url": "div-action://video"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

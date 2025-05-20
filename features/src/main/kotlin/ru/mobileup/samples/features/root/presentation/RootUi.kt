@@ -22,6 +22,7 @@ import ru.mobileup.samples.features.calendar.presentation.CalendarUi
 import ru.mobileup.samples.features.charts.presentation.ChartUi
 import ru.mobileup.samples.features.chat.presentation.ChatUi
 import ru.mobileup.samples.features.collapsing_toolbar.presentation.CollapsingToolbarUi
+import ru.mobileup.samples.features.divkit.presentation.DivKitUi
 import ru.mobileup.samples.features.document.presentation.DocumentUi
 import ru.mobileup.samples.features.form.presentation.FormUi
 import ru.mobileup.samples.features.image.presentation.ImageUi
@@ -77,6 +78,7 @@ fun RootUi(
             is RootComponent.Child.Map -> MapUi(instance.component)
             is RootComponent.Child.Chat -> ChatUi(instance.component)
             is RootComponent.Child.WorkManager -> WorkManagerUi(instance.component)
+            is RootComponent.Child.DivKit -> DivKitUi(instance.component)
         }
     }
 

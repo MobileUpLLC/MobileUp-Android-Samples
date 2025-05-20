@@ -27,4 +27,5 @@ enum class Sample(
     Map(R.string.menu_item_map.strResDesc()),
     Chat(R.string.menu_item_chat.strResDesc()),
     WorkManager(R.string.menu_item_work_manager.strResDesc()),
+    DivKit(R.string.menu_item_div_kit.strResDesc())
 }
