@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="work_notification_title">Reminder</string>
+    <string name="work_periodic_notification_title">Periodic Reminder</string>
+    <string name="work_one_time_notification_title">One-time Reminder</string>
+    <string name="work_notification_message_with_id">This is a reminder with ID: %1$d</string>
+    <string name="work_notification_channel_name">Reminders</string>
+    <string name="work_initial_delay">Initial delay</string>
+    <string name="work_interval">Interval</string>
+    <string name="work_seconds">Seconds</string>"
+    <string name="work_minutes">Minutes</string>
+    <string name="work_hours">Hours</string>
+    <string name="work_days">Days</string>
+    <string name="work_start">Start</string>
+    <string name="work_update_and_reschedule">Update &amp; Reschedule</string>
+    <string name="work_next_execution_time">Next execution will start no earlier than:</string>
+    <string name="work_task_type_periodic">Periodic</string>
+    <string name="work_task_type_one_time">One-time</string>
+    <string name="work_info_description">This example demonstrates the use of WorkManager for scheduling tasks. You can choose the task type: periodic or one-time. Once started, the task will show a notification at the scheduled time.</string>
+    <string name="work_task_enqueued">Task enqueued</string>
+
+    <plurals name="work_seconds_plural">
+        <item quantity="one">%d second</item>
+        <item quantity="other">%d seconds</item>
+    </plurals>
+    <plurals name="work_minutes_plural">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+    <plurals name="work_hours_plural">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+    <plurals name="work_days_plural">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+</resources>

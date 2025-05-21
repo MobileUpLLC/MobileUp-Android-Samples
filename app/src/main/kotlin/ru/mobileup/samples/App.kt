@@ -2,6 +2,10 @@ package ru.mobileup.samples
 
 import android.app.Application
 import android.content.Context
+import androidx.work.Configuration
+import androidx.work.DelegatingWorkerFactory
+import androidx.work.WorkManager
+import androidx.work.WorkerFactory
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.Severity
 import com.yandex.mapkit.MapKitFactory
@@ -21,6 +25,7 @@ class App : Application(), KoinProvider {
         initLogger()
         koin = createKoin()
         launchDebugTools()
+        initWorkManagerWithKoinFactory()
         MapKitFactory.setApiKey(CoreBuildConfig.YANDEX_MAP_API_KEY)
     }
 
@@ -42,5 +47,19 @@ class App : Application(), KoinProvider {
 
     private fun launchDebugTools() {
         koin.get<DebugTools>().launch()
+    }
+
+    private fun initWorkManagerWithKoinFactory() {
+        val delegatingFactory = DelegatingWorkerFactory().apply {
+            addFactory(KoinWorkerFactory(koin))
+        }
+
+        val config = Configuration.Builder()
+            .setWorkerFactory(delegatingFactory)
+            .build()
+
+        WorkManager.initialize(this, config)
+
+        koin.getAll<WorkerFactory>().forEach(delegatingFactory::addFactory)
     }
 }

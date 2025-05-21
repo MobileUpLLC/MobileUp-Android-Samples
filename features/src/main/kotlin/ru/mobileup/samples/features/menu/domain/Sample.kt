@@ -25,5 +25,7 @@ enum class Sample(
     SharedTransitions(R.string.menu_item_shared_elements_transition.strResDesc()),
     PinCodeSettings(R.string.menu_item_pin_code_settings.strResDesc()),
     Map(R.string.menu_item_map.strResDesc()),
-    Chat(R.string.menu_item_chat.strResDesc())
+    Chat(R.string.menu_item_chat.strResDesc()),
+    WorkManager(R.string.menu_item_work_manager.strResDesc()),
+    DivKit(R.string.menu_item_div_kit.strResDesc())
 }

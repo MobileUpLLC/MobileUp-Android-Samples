@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="work_notification_title">Напоминание</string>
+    <string name="work_periodic_notification_title">Периодическое напоминание</string>
+    <string name="work_one_time_notification_title">Одноразовое напоминание</string>
+    <string name="work_notification_message_with_id">Это напоминание с ID: %1$d</string>
+    <string name="work_notification_channel_name">Напоминания</string>
+    <string name="work_initial_delay">Начальная задержка</string>
+    <string name="work_interval">Интервал</string>
+    <string name="work_seconds">Секунды</string>
+    <string name="work_minutes">Минуты</string>
+    <string name="work_hours">Часы</string>
+    <string name="work_days">Дни</string>
+    <string name="work_start">Запустить</string>
+    <string name="work_update_and_reschedule">Обновить и перезапланировать</string>
+    <string name="work_next_execution_time">Задача начнёт выполняться не раньше:</string>
+    <string name="work_task_type_periodic">Периодическая</string>
+    <string name="work_task_type_one_time">Одноразовая</string>
+    <string name="work_info_description">Этот пример демонстрирует использование WorkManager для планирования задач. Вы можете выбрать тип задачи: периодическая или одноразовая. После запуска задача будет отображать уведомление в запланированное время.</string>
+    <string name="work_task_enqueued">Задача поставлена в очередь</string>
+
+    <plurals name="work_seconds_plural">
+        <item quantity="one">%d секунда</item>
+        <item quantity="few">%d секунды</item>
+        <item quantity="many">%d секунд</item>
+    </plurals>
+    <plurals name="work_minutes_plural">
+        <item quantity="one">%d минута</item>
+        <item quantity="few">%d минуты</item>
+        <item quantity="many">%d минут</item>
+    </plurals>
+    <plurals name="work_hours_plural">
+        <item quantity="one">%d час</item>
+        <item quantity="few">%d часа</item>
+        <item quantity="many">%d часов</item>
+    </plurals>
+    <plurals name="work_days_plural">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
+    </plurals>
+</resources>

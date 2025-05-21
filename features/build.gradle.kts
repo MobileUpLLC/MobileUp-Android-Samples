@@ -33,6 +33,7 @@ dependencies {
 
     // DI
     implementation(libs.koin)
+    implementation(libs.koin.workmanager)
 
     // Logging
     implementation(libs.logger.kermit)
@@ -86,6 +87,13 @@ dependencies {
 
     // Image Cropping
     implementation(libs.android.image.cropper)
+
+    // Work Manager
+    implementation(libs.work.ktx)
+
+    // DivKit
+    implementation(libs.bundles.divkit.client)
+    implementation(libs.bundles.divkit.server)
 }
 
 // Usage: ./gradlew generateModuleGraph detectGraphCycles

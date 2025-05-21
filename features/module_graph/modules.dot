@@ -1,6 +1,7 @@
 digraph {
 calendar
 charts
+chat
 collapsing_toolbar
 document
 form
@@ -18,10 +19,12 @@ shared_element_transitions
 tutorial
 uploader
 video
+work_manager
 photo -> image
 photo -> video
 root -> calendar
 root -> charts
+root -> chat
 root -> collapsing_toolbar
 root -> document
 root -> form
@@ -38,4 +41,5 @@ root -> shared_element_transitions
 root -> tutorial
 root -> uploader
 root -> video
+root -> work_manager
 }
