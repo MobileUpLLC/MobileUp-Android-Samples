@@ -1,4 +1,4 @@
-package ru.mobileup.samples.features.uploader.data
+package ru.mobileup.samples.features.remote_transfer.data
 
 import android.content.Context
 import android.net.Uri
@@ -13,11 +13,12 @@ import io.ktor.http.HttpHeaders
 import io.ktor.utils.io.streams.asInput
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
-import ru.mobileup.samples.features.uploader.domain.progress.UploadProgress
+import ru.mobileup.samples.features.remote_transfer.domain.progress.UploadProgress
 import java.io.FileNotFoundException
 
 private const val BASE_URL = "https://0x0.st/"
 private const val FILE_KEY = "file"
+private const val REQUEST_COMPLETED_KEY = 200
 
 class UploadRepositoryImpl(
     private val context: Context
@@ -53,6 +54,7 @@ class UploadRepositoryImpl(
                     if (bytesTotal != null && bytesTotal != 0L) {
                         send(
                             UploadProgress.Uploading(
+                                uri = uri,
                                 bytesProcessed = bytesSent,
                                 bytesTotal = bytesTotal
                             )
@@ -61,9 +63,18 @@ class UploadRepositoryImpl(
                 }
             }
 
-            send(UploadProgress.Completed(result.bodyAsText()))
+            send(
+                if (result.status.value == REQUEST_COMPLETED_KEY) {
+                    UploadProgress.Completed(
+                        uri = uri,
+                        link = result.bodyAsText()
+                    )
+                } else {
+                    UploadProgress.Failed(uri)
+                }
+            )
         } catch (e: Exception) {
-            send(UploadProgress.Failed)
+            send(UploadProgress.Failed(uri))
         }
     }
 }

@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
+    implementation(libs.work.manager)
 
     // UI
     implementation(libs.bundles.compose)

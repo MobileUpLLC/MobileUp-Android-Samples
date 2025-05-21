@@ -37,7 +37,7 @@ import ru.mobileup.samples.features.qr_code.presentation.QrCodeUi
 import ru.mobileup.samples.features.settings.presentation.SettingsUi
 import ru.mobileup.samples.features.shared_element_transitions.presentation.SharedElementsUi
 import ru.mobileup.samples.features.tutorial.presentation.TutorialSampleUi
-import ru.mobileup.samples.features.uploader.presentation.UploaderUi
+import ru.mobileup.samples.features.remote_transfer.presentation.RemoteTransferUi
 import ru.mobileup.samples.features.video.presentation.VideoUi
 import ru.mobileup.samples.features.work_manager.presentation.WorkManagerUi
 
@@ -64,7 +64,7 @@ fun RootUi(
             is RootComponent.Child.Photo -> PhotoUi(instance.component)
             is RootComponent.Child.Video -> VideoUi(instance.component)
             is RootComponent.Child.Document -> DocumentUi(instance.component)
-            is RootComponent.Child.Uploader -> UploaderUi(instance.component)
+            is RootComponent.Child.RemoteTransfer -> RemoteTransferUi(instance.component)
             is RootComponent.Child.Calendar -> CalendarUi(instance.component)
             is RootComponent.Child.QrCode -> QrCodeUi(instance.component)
             is RootComponent.Child.Chart -> ChartUi(instance.component)
