@@ -4,7 +4,7 @@
     <string name="menu_item_photo">Фото</string>
     <string name="menu_item_video">Видео</string>
     <string name="menu_item_document">Документ</string>
-    <string name="menu_item_uploader">Загрузчик</string>
+    <string name="menu_item_remote_transfer">Передача по сети</string>
     <string name="menu_item_calendar">Календарь</string>
     <string name="menu_item_navigation">Навигация</string>
     <string name="menu_item_qr_code">QR-код</string>
@@ -17,5 +17,6 @@
     <string name="menu_item_map">Карта</string>
     <string name="menu_item_chat">Чат</string>
     <string name="menu_item_work_manager">WorkManager</string>
+    <string name="menu_item_div_kit">ДивКит (SDUI)</string>
     <string name="menu_item_details_placeholder">Выбирете сэмпл</string>
 </resources>

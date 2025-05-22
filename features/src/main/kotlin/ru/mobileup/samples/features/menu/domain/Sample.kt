@@ -14,7 +14,7 @@ enum class Sample(
     Photo(R.string.menu_item_photo.strResDesc()),
     Video(R.string.menu_item_video.strResDesc()),
     Document(R.string.menu_item_document.strResDesc()),
-    Uploader(R.string.menu_item_uploader.strResDesc()),
+    RemoteTransfer(R.string.menu_item_remote_transfer.strResDesc()),
     Calendar(R.string.menu_item_calendar.strResDesc()),
     QrCode(R.string.menu_item_qr_code.strResDesc()),
     Chart(R.string.menu_item_chart.strResDesc()),
@@ -27,4 +27,5 @@ enum class Sample(
     Map(R.string.menu_item_map.strResDesc()),
     Chat(R.string.menu_item_chat.strResDesc()),
     WorkManager(R.string.menu_item_work_manager.strResDesc()),
+    DivKit(R.string.menu_item_div_kit.strResDesc())
 }

@@ -1,0 +1,154 @@
+{
+  "templates": {
+    "title": {
+      "type": "text",
+      "font_size": 20,
+      "line_height": 24,
+      "font_weight": "bold",
+      "paddings": {
+        "left": 24,
+        "right": 24
+      }
+    },
+    "input_text": {
+      "type": "input",
+      "width": {
+        "type": "match_parent"
+      },
+      "height": {
+        "type": "wrap_content"
+      },
+      "margins": {
+        "left": 16,
+        "top": 16,
+        "right": 16,
+        "bottom": 16
+      },
+      "paddings": {
+        "left": 16,
+        "top": 10,
+        "right": 16,
+        "bottom": 10
+      },
+      "alignment_horizontal": "center",
+      "alignment_vertical": "center",
+      "font_size": 16,
+      "font_weight": "medium",
+      "text_color": "#000000",
+      "hint_color": "#888888",
+      "highlight_color": "#e0bae3",
+      "line_height": 22,
+      "background": [
+        {
+          "type": "solid",
+          "color": "#0e000000"
+        }
+      ],
+      "border": {
+        "corner_radius": 8
+      }
+    },
+    "button": {
+      "type": "text",
+      "text_color": "#ffffff",
+      "height": {
+        "type": "fixed",
+        "value": 48
+      },
+      "margins": {
+        "left": 16,
+        "right": 16,
+        "bottom": 16
+      },
+      "border": {
+        "corner_radius": 16
+      },
+      "background": [
+        {
+          "type": "solid",
+          "color": "#0077FF"
+        }
+      ],
+      "font_size": 14,
+      "font_weight": "medium",
+      "text_alignment_vertical": "center",
+      "text_alignment_horizontal": "center"
+    }
+  },
+  "card": {
+    "log_id": "sample_card",
+    "variables": [
+      {
+        "name": "email_text",
+        "type": "string",
+        "value": ""
+      },
+      {
+        "name": "password_text",
+        "type": "string",
+        "value": ""
+      },
+      {
+        "name": "repeat_password_text",
+        "type": "string",
+        "value": ""
+      }
+    ],
+    "states": [
+      {
+        "state_id": 0,
+        "div": {
+          "type": "container",
+          "orientation": "vertical",
+          "margins": {
+            "top": 24,
+            "bottom": 24
+          },
+          "items": [
+            {
+              "type": "title",
+              "text": "Email"
+            },
+            {
+              "type": "input_text",
+              "text_variable": "email_text",
+              "keyboard_type": "email",
+              "enter_key_type": "go"
+            },
+            {
+              "type": "title",
+              "text": "Пароль"
+            },
+            {
+              "type": "input_text",
+              "text_variable": "password_text",
+              "keyboard_type": "password",
+              "enter_key_type": "go"
+            },
+            {
+              "type": "title",
+              "text": "Повторите пароль"
+            },
+            {
+              "type": "input_text",
+              "text_variable": "repeat_password_text",
+              "keyboard_type": "password",
+              "enter_key_type": "done"
+            },
+            {
+              "type": "button",
+              "text": "Зарегистрироваться",
+              "actions": [
+                {
+                  "log_id": "sign_up_button_press",
+                  "url": "div-action://sign_up?email=@{email_text}&password=@{password_text}",
+                  "is_enabled": "@{password_text == repeat_password_text && password_text != ''}"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

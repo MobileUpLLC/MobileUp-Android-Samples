@@ -10,6 +10,7 @@ import ru.mobileup.samples.features.calendar.presentation.CalendarComponent
 import ru.mobileup.samples.features.charts.presentation.ChartComponent
 import ru.mobileup.samples.features.chat.presentation.ChatComponent
 import ru.mobileup.samples.features.collapsing_toolbar.presentation.CollapsingToolbarComponent
+import ru.mobileup.samples.features.divkit.presentation.DivKitComponent
 import ru.mobileup.samples.features.document.presentation.DocumentComponent
 import ru.mobileup.samples.features.form.presentation.FormComponent
 import ru.mobileup.samples.features.image.presentation.ImageComponent
@@ -22,10 +23,10 @@ import ru.mobileup.samples.features.photo.presentation.PhotoComponent
 import ru.mobileup.samples.features.pin_code.presentation.check_management.CheckPinCodeManagementComponent
 import ru.mobileup.samples.features.pin_code.presentation.settings.PinCodeSettingsComponent
 import ru.mobileup.samples.features.qr_code.presentation.QrCodeComponent
+import ru.mobileup.samples.features.remote_transfer.presentation.RemoteTransferComponent
 import ru.mobileup.samples.features.settings.presentation.SettingsComponent
 import ru.mobileup.samples.features.shared_element_transitions.presentation.SharedElementsComponent
 import ru.mobileup.samples.features.tutorial.presentation.TutorialSampleComponent
-import ru.mobileup.samples.features.uploader.presentation.UploaderComponent
 import ru.mobileup.samples.features.video.presentation.VideoComponent
 import ru.mobileup.samples.features.work_manager.presentation.WorkManagerComponent
 
@@ -54,7 +55,7 @@ interface RootComponent : PredictiveBackComponent {
         class Photo(val component: PhotoComponent) : Child
         class Video(val component: VideoComponent) : Child
         class Document(val component: DocumentComponent) : Child
-        class Uploader(val component: UploaderComponent) : Child
+        class RemoteTransfer(val component: RemoteTransferComponent) : Child
         class Calendar(val component: CalendarComponent) : Child
         class QrCode(val component: QrCodeComponent) : Child
         class Chart(val component: ChartComponent) : Child
@@ -68,5 +69,6 @@ interface RootComponent : PredictiveBackComponent {
         class Chat(val component: ChatComponent) : Child
         class Settings(val component: SettingsComponent) : Child
         class WorkManager(val component: WorkManagerComponent) : Child
+        class DivKit(val component: DivKitComponent) : Child
     }
 }

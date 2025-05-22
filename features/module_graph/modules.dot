@@ -3,6 +3,7 @@ calendar
 charts
 chat
 collapsing_toolbar
+divkit
 document
 form
 image
@@ -14,17 +15,18 @@ otp
 photo
 pin_code
 qr_code
+remote_transfer
 root
 settings
 shared_element_transitions
 tutorial
-uploader
 video
 work_manager
 multipane_menu -> calendar
 multipane_menu -> charts
 multipane_menu -> chat
 multipane_menu -> collapsing_toolbar
+multipane_menu -> divkit
 multipane_menu -> document
 multipane_menu -> form
 multipane_menu -> image
@@ -35,9 +37,9 @@ multipane_menu -> otp
 multipane_menu -> photo
 multipane_menu -> pin_code
 multipane_menu -> qr_code
+multipane_menu -> remote_transfer
 multipane_menu -> shared_element_transitions
 multipane_menu -> tutorial
-multipane_menu -> uploader
 multipane_menu -> video
 multipane_menu -> work_manager
 photo -> image
@@ -46,6 +48,7 @@ root -> calendar
 root -> charts
 root -> chat
 root -> collapsing_toolbar
+root -> divkit
 root -> document
 root -> form
 root -> image
@@ -57,10 +60,10 @@ root -> otp
 root -> photo
 root -> pin_code
 root -> qr_code
+root -> remote_transfer
 root -> settings
 root -> shared_element_transitions
 root -> tutorial
-root -> uploader
 root -> video
 root -> work_manager
 }

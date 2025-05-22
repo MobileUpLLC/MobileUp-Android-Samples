@@ -4,7 +4,7 @@
     <string name="menu_item_photo">Photo</string>
     <string name="menu_item_video">Video</string>
     <string name="menu_item_document">Document</string>
-    <string name="menu_item_uploader">Uploader</string>
+    <string name="menu_item_remote_transfer">Remote transfer</string>
     <string name="menu_item_calendar">Calendar</string>
     <string name="menu_item_navigation">Navigation</string>
     <string name="menu_item_qr_code">Qr code</string>
@@ -17,5 +17,6 @@
     <string name="menu_item_map">Map</string>
     <string name="menu_item_chat">Chat</string>
     <string name="menu_item_work_manager">WorkManager</string>
+    <string name="menu_item_div_kit">DivKit (SDUI)</string>
     <string name="menu_item_details_placeholder">Select a sample</string>
 </resources>

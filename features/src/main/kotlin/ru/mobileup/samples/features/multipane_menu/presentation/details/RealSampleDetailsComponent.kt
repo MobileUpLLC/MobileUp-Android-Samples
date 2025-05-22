@@ -12,38 +12,21 @@ import ru.mobileup.samples.features.calendar.createCalendarComponent
 import ru.mobileup.samples.features.charts.createChartComponent
 import ru.mobileup.samples.features.chat.createChatComponent
 import ru.mobileup.samples.features.collapsing_toolbar.createCollapsingToolbarComponent
+import ru.mobileup.samples.features.divkit.createDivKitComponent
 import ru.mobileup.samples.features.document.createDocumentComponent
 import ru.mobileup.samples.features.form.createFormComponent
 import ru.mobileup.samples.features.image.createImageComponent
 import ru.mobileup.samples.features.map.createMapMainComponent
 import ru.mobileup.samples.features.menu.domain.Sample
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Calendar
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Chart
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Chat
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.CollapsingToolbar
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Document
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Form
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Image
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Map
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Navigation
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Otp
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Photo
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.PinCodeSettings
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.QrCode
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.SharedElements
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Tutorial
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Uploader
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.Video
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent.Child.WorkManager
 import ru.mobileup.samples.features.navigation.createNavigationComponent
 import ru.mobileup.samples.features.otp.createOtpComponent
 import ru.mobileup.samples.features.otp.presentation.OtpComponent
 import ru.mobileup.samples.features.photo.createPhotoComponent
 import ru.mobileup.samples.features.pin_code.createPinCodeSettingsComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
+import ru.mobileup.samples.features.remote_transfer.createRemoteTransferComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
-import ru.mobileup.samples.features.uploader.createUploaderComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 import ru.mobileup.samples.features.work_manager.createWorkManagerComponent
 
@@ -64,7 +47,7 @@ class RealSampleDetailsComponent(
             Sample.Photo -> ChildConfig.Photo
             Sample.Video -> ChildConfig.Video
             Sample.Document -> ChildConfig.Document
-            Sample.Uploader -> ChildConfig.Uploader
+            Sample.RemoteTransfer -> ChildConfig.Uploader
             Sample.Calendar -> ChildConfig.Calendar
             Sample.QrCode -> ChildConfig.QrCode
             Sample.Chart -> ChildConfig.Chart
@@ -77,6 +60,7 @@ class RealSampleDetailsComponent(
             Sample.Map -> ChildConfig.Map
             Sample.Chat -> ChildConfig.Chat
             Sample.WorkManager -> ChildConfig.WorkManager
+            Sample.DivKit -> ChildConfig.DivKit
         },
         serializer = ChildConfig.serializer(),
         handleBackButton = true,
@@ -87,76 +71,80 @@ class RealSampleDetailsComponent(
         config: ChildConfig,
         componentContext: ComponentContext,
     ): SampleDetailsComponent.Child = when (config) {
-        ChildConfig.Form -> Form(
+        ChildConfig.Form -> SampleDetailsComponent.Child.Form(
             componentFactory.createFormComponent(componentContext)
         )
 
-        ChildConfig.Otp -> Otp(
+        ChildConfig.Otp -> SampleDetailsComponent.Child.Otp(
             componentFactory.createOtpComponent(componentContext, ::onOtpOutput)
         )
 
-        ChildConfig.Photo -> Photo(
+        ChildConfig.Photo -> SampleDetailsComponent.Child.Photo(
             componentFactory.createPhotoComponent(componentContext)
         )
 
-        ChildConfig.Video -> Video(
+        ChildConfig.Video -> SampleDetailsComponent.Child.Video(
             componentFactory.createVideoComponent(componentContext)
         )
 
-        ChildConfig.Document -> Document(
+        ChildConfig.Document -> SampleDetailsComponent.Child.Document(
             componentFactory.createDocumentComponent(componentContext)
         )
 
-        ChildConfig.Uploader -> Uploader(
-            componentFactory.createUploaderComponent(componentContext)
+        ChildConfig.Uploader -> SampleDetailsComponent.Child.RemoteTransfer(
+            componentFactory.createRemoteTransferComponent(componentContext)
         )
 
-        ChildConfig.Calendar -> Calendar(
+        ChildConfig.Calendar -> SampleDetailsComponent.Child.Calendar(
             componentFactory.createCalendarComponent(componentContext)
         )
 
-        ChildConfig.QrCode -> QrCode(
+        ChildConfig.QrCode -> SampleDetailsComponent.Child.QrCode(
             componentFactory.createQrCodeComponent(componentContext)
         )
 
-        ChildConfig.Chart -> Chart(
+        ChildConfig.Chart -> SampleDetailsComponent.Child.Chart(
             componentFactory.createChartComponent(componentContext)
         )
 
-        ChildConfig.Navigation -> Navigation(
+        ChildConfig.Navigation -> SampleDetailsComponent.Child.Navigation(
             componentFactory.createNavigationComponent(componentContext)
         )
 
-        ChildConfig.CollapsingToolbar -> CollapsingToolbar(
+        ChildConfig.CollapsingToolbar -> SampleDetailsComponent.Child.CollapsingToolbar(
             componentFactory.createCollapsingToolbarComponent(componentContext)
         )
 
-        ChildConfig.Image -> Image(
+        ChildConfig.Image -> SampleDetailsComponent.Child.Image(
             componentFactory.createImageComponent(componentContext)
         )
 
-        ChildConfig.Tutorial -> Tutorial(
+        ChildConfig.Tutorial -> SampleDetailsComponent.Child.Tutorial(
             componentFactory.createTutorialSampleComponent(componentContext)
         )
 
-        ChildConfig.SharedElements -> SharedElements(
+        ChildConfig.SharedElements -> SampleDetailsComponent.Child.SharedElements(
             componentFactory.createSharedElementsComponent(componentContext)
         )
 
-        ChildConfig.PinCodeSettings -> PinCodeSettings(
+        ChildConfig.PinCodeSettings -> SampleDetailsComponent.Child.PinCodeSettings(
             componentFactory.createPinCodeSettingsComponent(componentContext)
         )
 
-        ChildConfig.Map -> Map(
+        ChildConfig.Map -> SampleDetailsComponent.Child.Map(
             componentFactory.createMapMainComponent(componentContext)
         )
 
-        ChildConfig.Chat -> Chat(
+        ChildConfig.Chat -> SampleDetailsComponent.Child.Chat(
             componentFactory.createChatComponent(componentContext)
         )
 
-        ChildConfig.WorkManager -> WorkManager(
+        ChildConfig.WorkManager -> SampleDetailsComponent.Child.WorkManager(
             componentFactory.createWorkManagerComponent(componentContext)
+        )
+
+        ChildConfig.DivKit -> SampleDetailsComponent.Child.DivKit(
+            componentFactory.createDivKitComponent(componentContext)
         )
     }
 
@@ -222,5 +210,8 @@ class RealSampleDetailsComponent(
 
         @Serializable
         data object WorkManager : ChildConfig
+
+        @Serializable
+        data object DivKit : ChildConfig
     }
 }

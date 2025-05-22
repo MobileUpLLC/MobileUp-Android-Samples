@@ -16,6 +16,7 @@ import ru.mobileup.samples.features.calendar.createCalendarComponent
 import ru.mobileup.samples.features.charts.createChartComponent
 import ru.mobileup.samples.features.chat.createChatComponent
 import ru.mobileup.samples.features.collapsing_toolbar.createCollapsingToolbarComponent
+import ru.mobileup.samples.features.divkit.createDivKitComponent
 import ru.mobileup.samples.features.document.createDocumentComponent
 import ru.mobileup.samples.features.form.createFormComponent
 import ru.mobileup.samples.features.image.createImageComponent
@@ -33,10 +34,10 @@ import ru.mobileup.samples.features.pin_code.createCheckPinCodeManagementCompone
 import ru.mobileup.samples.features.pin_code.createPinCodeSettingsComponent
 import ru.mobileup.samples.features.pin_code.presentation.check_management.CheckPinCodeManagementComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
+import ru.mobileup.samples.features.remote_transfer.createRemoteTransferComponent
 import ru.mobileup.samples.features.settings.createSettingsComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
-import ru.mobileup.samples.features.uploader.createUploaderComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 import ru.mobileup.samples.features.work_manager.createWorkManagerComponent
 
@@ -120,9 +121,9 @@ class RealRootComponent(
             )
         }
 
-        ChildConfig.Uploader -> {
-            RootComponent.Child.Uploader(
-                componentFactory.createUploaderComponent(componentContext)
+        ChildConfig.RemoteTransfer -> {
+            RootComponent.Child.RemoteTransfer(
+                componentFactory.createRemoteTransferComponent(componentContext)
             )
         }
 
@@ -203,6 +204,10 @@ class RealRootComponent(
                 componentFactory.createWorkManagerComponent(componentContext)
             )
         }
+
+        ChildConfig.DivKit -> RootComponent.Child.DivKit(
+            componentFactory.createDivKitComponent(componentContext)
+        )
     }
 
     private fun onMultiPaneOutput(output: MultiPaneMenuComponent.Output) = when (output) {
@@ -217,7 +222,7 @@ class RealRootComponent(
                 Sample.Photo -> ChildConfig.Photo
                 Sample.Video -> ChildConfig.Video
                 Sample.Document -> ChildConfig.Document
-                Sample.Uploader -> ChildConfig.Uploader
+                Sample.RemoteTransfer -> ChildConfig.RemoteTransfer
                 Sample.Calendar -> ChildConfig.Calendar
                 Sample.QrCode -> ChildConfig.QrCode
                 Sample.Chart -> ChildConfig.Chart
@@ -230,6 +235,7 @@ class RealRootComponent(
                 Sample.Map -> ChildConfig.Map
                 Sample.Chat -> ChildConfig.Chat
                 Sample.WorkManager -> ChildConfig.WorkManager
+                Sample.DivKit -> ChildConfig.DivKit
             }.run(navigation::safePush)
 
             MenuComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
@@ -267,7 +273,7 @@ class RealRootComponent(
         data object Document : ChildConfig
 
         @Serializable
-        data object Uploader : ChildConfig
+        data object RemoteTransfer : ChildConfig
 
         @Serializable
         data object Calendar : ChildConfig
@@ -307,5 +313,8 @@ class RealRootComponent(
 
         @Serializable
         data object WorkManager : ChildConfig
+
+        @Serializable
+        data object DivKit : ChildConfig
     }
 }

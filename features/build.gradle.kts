@@ -21,6 +21,7 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
+    implementation(libs.work.manager)
 
     // UI
     implementation(libs.bundles.compose)
@@ -88,8 +89,9 @@ dependencies {
     // Image Cropping
     implementation(libs.android.image.cropper)
 
-    // Work Manager
-    implementation(libs.work.ktx)
+    // DivKit
+    implementation(libs.bundles.divkit.client)
+    implementation(libs.bundles.divkit.server)
 }
 
 // Usage: ./gradlew generateModuleGraph detectGraphCycles

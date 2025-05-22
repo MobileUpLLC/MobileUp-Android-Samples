@@ -32,6 +32,7 @@ data class ChatColors(
 data class BackgroundColors(
     val screen: Color,
     val secondary: Color,
+    val tertiary: Color,
     val toast: Color,
 )
 
