@@ -27,6 +27,7 @@ import ru.mobileup.samples.features.form.presentation.FormUi
 import ru.mobileup.samples.features.image.presentation.ImageUi
 import ru.mobileup.samples.features.map.presentation.MapUi
 import ru.mobileup.samples.features.menu.presentation.MenuUi
+import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneMenuUi
 import ru.mobileup.samples.features.navigation.NavigationUi
 import ru.mobileup.samples.features.otp.presentation.OtpUi
 import ru.mobileup.samples.features.photo.presentation.PhotoUi
@@ -57,6 +58,7 @@ fun RootUi(
         animation = component.predictiveBackAnimation()
     ) { child ->
         when (val instance = child.instance) {
+            is RootComponent.Child.MultiPaneMenu -> MultiPaneMenuUi(instance.component)
             is RootComponent.Child.Menu -> MenuUi(instance.component)
             is RootComponent.Child.Form -> FormUi(instance.component)
             is RootComponent.Child.Otp -> OtpUi(instance.component)

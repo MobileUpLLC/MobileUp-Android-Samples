@@ -34,8 +34,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
-import ru.mobileup.samples.core.utils.SystemBarIconsColor
-import ru.mobileup.samples.core.utils.SystemBars
 import ru.mobileup.samples.core.widget.button.AppButton
 import ru.mobileup.samples.core.widget.button.ButtonType
 import ru.mobileup.samples.features.R
@@ -47,11 +45,6 @@ fun UploaderUi(
     component: UploaderComponent,
     modifier: Modifier = Modifier
 ) {
-    SystemBars(
-        statusBarColor = Color.Transparent,
-        statusBarIconsColor = SystemBarIconsColor.Light,
-    )
-
     UploaderContent(
         component = component,
         modifier = modifier
@@ -83,7 +76,7 @@ private fun UploaderTopBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(CustomTheme.colors.palette.black)
+            .background(CustomTheme.colors.background.screen)
             .statusBarsPadding()
             .padding(horizontal = 8.dp, vertical = 24.dp)
     ) {
@@ -96,7 +89,6 @@ private fun UploaderTopBar(
 
         Text(
             text = stringResource(R.string.uploader_title),
-            color = CustomTheme.colors.palette.white,
             modifier = Modifier
                 .weight(2f)
                 .align(Alignment.CenterVertically)

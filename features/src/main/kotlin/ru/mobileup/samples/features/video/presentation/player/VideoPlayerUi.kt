@@ -46,6 +46,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -71,6 +72,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.WindowInsetsCompat
 import androidx.media3.common.util.UnstableApi
+import androidx.window.core.layout.WindowWidthSizeClass
 import kotlinx.coroutines.delay
 import ru.mobileup.samples.core.dialog.standard.StandardDialog
 import ru.mobileup.samples.core.message.presentation.noOverlapByMessage
@@ -122,12 +124,16 @@ fun VideoPlayerUi(
         modifier = modifier
     )
 
-    SystemBars(
-        statusBarColor = Color.Transparent,
-        navigationBarColor = Color.Transparent,
-        statusBarIconsColor = SystemBarIconsColor.Light,
-        navigationBarIconsColor = SystemBarIconsColor.Light
-    )
+    val changeSystemBarColor = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+
+    if (changeSystemBarColor) {
+        SystemBars(
+            statusBarColor = Color.Transparent,
+            navigationBarColor = Color.Transparent,
+            statusBarIconsColor = SystemBarIconsColor.Light,
+            navigationBarIconsColor = SystemBarIconsColor.Light
+        )
+    }
 
     StandardDialog(component.resetTransformDialog)
     StandardDialog(component.saveDialog)

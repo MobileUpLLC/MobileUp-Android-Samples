@@ -23,6 +23,8 @@ import ru.mobileup.samples.features.map.createMapMainComponent
 import ru.mobileup.samples.features.menu.createMenuComponent
 import ru.mobileup.samples.features.menu.domain.Sample
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
+import ru.mobileup.samples.features.multipane_menu.createMultiPaneComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneMenuComponent
 import ru.mobileup.samples.features.navigation.createNavigationComponent
 import ru.mobileup.samples.features.otp.createOtpComponent
 import ru.mobileup.samples.features.otp.presentation.OtpComponent
@@ -47,7 +49,7 @@ class RealRootComponent(
 
     override val childStack = childStack(
         source = navigation,
-        initialConfiguration = ChildConfig.Menu,
+        initialConfiguration = ChildConfig.MultiPaneMenu,
         serializer = ChildConfig.serializer(),
         handleBackButton = true,
         childFactory = ::createChild
@@ -76,6 +78,12 @@ class RealRootComponent(
         config: ChildConfig,
         componentContext: ComponentContext,
     ): RootComponent.Child = when (config) {
+        ChildConfig.MultiPaneMenu -> {
+            RootComponent.Child.MultiPaneMenu(
+                componentFactory.createMultiPaneComponent(componentContext, ::onMultiPaneOutput)
+            )
+        }
+
         ChildConfig.Menu -> {
             RootComponent.Child.Menu(
                 componentFactory.createMenuComponent(componentContext, ::onMenuOutput)
@@ -197,6 +205,10 @@ class RealRootComponent(
         }
     }
 
+    private fun onMultiPaneOutput(output: MultiPaneMenuComponent.Output) = when (output) {
+        MultiPaneMenuComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
+    }
+
     private fun onMenuOutput(output: MenuComponent.Output) {
         when (output) {
             is MenuComponent.Output.SampleChosen -> when (output.sample) {
@@ -232,6 +244,9 @@ class RealRootComponent(
 
     @Serializable
     sealed interface ChildConfig {
+
+        @Serializable
+        data object MultiPaneMenu : ChildConfig
 
         @Serializable
         data object Menu : ChildConfig

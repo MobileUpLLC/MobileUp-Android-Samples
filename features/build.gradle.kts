@@ -29,6 +29,7 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.4.0-alpha10")
     implementation(libs.accompanist.swiperefresh)
     implementation(libs.bundles.coil)
+    implementation(libs.compose.material.adaptive)
 
     // DI
     implementation(libs.koin)

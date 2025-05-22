@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -59,6 +60,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.window.core.layout.WindowWidthSizeClass
 import coil3.compose.rememberAsyncImagePainter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -125,12 +127,16 @@ fun PhotoCameraUi(
         )
     }
 
-    SystemBars(
-        statusBarColor = Color.Transparent,
-        navigationBarColor = Color.Transparent,
-        statusBarIconsColor = SystemBarIconsColor.Light,
-        navigationBarIconsColor = SystemBarIconsColor.Light
-    )
+    val changeSystemBarColor = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+
+    if (changeSystemBarColor) {
+        SystemBars(
+            statusBarColor = Color.Transparent,
+            navigationBarColor = Color.Transparent,
+            statusBarIconsColor = SystemBarIconsColor.Light,
+            navigationBarIconsColor = SystemBarIconsColor.Light
+        )
+    }
 
     LaunchedEffect(cameraState) {
         photoCameraController.cameraState = cameraState

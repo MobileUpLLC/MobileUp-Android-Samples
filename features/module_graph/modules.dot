@@ -8,6 +8,7 @@ form
 image
 map
 menu
+multipane_menu
 navigation
 otp
 photo
@@ -20,6 +21,25 @@ tutorial
 uploader
 video
 work_manager
+multipane_menu -> calendar
+multipane_menu -> charts
+multipane_menu -> chat
+multipane_menu -> collapsing_toolbar
+multipane_menu -> document
+multipane_menu -> form
+multipane_menu -> image
+multipane_menu -> map
+multipane_menu -> menu
+multipane_menu -> navigation
+multipane_menu -> otp
+multipane_menu -> photo
+multipane_menu -> pin_code
+multipane_menu -> qr_code
+multipane_menu -> shared_element_transitions
+multipane_menu -> tutorial
+multipane_menu -> uploader
+multipane_menu -> video
+multipane_menu -> work_manager
 photo -> image
 photo -> video
 root -> calendar
@@ -31,6 +51,7 @@ root -> form
 root -> image
 root -> map
 root -> menu
+root -> multipane_menu
 root -> navigation
 root -> otp
 root -> photo
