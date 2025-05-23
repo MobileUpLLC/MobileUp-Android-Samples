@@ -8,7 +8,7 @@ import ru.mobileup.samples.features.R
 enum class Sample(
     override val displayName: StringDesc
 ) : DisplayedEnum {
-
+    MultiPaneMenu(R.string.menu_item_multi_pane_menu.strResDesc()),
     Form(R.string.menu_item_form.strResDesc()),
     Otp(R.string.menu_item_otp.strResDesc()),
     Photo(R.string.menu_item_photo.strResDesc()),

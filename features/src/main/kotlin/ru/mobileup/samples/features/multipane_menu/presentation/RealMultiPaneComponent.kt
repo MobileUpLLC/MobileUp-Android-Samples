@@ -17,58 +17,58 @@ import kotlinx.serialization.builtins.serializer
 import ru.mobileup.samples.core.ComponentFactory
 import ru.mobileup.samples.core.utils.toStateFlow
 import ru.mobileup.samples.features.menu.domain.Sample
-import ru.mobileup.samples.features.multipane_menu.createSampleDetailsComponent
-import ru.mobileup.samples.features.multipane_menu.createSampleListComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.list.SampleListComponent
+import ru.mobileup.samples.features.multipane_menu.createMultiPaneDetailsComponent
+import ru.mobileup.samples.features.multipane_menu.createMultiPaneMenuComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.details.MultiPaneDetailsComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.list.MultiPaneMenuComponent
 
 @OptIn(ExperimentalDecomposeApi::class)
-class RealMultiPaneMenuComponent(
+class RealMultiPaneComponent(
     componentContext: ComponentContext,
-    private val onOutput: (MultiPaneMenuComponent.Output) -> Unit,
+    private val onOutput: (MultiPaneComponent.Output) -> Unit,
     private val componentFactory: ComponentFactory,
-) : ComponentContext by componentContext, MultiPaneMenuComponent {
+) : ComponentContext by componentContext, MultiPaneComponent {
 
     private val navigation = PanelsNavigation<Unit, DetailsConfig, Nothing>()
 
     @OptIn(ExperimentalSerializationApi::class)
-    override val panels: StateFlow<ChildPanels<*, SampleListComponent, *, SampleDetailsComponent, Nothing, Nothing>> =
+    override val panels: StateFlow<ChildPanels<*, MultiPaneMenuComponent, *, MultiPaneDetailsComponent, Nothing, Nothing>> =
         childPanels(
             source = navigation,
             serializers = Unit.serializer() to DetailsConfig.serializer(),
             initialPanels = { Panels(main = Unit) },
             handleBackButton = true,
             mainFactory = { _, ctx ->
-                componentFactory.createSampleListComponent(ctx, ::onSampleListOutput)
+                componentFactory.createMultiPaneMenuComponent(ctx, ::onMenuOutput)
             },
             detailsFactory = { cfg, ctx ->
-                componentFactory.createSampleDetailsComponent(
+                componentFactory.createMultiPaneDetailsComponent(
                     ctx,
                     cfg.sample,
-                    ::onSampleDetailsOutput
+                    ::onDetailsOutput
                 )
             },
         ).toStateFlow(lifecycle)
 
-    private fun onSampleListOutput(output: SampleListComponent.Output) = when (output) {
-        is SampleListComponent.Output.SampleChosen -> navigation.activateDetails(
+    private fun onMenuOutput(output: MultiPaneMenuComponent.Output) = when (output) {
+        is MultiPaneMenuComponent.Output.SampleChosen -> navigation.activateDetails(
             DetailsConfig(output.sample)
         )
 
-        SampleListComponent.Output.SettingsRequested -> onOutput(
-            MultiPaneMenuComponent.Output.SettingsRequested
+        MultiPaneMenuComponent.Output.SettingsRequested -> onOutput(
+            MultiPaneComponent.Output.SettingsRequested
         )
     }
 
-    private fun onSampleDetailsOutput(output: SampleDetailsComponent.Output) = when (output) {
-        SampleDetailsComponent.Output.OtpSuccessfullyVerified -> navigation.pop()
+    private fun onDetailsOutput(output: MultiPaneDetailsComponent.Output) = when (output) {
+        MultiPaneDetailsComponent.Output.OtpSuccessfullyVerified -> navigation.pop()
     }
 
     override fun onBackClick() = navigation.pop()
 
     override fun setMode(mode: ChildPanelsMode) = navigation.setMode(mode)
 
-    override fun onSettingsClick() = onOutput(MultiPaneMenuComponent.Output.SettingsRequested)
+    override fun onSettingsClick() = onOutput(MultiPaneComponent.Output.SettingsRequested)
 
     @Serializable
     private data class DetailsConfig(val sample: Sample)

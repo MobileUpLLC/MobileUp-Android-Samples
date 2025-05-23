@@ -29,8 +29,8 @@ import ru.mobileup.samples.features.menu.domain.Sample
 
 @OptIn(ExperimentalDecomposeApi::class)
 @Composable
-fun SampleListUi(
-    component: SampleListComponent,
+fun MultiPaneMenuUi(
+    component: MultiPaneMenuComponent,
     mode: ChildPanelsMode,
     modifier: Modifier = Modifier,
 ) {
@@ -59,14 +59,16 @@ fun SampleListUi(
                 .padding(32.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Sample.entries.forEach { sample ->
-                AppButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    buttonType = ButtonType.Secondary,
-                    text = sample.displayName.localized(),
-                    onClick = { component.onButtonClick(sample) }
-                )
-            }
+            Sample.entries
+                .filter { it != Sample.MultiPaneMenu }
+                .forEach { sample ->
+                    AppButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        buttonType = ButtonType.Secondary,
+                        text = sample.displayName.localized(),
+                        onClick = { component.onButtonClick(sample) }
+                    )
+                }
 
             /* Manually add bottom spacing equal to FAB height because the padding
              provided by Scaffold is not always correct on all Android versions. */

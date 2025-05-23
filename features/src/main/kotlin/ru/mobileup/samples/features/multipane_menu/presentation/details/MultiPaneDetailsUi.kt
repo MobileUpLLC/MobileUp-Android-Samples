@@ -26,8 +26,8 @@ import ru.mobileup.samples.features.video.presentation.VideoUi
 import ru.mobileup.samples.features.work_manager.presentation.WorkManagerUi
 
 @Composable
-fun SampleDetailsUi(
-    component: SampleDetailsComponent,
+fun MultiPaneDetailsUi(
+    component: MultiPaneDetailsComponent,
     modifier: Modifier = Modifier,
 ) {
     val stack by component.childStack.collectAsState()
@@ -37,25 +37,25 @@ fun SampleDetailsUi(
         stack = stack,
     ) { child ->
         when (val instance = child.instance) {
-            is SampleDetailsComponent.Child.Form -> FormUi(instance.component)
-            is SampleDetailsComponent.Child.Otp -> OtpUi(instance.component)
-            is SampleDetailsComponent.Child.Photo -> PhotoUi(instance.component)
-            is SampleDetailsComponent.Child.Video -> VideoUi(instance.component)
-            is SampleDetailsComponent.Child.Document -> DocumentUi(instance.component)
-            is SampleDetailsComponent.Child.RemoteTransfer -> RemoteTransferUi(instance.component)
-            is SampleDetailsComponent.Child.Calendar -> CalendarUi(instance.component)
-            is SampleDetailsComponent.Child.QrCode -> QrCodeUi(instance.component)
-            is SampleDetailsComponent.Child.Chart -> ChartUi(instance.component)
-            is SampleDetailsComponent.Child.Navigation -> NavigationUi(instance.component)
-            is SampleDetailsComponent.Child.CollapsingToolbar -> CollapsingToolbarUi(instance.component)
-            is SampleDetailsComponent.Child.Image -> ImageUi(instance.component)
-            is SampleDetailsComponent.Child.Tutorial -> TutorialSampleUi(instance.component)
-            is SampleDetailsComponent.Child.SharedElements -> SharedElementsUi(instance.component)
-            is SampleDetailsComponent.Child.PinCodeSettings -> PinCodeSettingsUi(instance.component)
-            is SampleDetailsComponent.Child.Map -> MapUi(instance.component)
-            is SampleDetailsComponent.Child.Chat -> ChatUi(instance.component)
-            is SampleDetailsComponent.Child.WorkManager -> WorkManagerUi(instance.component)
-            is SampleDetailsComponent.Child.DivKit -> DivKitUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Form -> FormUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Otp -> OtpUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Photo -> PhotoUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Video -> VideoUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Document -> DocumentUi(instance.component)
+            is MultiPaneDetailsComponent.Child.RemoteTransfer -> RemoteTransferUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Calendar -> CalendarUi(instance.component)
+            is MultiPaneDetailsComponent.Child.QrCode -> QrCodeUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Chart -> ChartUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Navigation -> NavigationUi(instance.component)
+            is MultiPaneDetailsComponent.Child.CollapsingToolbar -> CollapsingToolbarUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Image -> ImageUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Tutorial -> TutorialSampleUi(instance.component)
+            is MultiPaneDetailsComponent.Child.SharedElements -> SharedElementsUi(instance.component)
+            is MultiPaneDetailsComponent.Child.PinCodeSettings -> PinCodeSettingsUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Map -> MapUi(instance.component)
+            is MultiPaneDetailsComponent.Child.Chat -> ChatUi(instance.component)
+            is MultiPaneDetailsComponent.Child.WorkManager -> WorkManagerUi(instance.component)
+            is MultiPaneDetailsComponent.Child.DivKit -> DivKitUi(instance.component)
         }
     }
 }

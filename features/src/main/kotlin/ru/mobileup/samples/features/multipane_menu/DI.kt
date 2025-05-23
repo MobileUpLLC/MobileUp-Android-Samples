@@ -4,25 +4,25 @@ import com.arkivanov.decompose.ComponentContext
 import org.koin.core.component.get
 import ru.mobileup.samples.core.ComponentFactory
 import ru.mobileup.samples.features.menu.domain.Sample
-import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneMenuComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.RealMultiPaneMenuComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.details.RealSampleDetailsComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.list.RealSampleListComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.list.SampleListComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.RealMultiPaneComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.details.MultiPaneDetailsComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.details.RealMultiPaneDetailsComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.list.MultiPaneMenuComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.list.RealMultiPaneMenuComponent
 
 fun ComponentFactory.createMultiPaneComponent(
     componentContext: ComponentContext,
-    onOutput: (MultiPaneMenuComponent.Output) -> Unit,
-): MultiPaneMenuComponent = RealMultiPaneMenuComponent(componentContext, onOutput, get())
+    onOutput: (MultiPaneComponent.Output) -> Unit,
+): MultiPaneComponent = RealMultiPaneComponent(componentContext, onOutput, get())
 
-fun ComponentFactory.createSampleListComponent(
+fun ComponentFactory.createMultiPaneMenuComponent(
     componentContext: ComponentContext,
-    onOutput: (SampleListComponent.Output) -> Unit,
-): SampleListComponent = RealSampleListComponent(componentContext, onOutput)
+    onOutput: (MultiPaneMenuComponent.Output) -> Unit,
+): MultiPaneMenuComponent = RealMultiPaneMenuComponent(componentContext, onOutput)
 
-fun ComponentFactory.createSampleDetailsComponent(
+fun ComponentFactory.createMultiPaneDetailsComponent(
     componentContext: ComponentContext,
     sample: Sample,
-    onOutput: (SampleDetailsComponent.Output) -> Unit,
-): SampleDetailsComponent = RealSampleDetailsComponent(componentContext, sample, onOutput, get())
+    onOutput: (MultiPaneDetailsComponent.Output) -> Unit,
+): MultiPaneDetailsComponent = RealMultiPaneDetailsComponent(componentContext, sample, onOutput, get())

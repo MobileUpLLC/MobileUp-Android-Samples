@@ -25,7 +25,7 @@ import ru.mobileup.samples.features.menu.createMenuComponent
 import ru.mobileup.samples.features.menu.domain.Sample
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
 import ru.mobileup.samples.features.multipane_menu.createMultiPaneComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneMenuComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneComponent
 import ru.mobileup.samples.features.navigation.createNavigationComponent
 import ru.mobileup.samples.features.otp.createOtpComponent
 import ru.mobileup.samples.features.otp.presentation.OtpComponent
@@ -50,7 +50,7 @@ class RealRootComponent(
 
     override val childStack = childStack(
         source = navigation,
-        initialConfiguration = ChildConfig.MultiPaneMenu,
+        initialConfiguration = ChildConfig.Menu,
         serializer = ChildConfig.serializer(),
         handleBackButton = true,
         childFactory = ::createChild
@@ -210,8 +210,8 @@ class RealRootComponent(
         )
     }
 
-    private fun onMultiPaneOutput(output: MultiPaneMenuComponent.Output) = when (output) {
-        MultiPaneMenuComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
+    private fun onMultiPaneOutput(output: MultiPaneComponent.Output) = when (output) {
+        MultiPaneComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -236,6 +236,7 @@ class RealRootComponent(
                 Sample.Chat -> ChildConfig.Chat
                 Sample.WorkManager -> ChildConfig.WorkManager
                 Sample.DivKit -> ChildConfig.DivKit
+                Sample.MultiPaneMenu -> ChildConfig.MultiPaneMenu
             }.run(navigation::safePush)
 
             MenuComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)

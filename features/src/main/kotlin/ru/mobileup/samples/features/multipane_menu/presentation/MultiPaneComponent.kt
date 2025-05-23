@@ -5,13 +5,13 @@ import com.arkivanov.decompose.router.panels.ChildPanels
 import com.arkivanov.decompose.router.panels.ChildPanelsMode
 import kotlinx.coroutines.flow.StateFlow
 import ru.mobileup.samples.core.utils.PredictiveBackComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.details.SampleDetailsComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.list.SampleListComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.details.MultiPaneDetailsComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.list.MultiPaneMenuComponent
 
 @OptIn(ExperimentalDecomposeApi::class)
-interface MultiPaneMenuComponent : PredictiveBackComponent {
+interface MultiPaneComponent : PredictiveBackComponent {
 
-    val panels: StateFlow<ChildPanels<*, SampleListComponent, *, SampleDetailsComponent, Nothing, Nothing>>
+    val panels: StateFlow<ChildPanels<*, MultiPaneMenuComponent, *, MultiPaneDetailsComponent, Nothing, Nothing>>
 
     fun setMode(mode: ChildPanelsMode)
     fun onSettingsClick()

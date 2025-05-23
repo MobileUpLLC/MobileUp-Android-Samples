@@ -22,7 +22,7 @@ import ru.mobileup.samples.features.tutorial.presentation.TutorialSampleComponen
 import ru.mobileup.samples.features.video.presentation.VideoComponent
 import ru.mobileup.samples.features.work_manager.presentation.WorkManagerComponent
 
-interface SampleDetailsComponent {
+interface MultiPaneDetailsComponent {
 
     val childStack: StateFlow<ChildStack<*, Child>>
 

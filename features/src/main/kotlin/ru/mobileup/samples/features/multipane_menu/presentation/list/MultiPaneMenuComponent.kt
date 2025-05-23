@@ -2,7 +2,7 @@ package ru.mobileup.samples.features.multipane_menu.presentation.list
 
 import ru.mobileup.samples.features.menu.domain.Sample
 
-interface SampleListComponent {
+interface MultiPaneMenuComponent {
 
     fun onButtonClick(sample: Sample)
     fun onSettingsClick()

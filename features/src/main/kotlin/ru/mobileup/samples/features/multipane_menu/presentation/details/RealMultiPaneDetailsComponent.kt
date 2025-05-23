@@ -30,16 +30,16 @@ import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 import ru.mobileup.samples.features.work_manager.createWorkManagerComponent
 
-class RealSampleDetailsComponent(
+class RealMultiPaneDetailsComponent(
     componentContext: ComponentContext,
     sample: Sample,
-    private val onOutput: (SampleDetailsComponent.Output) -> Unit,
+    private val onOutput: (MultiPaneDetailsComponent.Output) -> Unit,
     private val componentFactory: ComponentFactory,
-) : ComponentContext by componentContext, SampleDetailsComponent {
+) : ComponentContext by componentContext, MultiPaneDetailsComponent {
 
     private val navigation = StackNavigation<ChildConfig>()
 
-    override val childStack: StateFlow<ChildStack<*, SampleDetailsComponent.Child>> = childStack(
+    override val childStack: StateFlow<ChildStack<*, MultiPaneDetailsComponent.Child>> = childStack(
         source = navigation,
         initialConfiguration = when (sample) {
             Sample.Form -> ChildConfig.Form
@@ -61,6 +61,7 @@ class RealSampleDetailsComponent(
             Sample.Chat -> ChildConfig.Chat
             Sample.WorkManager -> ChildConfig.WorkManager
             Sample.DivKit -> ChildConfig.DivKit
+            else -> error("Not supported sample")
         },
         serializer = ChildConfig.serializer(),
         handleBackButton = true,
@@ -70,87 +71,87 @@ class RealSampleDetailsComponent(
     private fun createChild(
         config: ChildConfig,
         componentContext: ComponentContext,
-    ): SampleDetailsComponent.Child = when (config) {
-        ChildConfig.Form -> SampleDetailsComponent.Child.Form(
+    ): MultiPaneDetailsComponent.Child = when (config) {
+        ChildConfig.Form -> MultiPaneDetailsComponent.Child.Form(
             componentFactory.createFormComponent(componentContext)
         )
 
-        ChildConfig.Otp -> SampleDetailsComponent.Child.Otp(
+        ChildConfig.Otp -> MultiPaneDetailsComponent.Child.Otp(
             componentFactory.createOtpComponent(componentContext, ::onOtpOutput)
         )
 
-        ChildConfig.Photo -> SampleDetailsComponent.Child.Photo(
+        ChildConfig.Photo -> MultiPaneDetailsComponent.Child.Photo(
             componentFactory.createPhotoComponent(componentContext)
         )
 
-        ChildConfig.Video -> SampleDetailsComponent.Child.Video(
+        ChildConfig.Video -> MultiPaneDetailsComponent.Child.Video(
             componentFactory.createVideoComponent(componentContext)
         )
 
-        ChildConfig.Document -> SampleDetailsComponent.Child.Document(
+        ChildConfig.Document -> MultiPaneDetailsComponent.Child.Document(
             componentFactory.createDocumentComponent(componentContext)
         )
 
-        ChildConfig.Uploader -> SampleDetailsComponent.Child.RemoteTransfer(
+        ChildConfig.Uploader -> MultiPaneDetailsComponent.Child.RemoteTransfer(
             componentFactory.createRemoteTransferComponent(componentContext)
         )
 
-        ChildConfig.Calendar -> SampleDetailsComponent.Child.Calendar(
+        ChildConfig.Calendar -> MultiPaneDetailsComponent.Child.Calendar(
             componentFactory.createCalendarComponent(componentContext)
         )
 
-        ChildConfig.QrCode -> SampleDetailsComponent.Child.QrCode(
+        ChildConfig.QrCode -> MultiPaneDetailsComponent.Child.QrCode(
             componentFactory.createQrCodeComponent(componentContext)
         )
 
-        ChildConfig.Chart -> SampleDetailsComponent.Child.Chart(
+        ChildConfig.Chart -> MultiPaneDetailsComponent.Child.Chart(
             componentFactory.createChartComponent(componentContext)
         )
 
-        ChildConfig.Navigation -> SampleDetailsComponent.Child.Navigation(
+        ChildConfig.Navigation -> MultiPaneDetailsComponent.Child.Navigation(
             componentFactory.createNavigationComponent(componentContext)
         )
 
-        ChildConfig.CollapsingToolbar -> SampleDetailsComponent.Child.CollapsingToolbar(
+        ChildConfig.CollapsingToolbar -> MultiPaneDetailsComponent.Child.CollapsingToolbar(
             componentFactory.createCollapsingToolbarComponent(componentContext)
         )
 
-        ChildConfig.Image -> SampleDetailsComponent.Child.Image(
+        ChildConfig.Image -> MultiPaneDetailsComponent.Child.Image(
             componentFactory.createImageComponent(componentContext)
         )
 
-        ChildConfig.Tutorial -> SampleDetailsComponent.Child.Tutorial(
+        ChildConfig.Tutorial -> MultiPaneDetailsComponent.Child.Tutorial(
             componentFactory.createTutorialSampleComponent(componentContext)
         )
 
-        ChildConfig.SharedElements -> SampleDetailsComponent.Child.SharedElements(
+        ChildConfig.SharedElements -> MultiPaneDetailsComponent.Child.SharedElements(
             componentFactory.createSharedElementsComponent(componentContext)
         )
 
-        ChildConfig.PinCodeSettings -> SampleDetailsComponent.Child.PinCodeSettings(
+        ChildConfig.PinCodeSettings -> MultiPaneDetailsComponent.Child.PinCodeSettings(
             componentFactory.createPinCodeSettingsComponent(componentContext)
         )
 
-        ChildConfig.Map -> SampleDetailsComponent.Child.Map(
+        ChildConfig.Map -> MultiPaneDetailsComponent.Child.Map(
             componentFactory.createMapMainComponent(componentContext)
         )
 
-        ChildConfig.Chat -> SampleDetailsComponent.Child.Chat(
+        ChildConfig.Chat -> MultiPaneDetailsComponent.Child.Chat(
             componentFactory.createChatComponent(componentContext)
         )
 
-        ChildConfig.WorkManager -> SampleDetailsComponent.Child.WorkManager(
+        ChildConfig.WorkManager -> MultiPaneDetailsComponent.Child.WorkManager(
             componentFactory.createWorkManagerComponent(componentContext)
         )
 
-        ChildConfig.DivKit -> SampleDetailsComponent.Child.DivKit(
+        ChildConfig.DivKit -> MultiPaneDetailsComponent.Child.DivKit(
             componentFactory.createDivKitComponent(componentContext)
         )
     }
 
     private fun onOtpOutput(output: OtpComponent.Output) = when (output) {
         OtpComponent.Output.OtpSuccessfullyVerified -> onOutput(
-            SampleDetailsComponent.Output.OtpSuccessfullyVerified
+            MultiPaneDetailsComponent.Output.OtpSuccessfullyVerified
         )
     }
 

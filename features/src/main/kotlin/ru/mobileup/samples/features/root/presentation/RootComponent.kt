@@ -16,7 +16,7 @@ import ru.mobileup.samples.features.form.presentation.FormComponent
 import ru.mobileup.samples.features.image.presentation.ImageComponent
 import ru.mobileup.samples.features.map.presentation.MapComponent
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
-import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneMenuComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneComponent
 import ru.mobileup.samples.features.navigation.NavigationComponent
 import ru.mobileup.samples.features.otp.presentation.OtpComponent
 import ru.mobileup.samples.features.photo.presentation.PhotoComponent
@@ -48,7 +48,7 @@ interface RootComponent : PredictiveBackComponent {
     val themeComponent: ThemeComponent
 
     sealed interface Child {
-        class MultiPaneMenu(val component: MultiPaneMenuComponent) : Child
+        class MultiPaneMenu(val component: MultiPaneComponent) : Child
         class Menu(val component: MenuComponent) : Child
         class Form(val component: FormComponent) : Child
         class Otp(val component: OtpComponent) : Child
