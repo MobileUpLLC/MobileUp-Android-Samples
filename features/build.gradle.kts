@@ -30,6 +30,7 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.4.0-alpha10")
     implementation(libs.accompanist.swiperefresh)
     implementation(libs.bundles.coil)
+    implementation(libs.compose.material.adaptive)
 
     // DI
     implementation(libs.koin)
@@ -87,9 +88,6 @@ dependencies {
 
     // Image Cropping
     implementation(libs.android.image.cropper)
-
-    // Work Manager
-    implementation(libs.work.ktx)
 
     // DivKit
     implementation(libs.bundles.divkit.client)

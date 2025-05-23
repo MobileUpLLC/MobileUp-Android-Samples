@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.UnstableApi
+import androidx.window.core.layout.WindowWidthSizeClass
 import ru.mobileup.samples.core.dialog.standard.StandardDialog
 import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
@@ -40,14 +42,19 @@ import ru.mobileup.samples.features.image.presentation.carousel.FullScreenImageC
 @Composable
 fun PhotoPreviewUi(
     component: PhotoPreviewComponent,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    SystemBars(
-        statusBarColor = Color.Transparent,
-        navigationBarColor = Color.Transparent,
-        statusBarIconsColor = SystemBarIconsColor.Light,
-        navigationBarIconsColor = SystemBarIconsColor.Light
-    )
+    val changeSystemBarColor =
+        currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+
+    if (changeSystemBarColor) {
+        SystemBars(
+            statusBarColor = Color.Transparent,
+            navigationBarColor = Color.Transparent,
+            statusBarIconsColor = SystemBarIconsColor.Light,
+            navigationBarIconsColor = SystemBarIconsColor.Light
+        )
+    }
 
     StandardDialog(component.saveDialog)
 
@@ -60,7 +67,7 @@ fun PhotoPreviewUi(
 @Composable
 private fun PhotoPreviewContent(
     component: PhotoPreviewComponent,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Scaffold(
         modifier = modifier,
@@ -83,7 +90,7 @@ private fun PhotoPreviewContent(
 @Composable
 private fun PreviewTopBar(
     onSaveClick: () -> Unit,
-    onShareClick: () -> Unit
+    onShareClick: () -> Unit,
 ) {
     val configuration = LocalConfiguration.current
     var orientation by remember { mutableIntStateOf(Configuration.ORIENTATION_PORTRAIT) }

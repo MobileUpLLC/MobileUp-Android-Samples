@@ -24,6 +24,8 @@ import ru.mobileup.samples.features.map.createMapMainComponent
 import ru.mobileup.samples.features.menu.createMenuComponent
 import ru.mobileup.samples.features.menu.domain.Sample
 import ru.mobileup.samples.features.menu.presentation.MenuComponent
+import ru.mobileup.samples.features.multipane_menu.createMultiPaneComponent
+import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneComponent
 import ru.mobileup.samples.features.navigation.createNavigationComponent
 import ru.mobileup.samples.features.otp.createOtpComponent
 import ru.mobileup.samples.features.otp.presentation.OtpComponent
@@ -32,10 +34,10 @@ import ru.mobileup.samples.features.pin_code.createCheckPinCodeManagementCompone
 import ru.mobileup.samples.features.pin_code.createPinCodeSettingsComponent
 import ru.mobileup.samples.features.pin_code.presentation.check_management.CheckPinCodeManagementComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
+import ru.mobileup.samples.features.remote_transfer.createRemoteTransferComponent
 import ru.mobileup.samples.features.settings.createSettingsComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
-import ru.mobileup.samples.features.remote_transfer.createRemoteTransferComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 import ru.mobileup.samples.features.work_manager.createWorkManagerComponent
 
@@ -77,6 +79,12 @@ class RealRootComponent(
         config: ChildConfig,
         componentContext: ComponentContext,
     ): RootComponent.Child = when (config) {
+        ChildConfig.MultiPaneMenu -> {
+            RootComponent.Child.MultiPaneMenu(
+                componentFactory.createMultiPaneComponent(componentContext, ::onMultiPaneOutput)
+            )
+        }
+
         ChildConfig.Menu -> {
             RootComponent.Child.Menu(
                 componentFactory.createMenuComponent(componentContext, ::onMenuOutput)
@@ -202,6 +210,10 @@ class RealRootComponent(
         )
     }
 
+    private fun onMultiPaneOutput(output: MultiPaneComponent.Output) = when (output) {
+        MultiPaneComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
+    }
+
     private fun onMenuOutput(output: MenuComponent.Output) {
         when (output) {
             is MenuComponent.Output.SampleChosen -> when (output.sample) {
@@ -224,6 +236,7 @@ class RealRootComponent(
                 Sample.Chat -> ChildConfig.Chat
                 Sample.WorkManager -> ChildConfig.WorkManager
                 Sample.DivKit -> ChildConfig.DivKit
+                Sample.MultiPaneMenu -> ChildConfig.MultiPaneMenu
             }.run(navigation::safePush)
 
             MenuComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
@@ -238,6 +251,9 @@ class RealRootComponent(
 
     @Serializable
     sealed interface ChildConfig {
+
+        @Serializable
+        data object MultiPaneMenu : ChildConfig
 
         @Serializable
         data object Menu : ChildConfig

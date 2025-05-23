@@ -28,16 +28,17 @@ import ru.mobileup.samples.features.form.presentation.FormUi
 import ru.mobileup.samples.features.image.presentation.ImageUi
 import ru.mobileup.samples.features.map.presentation.MapUi
 import ru.mobileup.samples.features.menu.presentation.MenuUi
+import ru.mobileup.samples.features.multipane_menu.presentation.MultiPaneUi
 import ru.mobileup.samples.features.navigation.NavigationUi
 import ru.mobileup.samples.features.otp.presentation.OtpUi
 import ru.mobileup.samples.features.photo.presentation.PhotoUi
 import ru.mobileup.samples.features.pin_code.presentation.check_management.CheckPinCodeManagementUi
 import ru.mobileup.samples.features.pin_code.presentation.settings.PinCodeSettingsUi
 import ru.mobileup.samples.features.qr_code.presentation.QrCodeUi
+import ru.mobileup.samples.features.remote_transfer.presentation.RemoteTransferUi
 import ru.mobileup.samples.features.settings.presentation.SettingsUi
 import ru.mobileup.samples.features.shared_element_transitions.presentation.SharedElementsUi
 import ru.mobileup.samples.features.tutorial.presentation.TutorialSampleUi
-import ru.mobileup.samples.features.remote_transfer.presentation.RemoteTransferUi
 import ru.mobileup.samples.features.video.presentation.VideoUi
 import ru.mobileup.samples.features.work_manager.presentation.WorkManagerUi
 
@@ -58,6 +59,7 @@ fun RootUi(
         animation = component.predictiveBackAnimation()
     ) { child ->
         when (val instance = child.instance) {
+            is RootComponent.Child.MultiPaneMenu -> MultiPaneUi(instance.component)
             is RootComponent.Child.Menu -> MenuUi(instance.component)
             is RootComponent.Child.Form -> FormUi(instance.component)
             is RootComponent.Child.Otp -> OtpUi(instance.component)

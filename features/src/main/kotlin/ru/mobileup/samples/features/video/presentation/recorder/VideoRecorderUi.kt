@@ -38,6 +38,7 @@ import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -64,6 +65,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.window.core.layout.WindowWidthSizeClass
 import kotlinx.coroutines.launch
 import ru.mobileup.samples.core.message.presentation.noOverlapByMessage
 import ru.mobileup.samples.core.theme.AppTheme
@@ -166,12 +168,16 @@ fun VideoRecorderUi(
         videoRecorderController.zoomChange(zoomChange = zoomChange)
     }
 
-    SystemBars(
-        statusBarColor = Color.Transparent,
-        navigationBarColor = Color.Transparent,
-        statusBarIconsColor = SystemBarIconsColor.Light,
-        navigationBarIconsColor = SystemBarIconsColor.Light
-    )
+    val changeSystemBarColor = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+
+    if (changeSystemBarColor) {
+        SystemBars(
+            statusBarColor = Color.Transparent,
+            navigationBarColor = Color.Transparent,
+            statusBarIconsColor = SystemBarIconsColor.Light,
+            navigationBarIconsColor = SystemBarIconsColor.Light
+        )
+    }
 
     LaunchedEffect(filtersPagerState.settledPage, filtersPagerState.isScrollInProgress) {
         val newEffectIndex = filtersPagerState.settledPage % availableFilters.size

@@ -7,12 +7,12 @@ import com.yandex.div.json.ParsingErrorLogger
 import org.koin.core.component.get
 import org.koin.dsl.module
 import ru.mobileup.samples.core.ComponentFactory
+import ru.mobileup.samples.features.divkit.data.DivKitRepository
+import ru.mobileup.samples.features.divkit.data.DivKitRepositoryImpl
 import ru.mobileup.samples.features.divkit.data.api.DivKitApi
 import ru.mobileup.samples.features.divkit.data.api.DivKitApiImpl
 import ru.mobileup.samples.features.divkit.data.db.DivKitGoodsDb
 import ru.mobileup.samples.features.divkit.data.db.DivKitGoodsDbImpl
-import ru.mobileup.samples.features.divkit.data.DivKitRepository
-import ru.mobileup.samples.features.divkit.data.DivKitRepositoryImpl
 import ru.mobileup.samples.features.divkit.presentation.DivKitComponent
 import ru.mobileup.samples.features.divkit.presentation.RealDivKitComponent
 import ru.mobileup.samples.features.divkit.presentation.example_details.DivKitExampleDetailsComponent

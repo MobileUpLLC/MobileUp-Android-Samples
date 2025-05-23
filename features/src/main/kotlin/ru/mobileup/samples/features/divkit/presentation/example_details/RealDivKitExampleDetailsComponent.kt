@@ -1,6 +1,7 @@
 package ru.mobileup.samples.features.divkit.presentation.example_details
 
 import android.net.Uri
+import androidx.core.net.toUri
 import com.arkivanov.decompose.ComponentContext
 import com.yandex.div.core.Div2Context
 import com.yandex.div.core.DivActionHandler
@@ -19,7 +20,6 @@ import ru.mobileup.samples.core.message.domain.Message
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.features.divkit.data.DivKitRepository
 import ru.mobileup.samples.features.divkit.presentation.extension.tag
-import androidx.core.net.toUri
 
 class RealDivKitExampleDetailsComponent(
     componentContext: ComponentContext,

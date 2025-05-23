@@ -30,8 +30,6 @@ import androidx.compose.ui.unit.dp
 import dev.icerock.moko.resources.compose.localized
 import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
-import ru.mobileup.samples.core.utils.SystemBarIconsColor
-import ru.mobileup.samples.core.utils.SystemBars
 import ru.mobileup.samples.core.utils.clickableNoRipple
 import ru.mobileup.samples.features.R
 import ru.mobileup.samples.features.remote_transfer.domain.RemoteTransferTab
@@ -44,11 +42,6 @@ fun RemoteTransferUi(
     component: RemoteTransferComponent,
     modifier: Modifier = Modifier
 ) {
-    SystemBars(
-        statusBarColor = Color.Transparent,
-        statusBarIconsColor = SystemBarIconsColor.Light,
-    )
-
     RemoteTransferContent(
         component = component,
         modifier = modifier
@@ -137,7 +130,7 @@ private fun RemoteTransferTopBar(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .background(CustomTheme.colors.palette.black)
+            .background(CustomTheme.colors.background.screen)
             .statusBarsPadding()
             .padding(horizontal = 8.dp, vertical = 24.dp)
     ) {
@@ -150,7 +143,6 @@ private fun RemoteTransferTopBar(
 
         Text(
             text = stringResource(R.string.remote_transfer_title),
-            color = CustomTheme.colors.palette.white,
             modifier = Modifier
                 .weight(2f)
                 .align(Alignment.CenterVertically)

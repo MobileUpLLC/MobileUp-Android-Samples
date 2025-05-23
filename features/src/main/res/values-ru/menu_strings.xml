@@ -1,4 +1,5 @@
 <resources>
+    <string name="menu_item_multi_pane_menu">MultiPane Menu</string>
     <string name="menu_item_form">Form</string>
     <string name="menu_item_otp">OTP</string>
     <string name="menu_item_photo">Фото</string>
@@ -18,4 +19,6 @@
     <string name="menu_item_chat">Чат</string>
     <string name="menu_item_work_manager">WorkManager</string>
     <string name="menu_item_div_kit">ДивКит (SDUI)</string>
+    <string name="menu_item_details_placeholder">Выбирете сэмпл</string>
+    <string name="menu_multipane_info_description">Этот пример демонстрирует адаптивный интерфейс с поддержкой Multi-pane UI. В зависимости от устройства, интерфейс изменяется: на телефонах контент отображается на отдельных экранах, а на планшетах — экран делится на две части, показывая список и детали одновременно.</string>
 </resources>

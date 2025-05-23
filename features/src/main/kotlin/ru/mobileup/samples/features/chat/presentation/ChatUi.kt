@@ -32,6 +32,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -48,6 +49,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowWidthSizeClass
 import ru.mobileup.kmm_form_validation.control.InputControl
 import ru.mobileup.samples.core.dialog.standard.StandardDialog
 import ru.mobileup.samples.core.theme.AppTheme
@@ -78,12 +80,16 @@ fun ChatUi(
     component: ChatComponent,
     modifier: Modifier = Modifier,
 ) {
-    SystemBars(
-        statusBarColor = CustomTheme.colors.chat.primary,
-        navigationBarColor = CustomTheme.colors.chat.primary,
-        statusBarIconsColor = SystemBarIconsColor.Light,
-        navigationBarIconsColor = SystemBarIconsColor.Light
-    )
+    val changeSystemBarColor = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+
+    if (changeSystemBarColor) {
+        SystemBars(
+            statusBarColor = CustomTheme.colors.chat.primary,
+            navigationBarColor = CustomTheme.colors.chat.primary,
+            statusBarIconsColor = SystemBarIconsColor.Light,
+            navigationBarIconsColor = SystemBarIconsColor.Light
+        )
+    }
 
     Scaffold(
         modifier = modifier,

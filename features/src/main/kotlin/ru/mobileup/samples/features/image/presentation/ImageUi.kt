@@ -18,6 +18,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -26,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.window.core.layout.WindowWidthSizeClass
 import dev.icerock.moko.resources.compose.localized
 import ru.mobileup.samples.core.theme.AppTheme
 import ru.mobileup.samples.core.theme.custom.CustomTheme
@@ -46,7 +48,13 @@ fun ImageUi(
     Box(modifier = modifier) {
         when (mode) {
             ImageCarouselMode.Embedded -> {
-                Column(Modifier.statusBarsPadding()) {
+                Column(
+                    Modifier
+                        .statusBarsPadding()
+                        .verticalScroll(
+                            rememberScrollState()
+                        )
+                ) {
                     EmbeddedImageCarouselUi(component.imageCarouselComponent)
                     CatsTextContent(
                         title = title.localized(),
@@ -63,32 +71,37 @@ fun ImageUi(
             }
         }
 
-        ImageToolbar()
+        ImageToolbar(mode)
     }
 }
 
 @Composable
-private fun ImageToolbar(modifier: Modifier = Modifier) {
+private fun ImageToolbar(mode: ImageCarouselMode, modifier: Modifier = Modifier) {
     val context = LocalContext.current
+    val isCompact =
+        currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+
     Box(
         modifier = modifier
             .fillMaxHeight()
             .statusBarsPadding()
     ) {
-        Surface(
-            modifier = Modifier
-                .padding(16.dp)
-                .clip(RoundedCornerShape(12.dp))
-                .size(40.dp)
-                .clickable { dispatchOnBackPressed(context) },
-            shape = RoundedCornerShape(12.dp),
-            color = CustomTheme.colors.background.screen
-        ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                contentDescription = null,
-                modifier = Modifier.requiredSize(24.dp)
-            )
+        if (!isCompact && mode != ImageCarouselMode.Embedded) {
+            Surface(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .size(40.dp)
+                    .clickable { dispatchOnBackPressed(context) },
+                shape = RoundedCornerShape(12.dp),
+                color = CustomTheme.colors.background.screen
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Default.ArrowBack,
+                    contentDescription = null,
+                    modifier = Modifier.requiredSize(24.dp)
+                )
+            }
         }
     }
 }
@@ -101,7 +114,6 @@ private fun CatsTextContent(
 ) {
     Column(
         modifier = modifier
-            .verticalScroll(rememberScrollState())
             .navigationBarsPadding()
     ) {
         Text(

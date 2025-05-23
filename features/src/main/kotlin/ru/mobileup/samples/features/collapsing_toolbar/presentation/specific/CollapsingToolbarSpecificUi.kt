@@ -23,6 +23,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -41,10 +42,11 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
+import androidx.window.core.layout.WindowWidthSizeClass
 import ru.mobileup.samples.core.theme.custom.CustomTheme
-import ru.mobileup.samples.core.utils.clickableNoRipple
 import ru.mobileup.samples.core.utils.SystemBarIconsColor
 import ru.mobileup.samples.core.utils.SystemBars
+import ru.mobileup.samples.core.utils.clickableNoRipple
 import ru.mobileup.samples.features.collapsing_toolbar.presentation.common.widget.CustomToolbarDefaults
 import ru.mobileup.samples.features.collapsing_toolbar.presentation.specific.widget.SpecificToolbar
 
@@ -65,10 +67,14 @@ fun CollapsingToolbarSpecificUi(
         convergenceCoefficient = { convergenceCoefficient }
     )
 
-    SystemBars(
-        statusBarColor = Color.Transparent,
-        statusBarIconsColor = SystemBarIconsColor.Light,
-    )
+    val changeSystemBarColor = currentWindowAdaptiveInfo().windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT
+
+    if (changeSystemBarColor) {
+        SystemBars(
+            statusBarColor = Color.Transparent,
+            statusBarIconsColor = SystemBarIconsColor.Light,
+        )
+    }
 
     // Don't copy ⚠️ For demonstration purposes, the ScrollState and ScrollBehavior positions are reset.
     LaunchedEffect(canCollapse, convergenceCoefficient, itemsCount) {
