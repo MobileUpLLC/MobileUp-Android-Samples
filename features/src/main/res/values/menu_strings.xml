@@ -3,6 +3,7 @@
     <string name="menu_item_otp">OTP</string>
     <string name="menu_item_photo">Photo</string>
     <string name="menu_item_video">Video</string>
+    <string name="menu_item_audio">Audio</string>
     <string name="menu_item_document">Document</string>
     <string name="menu_item_remote_transfer">Remote transfer</string>
     <string name="menu_item_calendar">Calendar</string>

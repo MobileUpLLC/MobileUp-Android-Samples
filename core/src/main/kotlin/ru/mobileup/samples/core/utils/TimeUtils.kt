@@ -1,5 +1,8 @@
 package ru.mobileup.samples.core.utils
 
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.Locale
@@ -20,3 +23,5 @@ fun formatSecondsToMS(seconds: Long): String {
 fun LocalDate.toDay(): String {
     return DateTimeFormatter.ofPattern("dd").format(this)
 }
+
+fun localDateTimeNow(timeZone: TimeZone = TimeZone.currentSystemDefault()) = Clock.System.now().toLocalDateTime(timeZone)

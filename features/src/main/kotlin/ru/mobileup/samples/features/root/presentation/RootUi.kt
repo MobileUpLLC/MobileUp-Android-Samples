@@ -18,6 +18,7 @@ import ru.mobileup.samples.core.utils.ConfigureSystemBars
 import ru.mobileup.samples.core.utils.LocalSystemBarsSettings
 import ru.mobileup.samples.core.utils.accumulate
 import ru.mobileup.samples.core.utils.predictiveBackAnimation
+import ru.mobileup.samples.features.audio.presentation.AudioUi
 import ru.mobileup.samples.features.calendar.presentation.CalendarUi
 import ru.mobileup.samples.features.charts.presentation.ChartUi
 import ru.mobileup.samples.features.chat.presentation.ChatUi
@@ -63,6 +64,7 @@ fun RootUi(
             is RootComponent.Child.Otp -> OtpUi(instance.component)
             is RootComponent.Child.Photo -> PhotoUi(instance.component)
             is RootComponent.Child.Video -> VideoUi(instance.component)
+            is RootComponent.Child.Audio -> AudioUi(instance.component)
             is RootComponent.Child.Document -> DocumentUi(instance.component)
             is RootComponent.Child.RemoteTransfer -> RemoteTransferUi(instance.component)
             is RootComponent.Child.Calendar -> CalendarUi(instance.component)

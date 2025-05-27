@@ -6,6 +6,7 @@ import ru.mobileup.samples.core.message.presentation.MessageComponent
 import ru.mobileup.samples.core.theme.component.ThemeComponent
 import ru.mobileup.samples.core.tutorial.presentation.overlay.TutorialOverlayComponent
 import ru.mobileup.samples.core.utils.PredictiveBackComponent
+import ru.mobileup.samples.features.audio.presentation.AudioComponent
 import ru.mobileup.samples.features.calendar.presentation.CalendarComponent
 import ru.mobileup.samples.features.charts.presentation.ChartComponent
 import ru.mobileup.samples.features.chat.presentation.ChatComponent
@@ -52,6 +53,7 @@ interface RootComponent : PredictiveBackComponent {
         class Otp(val component: OtpComponent) : Child
         class Photo(val component: PhotoComponent) : Child
         class Video(val component: VideoComponent) : Child
+        class Audio(val component: AudioComponent) : Child
         class Document(val component: DocumentComponent) : Child
         class RemoteTransfer(val component: RemoteTransferComponent) : Child
         class Calendar(val component: CalendarComponent) : Child
