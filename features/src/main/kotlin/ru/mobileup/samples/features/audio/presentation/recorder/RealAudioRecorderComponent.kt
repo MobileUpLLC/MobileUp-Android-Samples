@@ -2,6 +2,7 @@ package ru.mobileup.samples.features.audio.presentation.recorder
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.essenty.lifecycle.doOnDestroy
+import com.arkivanov.essenty.lifecycle.doOnStop
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
@@ -36,7 +37,7 @@ class RealAudioRecorderComponent(
         .stateIn(
             scope = componentScope,
             initialValue = emptyList(),
-            started = SharingStarted.WhileSubscribed(5_000)
+            started = SharingStarted.Eagerly
         )
 
     private val selectedPlayingFile = MutableStateFlow<AudioFile?>(null)
@@ -62,10 +63,22 @@ class RealAudioRecorderComponent(
             audioRecorder.release()
             audioPlayer.release()
         }
+
+        doOnStop {
+            if (audioRecorder.recorderState.value is AudioRecorderState.Recording) {
+                audioRecorder.stop()
+            }
+            if (audioPlayer.playerState.value is AudioPlayerState.Playing) {
+                audioPlayer.stop()
+            }
+        }
     }
 
     override fun onClickRecord() {
         componentScope.launch {
+            if (playingFile.value?.isPlaying == true) {
+                audioPlayer.stop()
+            }
             if (audioRecorder.recorderState.value is AudioRecorderState.Recording) {
                 audioRecorder.stop()
             } else {

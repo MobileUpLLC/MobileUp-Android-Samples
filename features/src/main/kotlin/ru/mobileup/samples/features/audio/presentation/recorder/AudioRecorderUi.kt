@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -28,7 +27,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
@@ -93,8 +91,6 @@ fun AudioRecorderUi(
                 AudioRecordWave(
                     amplitudeHolder = component.audioAmplitudeGenerator,
                     modifier = Modifier
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(CustomTheme.colors.textField.backgroundDisabled)
                         .padding(vertical = 8.dp, horizontal = 16.dp)
                         .align(Alignment.CenterHorizontally)
                 )

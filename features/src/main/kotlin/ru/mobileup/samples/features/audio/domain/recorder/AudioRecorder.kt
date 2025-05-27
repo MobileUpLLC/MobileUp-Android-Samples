@@ -7,7 +7,6 @@ import android.os.Build
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.io.IOException
 import ru.mobileup.samples.core.permissions.PermissionService
 import ru.mobileup.samples.core.permissions.SinglePermissionResult
 import ru.mobileup.samples.features.audio.domain.utils.getOutputAudioFile
@@ -28,6 +27,7 @@ class AudioRecorder(
         private set
 
     suspend fun start() {
+        if (_recorderState.value is AudioRecorderState.Recording) return
         if (verifyPermission()) {
             recorder = buildMediaRecorder()
                 .apply {
@@ -35,7 +35,7 @@ class AudioRecorder(
                         _recorderState.update { AudioRecorderState.Recording }
                         prepare()
                         start()
-                    } catch (e: IOException) {
+                    } catch (e: Exception) {
                         _recorderState.update { AudioRecorderState.Idle }
                     }
                 }
@@ -44,9 +44,13 @@ class AudioRecorder(
     }
 
     fun stop() {
-        recorder?.stop()
-        release()
-        _recorderState.update { AudioRecorderState.Idle }
+        if (_recorderState.value is AudioRecorderState.Idle) return
+        try {
+            recorder?.stop()
+            release()
+        } catch (_: Exception) { } finally {
+            _recorderState.update { AudioRecorderState.Idle }
+        }
     }
 
     fun release() {
