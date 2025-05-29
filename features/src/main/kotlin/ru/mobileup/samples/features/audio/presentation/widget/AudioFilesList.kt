@@ -61,6 +61,7 @@ import ru.mobileup.samples.features.audio.domain.model.PlayingAudioFile
 import ru.mobileup.samples.features.audio.domain.utils.displayedTime
 
 private const val DELETE_POPUP_DELAY = 5_000L
+private const val DELETE_SWIPE_RESET_DELAY = 1_500L
 
 @Composable
 fun AudioFilesList(
@@ -106,6 +107,8 @@ fun AudioFilesList(
                 LaunchedEffect(swipeState.currentValue) {
                     if (swipeState.currentValue == SwipeToDismissBoxValue.EndToStart) {
                         onDeleteUpdated(it.id)
+                        delay(DELETE_SWIPE_RESET_DELAY)
+                        swipeState.reset()
                     }
                 }
 
