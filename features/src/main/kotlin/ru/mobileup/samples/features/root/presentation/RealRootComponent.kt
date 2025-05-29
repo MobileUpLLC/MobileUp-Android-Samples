@@ -12,6 +12,7 @@ import ru.mobileup.samples.core.createThemeComponent
 import ru.mobileup.samples.core.createTutorialOverlayComponent
 import ru.mobileup.samples.core.utils.safePush
 import ru.mobileup.samples.core.utils.toStateFlow
+import ru.mobileup.samples.features.audio.createAudioComponent
 import ru.mobileup.samples.features.calendar.createCalendarComponent
 import ru.mobileup.samples.features.charts.createChartComponent
 import ru.mobileup.samples.features.chat.createChatComponent
@@ -104,6 +105,12 @@ class RealRootComponent(
         ChildConfig.Video -> {
             RootComponent.Child.Video(
                 componentFactory.createVideoComponent(componentContext)
+            )
+        }
+
+        ChildConfig.Audio -> {
+            RootComponent.Child.Audio(
+                componentFactory.createAudioComponent(componentContext)
             )
         }
 
@@ -209,6 +216,7 @@ class RealRootComponent(
                 Sample.Otp -> ChildConfig.Otp
                 Sample.Photo -> ChildConfig.Photo
                 Sample.Video -> ChildConfig.Video
+                Sample.Audio -> ChildConfig.Audio
                 Sample.Document -> ChildConfig.Document
                 Sample.RemoteTransfer -> ChildConfig.RemoteTransfer
                 Sample.Calendar -> ChildConfig.Calendar
@@ -253,6 +261,9 @@ class RealRootComponent(
 
         @Serializable
         data object Video : ChildConfig
+
+        @Serializable
+        data object Audio : ChildConfig
 
         @Serializable
         data object Document : ChildConfig

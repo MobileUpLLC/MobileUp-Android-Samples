@@ -1,6 +1,7 @@
 package ru.mobileup.samples
 
 import ru.mobileup.samples.core.coreModule
+import ru.mobileup.samples.features.audio.audioModule
 import ru.mobileup.samples.features.chat.chatModule
 import ru.mobileup.samples.features.divkit.divKitModule
 import ru.mobileup.samples.features.document.documentModule
@@ -15,6 +16,7 @@ val allModules = listOf(
     coreModule(BuildConfig.BACKEND_URL),
     photoModule,
     videoModule,
+    audioModule,
     documentModule,
     remoteTransferModule,
     pinCodeModule,

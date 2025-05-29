@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="audio_menu_recorder">Record</string>
+    <string name="audio_recorder_delete_help_message">Swipe the card to delete the audio recording</string>
+</resources>

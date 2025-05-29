@@ -6,7 +6,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
+import ru.mobileup.samples.core.utils.timeNow
 import kotlin.time.Duration.Companion.seconds
 
 sealed interface TimerState {
@@ -24,10 +24,10 @@ class Timer(private val coroutineScope: CoroutineScope) {
     fun start(timerTimeInSeconds: Long) {
         cancel()
         timerJob = coroutineScope.launch {
-            val timeInTheFuture = Clock.System.now().epochSeconds + timerTimeInSeconds
+            val timeInTheFuture = timeNow().epochSeconds + timerTimeInSeconds
             var tick = timerTimeInSeconds
             while (tick != 0L) {
-                tick = (timeInTheFuture - Clock.System.now().epochSeconds).coerceAtLeast(0)
+                tick = (timeInTheFuture - timeNow().epochSeconds).coerceAtLeast(0)
                 _timerState.value = TimerState.CountingDown(tick)
                 delay(1.seconds)
             }

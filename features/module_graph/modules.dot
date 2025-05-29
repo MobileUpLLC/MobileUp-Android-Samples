@@ -1,8 +1,10 @@
 digraph {
+audio
 calendar
 charts
 chat
 collapsing_toolbar
+divkit
 document
 form
 image
@@ -13,19 +15,21 @@ otp
 photo
 pin_code
 qr_code
+remote_transfer
 root
 settings
 shared_element_transitions
 tutorial
-uploader
 video
 work_manager
 photo -> image
 photo -> video
+root -> audio
 root -> calendar
 root -> charts
 root -> chat
 root -> collapsing_toolbar
+root -> divkit
 root -> document
 root -> form
 root -> image
@@ -36,10 +40,10 @@ root -> otp
 root -> photo
 root -> pin_code
 root -> qr_code
+root -> remote_transfer
 root -> settings
 root -> shared_element_transitions
 root -> tutorial
-root -> uploader
 root -> video
 root -> work_manager
 }

@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.datetime.Clock
 import ru.mobileup.samples.core.biometric.data.BiometricEnablingStorage
 import ru.mobileup.samples.core.biometric.data.BiometricService
 import ru.mobileup.samples.core.biometric.domain.BiometricAuthResult
@@ -24,6 +23,7 @@ import ru.mobileup.samples.core.message.data.MessageService
 import ru.mobileup.samples.core.message.domain.Message
 import ru.mobileup.samples.core.utils.componentScope
 import ru.mobileup.samples.core.utils.computed
+import ru.mobileup.samples.core.utils.timeNow
 import ru.mobileup.samples.features.R
 import ru.mobileup.samples.features.pin_code.data.PinCodeStorage
 import ru.mobileup.samples.features.pin_code.domain.PinCode
@@ -188,7 +188,7 @@ class RealCheckPinCodeComponent(
                 pinCodeStorage.incrementAttemptsCounter()
                 if (pinCodeStorage.getAttemptsCounter() == COUNT_TOO_MANY_ATTEMPTS) {
                     pinCodeStorage.setAttemptsCounter(0)
-                    pinCodeStorage.setBadAuthTimestamp(Clock.System.now().toEpochMilliseconds())
+                    pinCodeStorage.setBadAuthTimestamp(timeNow().toEpochMilliseconds())
                     dialogControl.show(timerDialogData)
                 }
                 pinCode = ""
@@ -206,7 +206,7 @@ class RealCheckPinCodeComponent(
     }
 
     private suspend fun shouldShowTimerDialog(): Boolean {
-        val now = Clock.System.now().toEpochMilliseconds()
+        val now = timeNow().toEpochMilliseconds()
         val pinCodeUnlockTime = pinCodeStorage.getBadAuthTimestamp() + PIN_CODE_LOCK_TIME
         return now < pinCodeUnlockTime
     }

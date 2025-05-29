@@ -13,6 +13,7 @@ enum class Sample(
     Otp(R.string.menu_item_otp.strResDesc()),
     Photo(R.string.menu_item_photo.strResDesc()),
     Video(R.string.menu_item_video.strResDesc()),
+    Audio(R.string.menu_item_audio.strResDesc()),
     Document(R.string.menu_item_document.strResDesc()),
     RemoteTransfer(R.string.menu_item_remote_transfer.strResDesc()),
     Calendar(R.string.menu_item_calendar.strResDesc()),
