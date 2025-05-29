@@ -24,4 +24,6 @@ fun LocalDate.toDay(): String {
     return DateTimeFormatter.ofPattern("dd").format(this)
 }
 
-fun localDateTimeNow(timeZone: TimeZone = TimeZone.currentSystemDefault()) = Clock.System.now().toLocalDateTime(timeZone)
+fun timeNow() = Clock.System.now()
+
+fun localDateTimeNow(timeZone: TimeZone = TimeZone.currentSystemDefault()) = timeNow().toLocalDateTime(timeZone)

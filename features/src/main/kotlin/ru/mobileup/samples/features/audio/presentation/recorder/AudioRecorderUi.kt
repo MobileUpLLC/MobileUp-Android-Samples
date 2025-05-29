@@ -81,6 +81,7 @@ fun AudioRecorderUi(
                     shape = CircleShape
                 )
         )
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()

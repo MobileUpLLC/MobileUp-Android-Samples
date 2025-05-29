@@ -8,7 +8,10 @@ import java.io.File
 import java.time.format.DateTimeFormatter
 import java.util.UUID
 
-private const val FILE_FORMAT_SUFFIX = ".aac"
+object AudioFormat {
+    const val FORMAT = "aac"
+    const val SUFFIX = ".$FORMAT"
+}
 
 enum class AudioDirectory(
     private val dirName: String
@@ -21,10 +24,10 @@ enum class AudioDirectory(
             .resolve("audio_cache/$dirName")
 }
 
-fun getAudioFileName(formatSuffix: String = FILE_FORMAT_SUFFIX) =
+fun getAudioFileName(formatSuffix: String = AudioFormat.SUFFIX) =
     UUID.randomUUID().toString() + formatSuffix
 
-fun Context.getOutputAudioFile(formatSuffix: String = FILE_FORMAT_SUFFIX): File {
+fun Context.getOutputAudioFile(formatSuffix: String = AudioFormat.SUFFIX): File {
     val audioRoot = AudioDirectory.Recorder.toFile(this)
     if (!audioRoot.exists()) {
         audioRoot.mkdirs()

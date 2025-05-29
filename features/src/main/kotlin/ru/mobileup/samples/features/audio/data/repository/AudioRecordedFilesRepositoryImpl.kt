@@ -27,14 +27,13 @@ import ru.mobileup.samples.core.utils.localDateTimeNow
 import ru.mobileup.samples.features.audio.domain.model.AudioFile
 import ru.mobileup.samples.features.audio.domain.model.AudioFileId
 import ru.mobileup.samples.features.audio.domain.utils.AudioDirectory
+import ru.mobileup.samples.features.audio.domain.utils.AudioFormat
 
 class AudioRecordedFilesRepositoryImpl(
-    private val context: Context
+    private val context: Context,
 ) : AudioRecordedFilesRepository {
 
     private val observerMask = DELETE or MOVED_FROM or MOVED_TO or CLOSE_WRITE or ATTRIB
-
-    private val audioFilesExtension = "aac"
 
     private val audioRecorderFolder = AudioDirectory.Recorder.toFile(context)
 
@@ -43,7 +42,7 @@ class AudioRecordedFilesRepositoryImpl(
         fun emitCurrentFiles() {
             val files = audioRecorderFolder
                 .listFiles { file ->
-                    file.extension.equals(audioFilesExtension, ignoreCase = true)
+                    file.extension.equals(AudioFormat.FORMAT, ignoreCase = true)
                 }
                 ?.toList()
                 ?.mapNotNull { file ->
@@ -76,12 +75,10 @@ class AudioRecordedFilesRepositoryImpl(
 
     override suspend fun delete(audioFileId: AudioFileId) {
         withContext(Dispatchers.IO) {
-            try {
-                audioFileId.value
-                    .toUri()
-                    .toFile()
-                    .deleteRecursively()
-            } catch (_: Exception) { }
+            audioFileId.value
+                .toUri()
+                .toFile()
+                .deleteRecursively()
         }
     }
 
@@ -110,6 +107,9 @@ class AudioRecordedFilesRepositoryImpl(
     ): FileObserver {
         val onEventObserver = { _: Int, _: String? ->
             onFilesUpdated()
+        }
+        if (!audioRecorderFolder.exists()) {
+            audioRecorderFolder.mkdirs()
         }
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             object : FileObserver(audioRecorderFolder, observerMask) {

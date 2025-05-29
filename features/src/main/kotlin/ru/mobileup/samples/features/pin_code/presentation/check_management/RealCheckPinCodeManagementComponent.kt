@@ -10,9 +10,9 @@ import com.arkivanov.essenty.lifecycle.doOnStart
 import com.arkivanov.essenty.lifecycle.doOnStop
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.runBlocking
-import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import ru.mobileup.samples.core.ComponentFactory
+import ru.mobileup.samples.core.utils.timeNow
 import ru.mobileup.samples.core.utils.toStateFlow
 import ru.mobileup.samples.features.pin_code.createCheckPinCodeComponent
 import ru.mobileup.samples.features.pin_code.data.PinCodeStorage
@@ -59,7 +59,7 @@ class RealCheckPinCodeManagementComponent(
                 val time = backgroundStartTime ?: return@runBlocking
                 val pinCode = pinCodeStorage.getPinCode() ?: return@runBlocking
 
-                val currentMoment = Clock.System.now()
+                val currentMoment = timeNow()
                 val difference = currentMoment - time
                 if (difference >= CHECK_PIN_CODE_TIMEOUT) {
                     navigation.activate(Unit)
@@ -68,7 +68,7 @@ class RealCheckPinCodeManagementComponent(
             }
         }
         lifecycle.doOnStop {
-            backgroundStartTime = Clock.System.now()
+            backgroundStartTime = timeNow()
         }
     }
 
