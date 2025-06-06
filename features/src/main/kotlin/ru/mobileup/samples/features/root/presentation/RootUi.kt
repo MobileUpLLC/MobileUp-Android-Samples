@@ -18,6 +18,7 @@ import ru.mobileup.samples.core.utils.ConfigureSystemBars
 import ru.mobileup.samples.core.utils.LocalSystemBarsSettings
 import ru.mobileup.samples.core.utils.accumulate
 import ru.mobileup.samples.core.utils.predictiveBackAnimation
+import ru.mobileup.samples.features.bluetooth.presentation.BluetoothUi
 import ru.mobileup.samples.features.audio.presentation.AudioUi
 import ru.mobileup.samples.features.calendar.presentation.CalendarUi
 import ru.mobileup.samples.features.charts.presentation.ChartUi
@@ -81,6 +82,7 @@ fun RootUi(
             is RootComponent.Child.Chat -> ChatUi(instance.component)
             is RootComponent.Child.WorkManager -> WorkManagerUi(instance.component)
             is RootComponent.Child.DivKit -> DivKitUi(instance.component)
+            is RootComponent.Child.Bluetooth -> BluetoothUi(instance.component)
         }
     }
 

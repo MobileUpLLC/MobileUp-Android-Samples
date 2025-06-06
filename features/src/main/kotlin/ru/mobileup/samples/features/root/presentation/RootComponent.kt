@@ -6,6 +6,7 @@ import ru.mobileup.samples.core.message.presentation.MessageComponent
 import ru.mobileup.samples.core.theme.component.ThemeComponent
 import ru.mobileup.samples.core.tutorial.presentation.overlay.TutorialOverlayComponent
 import ru.mobileup.samples.core.utils.PredictiveBackComponent
+import ru.mobileup.samples.features.bluetooth.presentation.BluetoothComponent
 import ru.mobileup.samples.features.audio.presentation.AudioComponent
 import ru.mobileup.samples.features.calendar.presentation.CalendarComponent
 import ru.mobileup.samples.features.charts.presentation.ChartComponent
@@ -70,5 +71,6 @@ interface RootComponent : PredictiveBackComponent {
         class Settings(val component: SettingsComponent) : Child
         class WorkManager(val component: WorkManagerComponent) : Child
         class DivKit(val component: DivKitComponent) : Child
+        class Bluetooth(val component: BluetoothComponent) : Child
     }
 }

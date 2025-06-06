@@ -12,6 +12,7 @@ import ru.mobileup.samples.core.createThemeComponent
 import ru.mobileup.samples.core.createTutorialOverlayComponent
 import ru.mobileup.samples.core.utils.safePush
 import ru.mobileup.samples.core.utils.toStateFlow
+import ru.mobileup.samples.features.bluetooth.createBluetoothComponent
 import ru.mobileup.samples.features.audio.createAudioComponent
 import ru.mobileup.samples.features.calendar.createCalendarComponent
 import ru.mobileup.samples.features.charts.createChartComponent
@@ -33,10 +34,10 @@ import ru.mobileup.samples.features.pin_code.createCheckPinCodeManagementCompone
 import ru.mobileup.samples.features.pin_code.createPinCodeSettingsComponent
 import ru.mobileup.samples.features.pin_code.presentation.check_management.CheckPinCodeManagementComponent
 import ru.mobileup.samples.features.qr_code.createQrCodeComponent
+import ru.mobileup.samples.features.remote_transfer.createRemoteTransferComponent
 import ru.mobileup.samples.features.settings.createSettingsComponent
 import ru.mobileup.samples.features.shared_element_transitions.createSharedElementsComponent
 import ru.mobileup.samples.features.tutorial.createTutorialSampleComponent
-import ru.mobileup.samples.features.remote_transfer.createRemoteTransferComponent
 import ru.mobileup.samples.features.video.createVideoComponent
 import ru.mobileup.samples.features.work_manager.createWorkManagerComponent
 
@@ -207,6 +208,10 @@ class RealRootComponent(
         ChildConfig.DivKit -> RootComponent.Child.DivKit(
             componentFactory.createDivKitComponent(componentContext)
         )
+
+        ChildConfig.Bluetooth -> RootComponent.Child.Bluetooth(
+            componentFactory.createBluetoothComponent(componentContext)
+        )
     }
 
     private fun onMenuOutput(output: MenuComponent.Output) {
@@ -232,6 +237,7 @@ class RealRootComponent(
                 Sample.Chat -> ChildConfig.Chat
                 Sample.WorkManager -> ChildConfig.WorkManager
                 Sample.DivKit -> ChildConfig.DivKit
+                Sample.Bluetooth -> ChildConfig.Bluetooth
             }.run(navigation::safePush)
 
             MenuComponent.Output.SettingsRequested -> navigation.safePush(ChildConfig.Settings)
@@ -312,5 +318,8 @@ class RealRootComponent(
 
         @Serializable
         data object DivKit : ChildConfig
+
+        @Serializable
+        data object Bluetooth : ChildConfig
     }
 }
