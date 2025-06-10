@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bluetooth_menu_devices">Bluetooth devices</string>
+    <string name="bluetooth_not_supported">The device does not support Bluetooth</string>
+    <string name="bluetooth_of">Bluetooth is off</string>
+    <string name="bluetooth_on">Bluetooth is on</string>
+    <string name="bluetooth_paired_devices">Paired devices</string>
+    <string name="bluetooth_scanning_devices">Available devices</string>
+    <string name="bluetooth_device_unknown_name">Unknown name</string>
+    <string name="bluetooth_scanning_error">An error occurred during scanning</string>
+    <string name="bluetooth_pairing_error">An error occurred during pairing</string>
+    <string name="bluetooth_scanning_non_permissions">There are no required permissions to scan devices</string>
+    <string name="bluetooth_pairing_non_permissions">There are no required permissions to pair the devices</string>
+    <string name="bluetooth_open_settings">Open settings</string>
+    <string name="bluetooth_device_already_paired">The device is already paired</string>
+</resources>

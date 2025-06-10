@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bluetooth_menu_devices">Устройства Bluetooth</string>
+    <string name="bluetooth_not_supported">Устройство не поддерживает Bluetooth</string>
+    <string name="bluetooth_of">Bluetooth выключен</string>
+    <string name="bluetooth_on">Bluetooth включен</string>
+    <string name="bluetooth_paired_devices">Сопряженные устройства</string>
+    <string name="bluetooth_scanning_devices">Доступные устройства</string>
+    <string name="bluetooth_device_unknown_name">Неизвестное имя</string>
+    <string name="bluetooth_scanning_error">Во время сканирования произошла ошибка</string>
+    <string name="bluetooth_pairing_error">Во время сопряжения произошла ошибка</string>
+    <string name="bluetooth_scanning_non_permissions">Нет нужных разрешений для сканирования устройств</string>
+    <string name="bluetooth_pairing_non_permissions">Нет нужных разрешений для сопряжения устройств</string>
+    <string name="bluetooth_open_settings">Открыть настройки</string>
+    <string name="bluetooth_device_already_paired">Устройство уже сопряжено</string>
+</resources>
