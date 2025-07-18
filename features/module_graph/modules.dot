@@ -1,5 +1,6 @@
 digraph {
 audio
+bluetooth
 calendar
 charts
 chat
@@ -22,9 +23,11 @@ shared_element_transitions
 tutorial
 video
 work_manager
+bluetooth -> charts
 photo -> image
 photo -> video
 root -> audio
+root -> bluetooth
 root -> calendar
 root -> charts
 root -> chat

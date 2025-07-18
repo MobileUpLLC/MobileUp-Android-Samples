@@ -11,27 +11,24 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withTimeout
 import ru.mobileup.samples.core.error_handling.LocationNotAvailableException
+import kotlin.coroutines.cancellation.CancellationException
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.nanoseconds
 
 class AndroidLocationService(
     private val context: Context
 ) : LocationService {
 
-    private companion object {
-        const val DEFAULT_TIMEOUT_SECONDS = 10
-    }
-
-    override suspend fun getCurrentLocation(): GeoCoordinate {
+    override suspend fun getCurrentLocation(timeout: Duration): GeoCoordinate {
         return try {
             val fusedLocationProviderClient = LocationServices
                 .getFusedLocationProviderClient(context)
-            getLocation(
-                client = fusedLocationProviderClient,
-                timeout = DEFAULT_TIMEOUT_SECONDS.nanoseconds
-            )
+            getLocation(fusedLocationProviderClient, timeout)
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: LocationNotAvailableException) {
+            throw e
         } catch (e: Exception) {
-            throw LocationNotAvailableException(e)
+            throw LocationNotAvailableException(e, message = null)
         }
     }
 
@@ -41,21 +38,19 @@ class AndroidLocationService(
         client: FusedLocationProviderClient,
         timeout: Duration
     ): GeoCoordinate {
+        val cancellationTokenSource = CancellationTokenSource()
         return try {
             withTimeout(timeout) {
-                val cancellationTokenSource = CancellationTokenSource()
                 client
-                    .getCurrentLocation(
-                        PRIORITY_HIGH_ACCURACY,
-                        cancellationTokenSource.token
-                    ).await(cancellationTokenSource)
+                    .getCurrentLocation(PRIORITY_HIGH_ACCURACY, cancellationTokenSource.token)
+                    .await(cancellationTokenSource)
                     .let { location ->
-                        GeoCoordinate(
-                            lat = location.latitude,
-                            lng = location.longitude
-                        )
+                        GeoCoordinate(location.latitude, location.longitude)
                     }
             }
+        } catch (e: CancellationException) {
+            cancellationTokenSource.cancel()
+            throw e
         } catch (_: Exception) {
             getLastLocation(client)
         }
@@ -67,10 +62,7 @@ class AndroidLocationService(
     ): GeoCoordinate {
         val location: Location? = client.lastLocation.await()
         return location?.let { location ->
-            GeoCoordinate(
-                lat = location.latitude,
-                lng = location.longitude
-            )
-        } ?: throw LocationNotAvailableException(message = "Last location is null")
+            GeoCoordinate(location.latitude, location.longitude)
+        } ?: throw LocationNotAvailableException(cause = null, "Last location is null")
     }
 }
